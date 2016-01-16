@@ -1,19 +1,14 @@
 package de.tobilebonk;
 
-import javafx.collections.ListChangeListener;
-import javafx.fxml.FXMLLoader;
+
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Stack;
 
 /**
  * Created by Dappsen on 16.01.2016.
