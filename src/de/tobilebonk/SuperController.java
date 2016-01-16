@@ -41,7 +41,7 @@ public class SuperController {
 
         });
         //setup logger
-        log.getTextList().addListener(new ListChangeListener<Text>() {
+        log.getLogEntryList().addListener(new ListChangeListener<Text>() {
             @Override
             public void onChanged(Change<? extends Text> c) {
                 while (c.next()) {
