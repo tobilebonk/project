@@ -70,7 +70,7 @@ public class SuperView {
         tertiaryPane.setPrefWidth(SCENE_WIDTH * 0.55);
         tertiaryPane.setPrefHeight(SCENE_HEIGHT * 0.6);
         scrollPane.setPrefWidth(SCENE_WIDTH);
-        scrollPane.setPrefHeight(15);
+        scrollPane.setPrefHeight(SCENE_HEIGHT * 0.4);
 
         //colors TODO: remove
         primaryPane.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -91,6 +91,21 @@ public class SuperView {
     }
     public void fillTertiaryPane(Node node){
         tertiaryPane.getChildren().add(node);
+    }
+
+    public double getPrimaryPaneWidth(){
+        return primaryPane.getWidth();
+    }
+
+    public double getPrimaryPaneHeight(){
+        return primaryPane.getHeight();
+    }
+    public double getTertiaryPaneWidth(){
+        return tertiaryPane.getWidth();
+    }
+
+    public double getTertiaryPaneHeight(){
+        return tertiaryPane.getHeight();
     }
     public MenuItem getOpenFileMenuItem(){
         return openFileMenuItem;

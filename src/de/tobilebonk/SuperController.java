@@ -1,6 +1,8 @@
 package de.tobilebonk;
 
 import de.tobilebonk.reader.PdbReader;
+import de.tobilebonk.subcontroller.Rna3DPresenter;
+import de.tobilebonk.subview.Rna3DView;
 import javafx.collections.ListChangeListener;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -35,8 +37,13 @@ public class SuperController {
             if (selectedFile != null) {
                 // if succesful, create model from file
                 model = new Model(new PdbReader(selectedFile.getPath()));
-                // log
                 log.addLogEntry("Loaded File: " + selectedFile.getPath());
+
+                Rna3DView rna3DView = new Rna3DView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight());
+                Rna3DPresenter rna3DPresenter = new Rna3DPresenter(model, rna3DView);
+                superView.fillTertiaryPane(rna3DView.getStackPane());
+
+
             }
 
         });
@@ -56,6 +63,11 @@ public class SuperController {
                 }
             }
         });
+
+
+        // greetings to the user
+        log.addInfoEntry("Welcome! Please choose your PDB File! Therefore, go to the menu bar, choose \"File\" and then \"Load PDB...\"");
+
     }
 
     public SuperView getSuperView(){
