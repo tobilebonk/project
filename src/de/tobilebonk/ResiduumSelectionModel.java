@@ -1,13 +1,17 @@
 package de.tobilebonk;
 
+import de.tobilebonk.nucleotide3D.Nucleotide3DProperty;
+import de.tobilebonk.nucleotide3D.Nucleotide3DTemplate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
+import javafx.scene.Node;
 import javafx.scene.control.MultipleSelectionModel;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Selection model
@@ -173,5 +177,38 @@ public class ResiduumSelectionModel<T> extends MultipleSelectionModel<T> {
     public void selectNext() {
         if (focusIndex >= 0 && focusIndex + 1 < items.length)
             select(++focusIndex);
+    }
+
+    //TODO keep in mind when refactoring
+    public void connectToAllNodes(List<Nucleotide3DProperty> nodes, SuperLog log){
+        for(int i = 0; i < getItems().length; i++){
+            final int index = i;
+            nodes.get(index).getValue().getNucleotideGroup().setOnMouseClicked(e -> {
+                if (isSelected(index)) {
+                    if (!e.isAltDown()) {
+                        clearSelection();
+                        log.addInfoEntry("Cleared Selection");
+                    } else {
+                        clearSelection(index);
+                        log.addInfoEntry("Deselected Nucleotide " +
+                                nodes.get(index).getValue().getSequenceNumber() +
+                                " (" +
+                                nodes.get(index).getValue().getType() +
+                                ")");
+                    }
+                } else {
+                    if (!e.isAltDown()) {
+                        clearSelection();
+                        log.addInfoEntry("Cleared Selection");
+                    }
+                    select(index);
+                    log.addInfoEntry("Selected Nucleotide " +
+                            nodes.get(index).getValue().getSequenceNumber() +
+                            " (" +
+                            nodes.get(index).getValue().getType() +
+                            ")");
+                }
+            });}
+
     }
 }

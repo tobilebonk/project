@@ -83,13 +83,13 @@ public class SuperView {
         return scene;
     }
 
-    public void fillPrimaryPane(Node node){
+    public void putIntoPrimaryPane(Node node){
         primaryPane.getChildren().add(node);
     }
-    public void fillSecondaryPane(Node node){
+    public void putIntoSecondaryPane(Node node){
         secondaryPane.getChildren().add(node);
     }
-    public void fillTertiaryPane(Node node){
+    public void putIntoTertiaryPane(Node node){
         tertiaryPane.getChildren().add(node);
     }
 

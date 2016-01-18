@@ -383,20 +383,7 @@ public abstract class Nucleotide3DTemplate{
             }
         }
     }
-/*
-    private void createGroupColorBinding(ResiduumSelectionModel selectionModel) {
-        return new ObjectBinding<Color>() {
-            {
-                bind(selectionModel.getSelectedItems());
-            }
 
-            @Override
-            protected Color computeValue() {
-                if(selectionModel.getSelectedItems().contains(this))
-            }
-        };
-    }
-*/
 
 
 

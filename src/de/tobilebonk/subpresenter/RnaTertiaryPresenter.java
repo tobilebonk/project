@@ -3,15 +3,10 @@ package de.tobilebonk.subpresenter;
 import de.tobilebonk.Model;
 import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.SuperLog;
-import de.tobilebonk.nucleotide3D.Nucleotide3DTemplate;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.subview.SubView;
-import de.tobilebonk.utils.SelectionUtils;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.binding.ObjectBinding;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
-import javafx.scene.shape.Rectangle;
 
 
 /**
@@ -20,7 +15,6 @@ import javafx.scene.shape.Rectangle;
 public class RnaTertiaryPresenter implements Subpresenter {
 
     private SubView view;
-    ;
     private Model model;
     private ResiduumSelectionModel<Group> selectionModel;
     private SuperLog log;
@@ -32,10 +26,13 @@ public class RnaTertiaryPresenter implements Subpresenter {
         this.selectionModel = selectionModel;
         this.log = log;
 
-        //show all nucleotides:
         if (model != null) {
+            //show all nucleotides:
             model.getNucleotide3DAllSortedList().forEach(n -> view.add3DNucleotide(n.getValue()));
-        }
+
+
+        //TODO: auslagern
+        //
 
         //show connections between nucleotides
         if (model.getNucleotide3DAllSortedList().size() > 1) {
@@ -45,6 +42,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
                 model.getNucleotide3DAllSortedList().get(i).getValue()
                         .connectSugarToPhosphorOf(model.getNucleotide3DAllSortedList().get(i + 1).getValue());
             }
+        }
         }
 
         // setup selections
@@ -93,57 +91,6 @@ public class RnaTertiaryPresenter implements Subpresenter {
                 }
             });
         }
-
-
-/*
-
-        //coloring checkboxes
-        view.getCheckBoxColorA().setOnAction(event -> {
-            if (view.getCheckBoxColorA().isSelected()){
-                model.getAdenine3DList().forEach(n -> {
-                    n.getValue().setColoring();
-                });
-            }else{
-                model.getAdenine3DList().forEach(n -> {
-                    n.getValue().resetColoring();
-                });
-            }
-        });
-        view.getCheckBoxColorC().setOnAction(event -> {
-            if(view.getCheckBoxColorC().isSelected()){
-                model.getCytosin3DList().forEach(n -> {
-                    n.getValue().setColoring();
-                });
-            } else {
-                model.getCytosin3DList().forEach(n -> {
-                    n.getValue().resetColoring();
-                });
-            }
-        });
-        view.getCheckBoxColorG().setOnAction(event -> {
-            if (view.getCheckBoxColorG().isSelected()){
-                model.getGuanine3DList().forEach(n -> {
-                    n.getValue().setColoring();
-                });
-            }else{
-                model.getGuanine3DList().forEach(n -> {
-                    n.getValue().resetColoring();
-                });
-            }
-        });
-        view.getCheckBoxColorU().setOnAction(event -> {
-            if(view.getCheckBoxColorU().isSelected()){
-                model.getUracil3DList().forEach(n -> {
-                    n.getValue().setColoring();
-                });
-            }else{
-                model.getUracil3DList().forEach(n -> {
-                    n.getValue().resetColoring();
-                });
-            }
-        });
-
-*/
     }
 
 

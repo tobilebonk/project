@@ -13,8 +13,8 @@ import javafx.scene.Group;
  */
 public class RnaPrimaryPresenter implements Subpresenter{
 
-    SubView view;
-    Model model;
+    private SubView view;
+    private Model model;
     private ResiduumSelectionModel<Group> selectionModel;
     private SuperLog log;
 
@@ -42,7 +42,7 @@ public class RnaPrimaryPresenter implements Subpresenter{
 
         for(int i = 0; i < selectionModel.getItems().length; i++){
             final int index = i;
-            view.getResidueTexts().get(i).setOnMouseClicked(e -> {
+            view.getResidueTexts().get(index).setOnMouseClicked(e -> {
                 if (selectionModel.isSelected(index)) {
                     if(!e.isAltDown()){
                         selectionModel.clearSelection();
