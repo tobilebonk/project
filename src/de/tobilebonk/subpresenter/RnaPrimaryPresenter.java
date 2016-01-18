@@ -50,9 +50,9 @@ public class RnaPrimaryPresenter implements Subpresenter{
                     } else {
                         selectionModel.clearSelection(index);
                         log.addInfoEntry("Deselected Nucleotide " +
-                                model.getNucleotide3DAllSortedList().get(index).getValue().getSequenceNumber() +
+                                model.getAllTriples().get(index).getSequenceNumber() +
                                 " (" +
-                                model.getNucleotide3DAllSortedList().get(index).getValue().getType() +
+                                model.getAllTriples().get(index).getType() +
                                 ")");
                     }
                 } else {
@@ -62,9 +62,9 @@ public class RnaPrimaryPresenter implements Subpresenter{
                     }
                     selectionModel.select(index);
                     log.addInfoEntry("Selected Nucleotide " +
-                            model.getNucleotide3DAllSortedList().get(index).getValue().getSequenceNumber() +
+                            model.getAllTriples().get(index).getSequenceNumber() +
                             " (" +
-                            model.getNucleotide3DAllSortedList().get(index).getValue().getType() +
+                            model.getAllTriples().get(index).getType() +
                             ")");
                 }
         });}

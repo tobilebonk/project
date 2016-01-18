@@ -28,19 +28,13 @@ public class RnaTertiaryPresenter implements Subpresenter {
 
         if (model != null) {
             //show all nucleotides:
-            model.getNucleotide3DAllSortedList().forEach(n -> view.add3DNucleotide(n.getValue()));
-
-
-        //TODO: auslagern
-        //
+            view.initiate3DNucleotides(model.getAdenineTriples(), model.getCytosinTriples(), model.getGuanineTriples(), model.getUracilTriples());
 
         //show connections between nucleotides
-        if (model.getNucleotide3DAllSortedList().size() > 1) {
-            for (int i = 0; i < model.getNucleotide3DAllSortedList().size() - 1; ++i) {
-                model.getNucleotide3DAllSortedList().get(i).getValue()
-                        .connectPhosphorToPhosphorOf(model.getNucleotide3DAllSortedList().get(i + 1).getValue());
-                model.getNucleotide3DAllSortedList().get(i).getValue()
-                        .connectSugarToPhosphorOf(model.getNucleotide3DAllSortedList().get(i + 1).getValue());
+        if (model.getAllTriples().size() > 1) {
+            for (int i = 0; i < model.getAllTriples().size() - 1; ++i) {
+                view.getNucleotide3DAllSortedList().get(i).connectPhosphorToPhosphorOf(view.getNucleotide3DAllSortedList().get(i + 1));
+                view.getNucleotide3DAllSortedList().get(i).connectSugarToPhosphorOf(view.getNucleotide3DAllSortedList().get(i + 1));
             }
         }
         }
@@ -52,18 +46,18 @@ public class RnaTertiaryPresenter implements Subpresenter {
             public void onChanged(Change c) {
                 for (int i = 0; i < selectionModel.getItems().length; i++) {
                     if (selectionModel.getSelectedIndices().contains(i)) {
-                        model.getNucleotide3DAllSortedList().get(i).getValue().setColoring();
+                        view.getNucleotide3DAllSortedList().get(i).setColoring();
                     } else {
-                        model.getNucleotide3DAllSortedList().get(i).getValue().resetColoring();
+                        view.getNucleotide3DAllSortedList().get(i).resetColoring();
                     }
                 }
             }
         });
-        for (int i = 0; i < model.getNucleotide3DAllSortedList().size(); i++) {
+        for (int i = 0; i < view.getNucleotide3DAllSortedList().size(); i++) {
 
             final int index = i;
 
-            model.getNucleotide3DAllSortedList().get(index).getValue().getNucleotideGroup().setOnMouseClicked((e) -> {
+            view.getNucleotide3DAllSortedList().get(index).getNucleotideGroup().setOnMouseClicked((e) -> {
 
                 if (selectionModel.isSelected(index)) {
                     if(!e.isAltDown()){
@@ -72,9 +66,9 @@ public class RnaTertiaryPresenter implements Subpresenter {
                     }else {
                         selectionModel.clearSelection(index);
                         log.addInfoEntry("Deselected Nucleotide " +
-                                model.getNucleotide3DAllSortedList().get(index).getValue().getSequenceNumber() +
+                                view.getNucleotide3DAllSortedList().get(index).getSequenceNumber() +
                                 " (" +
-                                model.getNucleotide3DAllSortedList().get(index).getValue().getType() +
+                                view.getNucleotide3DAllSortedList().get(index).getType() +
                                 ")");
                     }
                 } else {
@@ -84,9 +78,9 @@ public class RnaTertiaryPresenter implements Subpresenter {
                     }
                     selectionModel.select(index);
                     log.addInfoEntry("Selected Nucleotide " +
-                            model.getNucleotide3DAllSortedList().get(index).getValue().getSequenceNumber() +
+                            view.getNucleotide3DAllSortedList().get(index).getSequenceNumber() +
                             " (" +
-                            model.getNucleotide3DAllSortedList().get(index).getValue().getType() +
+                            view.getNucleotide3DAllSortedList().get(index).getType() +
                             ")");
                 }
             });

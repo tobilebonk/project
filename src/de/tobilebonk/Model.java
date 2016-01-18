@@ -1,11 +1,10 @@
 package de.tobilebonk;
 
-import de.tobilebonk.atom.Atom;
 import de.tobilebonk.nucleotide3D.*;
 import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
+import de.tobilebonk.utils.Comparators;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,192 +19,26 @@ public class Model {
 
     ListProperty<ResiduumType> modeledResidues = new SimpleListProperty<ResiduumType>(FXCollections.observableList(new ArrayList<ResiduumType>()));
 
-    private SimpleBooleanProperty isShowA = new SimpleBooleanProperty(this, "isShowA", false);
-    private SimpleBooleanProperty isShowC = new SimpleBooleanProperty(this, "isShowC", false);
-    private SimpleBooleanProperty isShowG = new SimpleBooleanProperty(this, "isShowG", false);
-    private SimpleBooleanProperty isShowU = new SimpleBooleanProperty(this, "isShowU", false);
-    private SimpleBooleanProperty isDrawPhosphorBonds = new SimpleBooleanProperty(this, "isDrawPhosphorBonds", false);
-    private SimpleBooleanProperty isColorA = new SimpleBooleanProperty(this, "isColorA", false);
-    private SimpleBooleanProperty isColorC = new SimpleBooleanProperty(this, "isColorC", false);
-    private SimpleBooleanProperty isColorG = new SimpleBooleanProperty(this, "isColorG", false);
-    private SimpleBooleanProperty isColorU = new SimpleBooleanProperty(this, "isColorU", false);
+    ListProperty<ResiduumAtomsSequenceNumberTriple> allTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
+    ListProperty<ResiduumAtomsSequenceNumberTriple> adenineTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
+    ListProperty<ResiduumAtomsSequenceNumberTriple> cytosinTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
+    ListProperty<ResiduumAtomsSequenceNumberTriple> guanineTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
+    ListProperty<ResiduumAtomsSequenceNumberTriple> uracilTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
 
-    private List<Nucleotide3DProperty> adenine3DList = new ArrayList<>();
-    private List<Nucleotide3DProperty> cytosin3DList = new ArrayList<>();
-    private List<Nucleotide3DProperty> guanine3DList = new ArrayList<>();
-    private List<Nucleotide3DProperty> uracil3DList = new ArrayList<>();
-    private List<Nucleotide3DProperty> nucleotide3DAllSortedList = new ArrayList<>();
 
     public Model(PdbReader reader){
 
         reader.getResidues().forEach(residue -> modeledResidues.add(residue));
 
-        //TODO: remove view elemetns
-        for (ResiduumAtomsSequenceNumberTriple uracilTriple : reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.U)) {
-            uracil3DList.add(new Nucleotide3DProperty(new Uracil3D(uracilTriple)));
-        }
-        for (ResiduumAtomsSequenceNumberTriple cytosinTriple : reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.C)) {
-            cytosin3DList.add(new Nucleotide3DProperty(new Cytosine3D(cytosinTriple)));
-        }
-        for (ResiduumAtomsSequenceNumberTriple adenineTriple : reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.A)) {
-            adenine3DList.add(new Nucleotide3DProperty(new Adenine3D(adenineTriple)));
-        }
-        for (ResiduumAtomsSequenceNumberTriple guanineTriple : reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.G)) {
-            guanine3DList.add(new Nucleotide3DProperty(new Guanine3D(guanineTriple)));
-        }
-        nucleotide3DAllSortedList.addAll(uracil3DList);
-        nucleotide3DAllSortedList.addAll(cytosin3DList);
-        nucleotide3DAllSortedList.addAll(adenine3DList);
-        nucleotide3DAllSortedList.addAll(guanine3DList);
-        Collections.sort(nucleotide3DAllSortedList, new SequenceIdComparator());
-    }
-
-    public List<Nucleotide3DProperty> getAdenine3DList() {
-        return adenine3DList;
-    }
-
-    public void setAdenine3DList(List<Nucleotide3DProperty> adenine3DList) {
-        this.adenine3DList = adenine3DList;
-    }
-
-    public List<Nucleotide3DProperty> getCytosin3DList() {
-        return cytosin3DList;
-    }
-
-    public void setCytosin3DList(List<Nucleotide3DProperty> cytosin3DList) {
-        this.cytosin3DList = cytosin3DList;
-    }
-
-    public List<Nucleotide3DProperty> getGuanine3DList() {
-        return guanine3DList;
-    }
-
-    public void setGuanine3DList(List<Nucleotide3DProperty> guanine3DList) {
-        this.guanine3DList = guanine3DList;
-    }
-
-    public List<Nucleotide3DProperty> getUracil3DList() {
-        return uracil3DList;
-    }
-
-    public void setUracil3DList(List<Nucleotide3DProperty> uracil3DList) {
-        this.uracil3DList = uracil3DList;
-    }
-
-    public List<Nucleotide3DProperty> getNucleotide3DAllSortedList() {
-        return nucleotide3DAllSortedList;
-    }
-
-    public void setNucleotide3DAllSortedList(List<Nucleotide3DProperty> nucleotide3DAllSortedList) {
-        this.nucleotide3DAllSortedList = nucleotide3DAllSortedList;
-    }
-
-    public boolean getIsShowA() {
-        return isShowA.get();
-    }
-
-    public SimpleBooleanProperty isShowAProperty() {
-        return isShowA;
-    }
-
-    public void setIsShowA(boolean isShowA) {
-        this.isShowA.set(isShowA);
-    }
-
-    public boolean getIsShowC() {
-        return isShowC.get();
-    }
-
-    public SimpleBooleanProperty isShowCProperty() {
-        return isShowC;
-    }
-
-    public void setIsShowC(boolean isShowC) {
-        this.isShowC.set(isShowC);
-    }
-
-    public boolean getIsShowG() {
-        return isShowG.get();
-    }
-
-    public SimpleBooleanProperty isShowGProperty() {
-        return isShowG;
-    }
-
-    public void setIsShowG(boolean isShowG) {
-        this.isShowG.set(isShowG);
-    }
-
-    public boolean getIsShowU() {
-        return isShowU.get();
-    }
-
-    public SimpleBooleanProperty isShowUProperty() {
-        return isShowU;
-    }
-
-    public void setIsShowU(boolean isShowU) {
-        this.isShowU.set(isShowU);
-    }
-
-    public boolean getIsDrawPhosphorBonds() {
-        return isDrawPhosphorBonds.get();
-    }
-
-    public SimpleBooleanProperty isDrawPhosphorBondsProperty() {
-        return isDrawPhosphorBonds;
-    }
-
-    public void setIsDrawPhosphorBonds(boolean isDrawPhosphorBonds) {
-        this.isDrawPhosphorBonds.set(isDrawPhosphorBonds);
-    }
-
-    public boolean getIsColorA() {
-        return isColorA.get();
-    }
-
-    public SimpleBooleanProperty isColorAProperty() {
-        return isColorA;
-    }
-
-    public void setIsColorA(boolean isColorA) {
-        this.isColorA.set(isColorA);
-    }
-
-    public boolean getIsColorC() {
-        return isColorC.get();
-    }
-
-    public SimpleBooleanProperty isColorCProperty() {
-        return isColorC;
-    }
-
-    public void setIsColorC(boolean isColorC) {
-        this.isColorC.set(isColorC);
-    }
-
-    public boolean getIsColorG() {
-        return isColorG.get();
-    }
-
-    public SimpleBooleanProperty isColorGProperty() {
-        return isColorG;
-    }
-
-    public void setIsColorG(boolean isColorG) {
-        this.isColorG.set(isColorG);
-    }
-
-    public boolean getIsColorU() {
-        return isColorU.get();
-    }
-
-    public SimpleBooleanProperty isColorUProperty() {
-        return isColorU;
-    }
-
-    public void setIsColorU(boolean isColorU) {
-        this.isColorU.set(isColorU);
+        adenineTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.A));
+        cytosinTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.C));
+        guanineTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.G));
+        uracilTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.U));
+        allTriples.addAll(adenineTriples);
+        allTriples.addAll(cytosinTriples);
+        allTriples.addAll(guanineTriples);
+        allTriples.addAll(uracilTriples);
+        Collections.sort(allTriples, Comparators.getSequenceIdOnTriplesComparator());
     }
 
     public ObservableList<ResiduumType> getModeledResidues() {
@@ -224,17 +57,73 @@ public class Model {
         this.modeledResidues.set(new SimpleListProperty<ResiduumType>(FXCollections.observableList(modeledResidues)));
     }
 
+    public ObservableList<ResiduumAtomsSequenceNumberTriple> getAllTriples() {
+        return allTriples.get();
+    }
+
+    public ListProperty<ResiduumAtomsSequenceNumberTriple> allTriplesProperty() {
+        return allTriples;
+    }
+
+    public void setAllTriples(ObservableList<ResiduumAtomsSequenceNumberTriple> allTriples) {
+        this.allTriples.set(allTriples);
+    }
+
+    public void setTriples(List<ResiduumAtomsSequenceNumberTriple> triples){
+        this.allTriples.set(new SimpleListProperty<ResiduumAtomsSequenceNumberTriple>(FXCollections.observableList(triples)));
+    }
+
     public void addToModeledResidues(ResiduumType residue){
         this.modeledResidues.add(residue);
     }
 
-    private class SequenceIdComparator implements Comparator<Nucleotide3DProperty> {
-        @Override
-        public int compare(Nucleotide3DProperty n1, Nucleotide3DProperty n2) {
-            int s1 = n1.getValue().getSequenceNumber();
-            int s2 = n2.getValue().getSequenceNumber();
-            return s1 < s2 ? -1 : s1 == s2 ? 0 : 1;
-        }
+    public ObservableList<ResiduumAtomsSequenceNumberTriple> getAdenineTriples() {
+        return adenineTriples.get();
     }
+
+    public ListProperty<ResiduumAtomsSequenceNumberTriple> adenineTriplesProperty() {
+        return adenineTriples;
+    }
+
+    public void setAdenineTriples(ObservableList<ResiduumAtomsSequenceNumberTriple> adenineTriples) {
+        this.adenineTriples.set(adenineTriples);
+    }
+
+    public ObservableList<ResiduumAtomsSequenceNumberTriple> getCytosinTriples() {
+        return cytosinTriples.get();
+    }
+
+    public ListProperty<ResiduumAtomsSequenceNumberTriple> cytosinTriplesProperty() {
+        return cytosinTriples;
+    }
+
+    public void setCytosinTriples(ObservableList<ResiduumAtomsSequenceNumberTriple> cytosinTriples) {
+        this.cytosinTriples.set(cytosinTriples);
+    }
+
+    public ObservableList<ResiduumAtomsSequenceNumberTriple> getGuanineTriples() {
+        return guanineTriples.get();
+    }
+
+    public ListProperty<ResiduumAtomsSequenceNumberTriple> guanineTriplesProperty() {
+        return guanineTriples;
+    }
+
+    public void setGuanineTriples(ObservableList<ResiduumAtomsSequenceNumberTriple> guanineTriples) {
+        this.guanineTriples.set(guanineTriples);
+    }
+
+    public ObservableList<ResiduumAtomsSequenceNumberTriple> getUracilTriples() {
+        return uracilTriples.get();
+    }
+
+    public ListProperty<ResiduumAtomsSequenceNumberTriple> uracilTriplesProperty() {
+        return uracilTriples;
+    }
+
+    public void setUracilTriples(ObservableList<ResiduumAtomsSequenceNumberTriple> uracilTriples) {
+        this.uracilTriples.set(uracilTriples);
+    }
+
 
 }

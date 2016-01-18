@@ -1,26 +1,35 @@
 package de.tobilebonk.subview;
 
-import de.tobilebonk.nucleotide3D.Nucleotide3DTemplate;
-import javafx.geometry.Insets;
+import de.tobilebonk.nucleotide3D.*;
+import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
+import de.tobilebonk.utils.Comparators;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.*;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Dappsen on 10.01.2016.
  */
-public class RnaTertiaryView implements SubView{
+public class RnaTertiaryView implements SubView {
+
+
+    private List<Nucleotide3DTemplate> adenine3DList = new ArrayList<>();
+    private List<Nucleotide3DTemplate> cytosin3DList = new ArrayList<>();
+    private List<Nucleotide3DTemplate> guanine3DList = new ArrayList<>();
+    private List<Nucleotide3DTemplate> uracil3DList = new ArrayList<>();
+    private List<Nucleotide3DTemplate> nucleotide3DAllSortedList = new ArrayList<>();
 
     //Scene and panes
     final StackPane stackPane;
@@ -29,11 +38,8 @@ public class RnaTertiaryView implements SubView{
 
     // Rotation Reminders
     private double mouseDownX, mouseDownY;
-    // buttons etc.
-    private CheckBox checkBoxColorA = new CheckBox("Adenine");
-    private CheckBox checkBoxColorC = new CheckBox("Cytosine");
-    private CheckBox checkBoxColorG = new CheckBox("Guanine");
-    private CheckBox checkBoxColorU = new CheckBox("Uracil");
+
+    // rotation and translation
     private Rotate cameraRotateX = new Rotate(0, new Point3D(1, 0, 0));
     private Rotate cameraRotateY = new Rotate(0, new Point3D(0, 1, 0));
     private Translate cameraTranslate = new Translate(0, 0, -100);
@@ -71,8 +77,6 @@ public class RnaTertiaryView implements SubView{
         Label drawLabel = new Label("Draw...");
         Label colorLabel = new Label("Color...");
 
-        colorControlBox.getChildren().addAll(colorLabel, checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU);
-
         topPane.setCenter(controlBox);
         topPane.setPickOnBounds(false);
 
@@ -99,52 +103,23 @@ public class RnaTertiaryView implements SubView{
             mouseDownY = me.getSceneY();
         });
 
-        Arrays.asList(checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU)
-                .forEach(cb -> HBox.setMargin(cb, new Insets(2.5, 15, 2.5, 15)));
-        BorderPane.setMargin(controlBox, new Insets(5));
-
     }
 
     // handlers to be set by controller
 
-    public void add3DNucleotide(Nucleotide3DTemplate nucleotide3D){
+    public void add3DNucleotide(Nucleotide3DTemplate nucleotide3D) {
         world.getChildren().addAll(nucleotide3D.getNucleotideGroup());
     }
 
-    public void remove3DNucleotide(Nucleotide3DTemplate nucleotide3D){
+    public void remove3DNucleotide(Nucleotide3DTemplate nucleotide3D) {
         world.getChildren().removeAll(nucleotide3D.getNucleotideGroup());
-    }
-
-    public void reset(){
-        world.getChildren().clear();
-        Arrays.asList(
-                checkBoxColorU, checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU).forEach(
-                c -> c.setSelected(false)
-        );
     }
 
     // getters
 
-    public CheckBox getCheckBoxColorA() {
-        return checkBoxColorA;
-    }
-
-    public CheckBox getCheckBoxColorC() {
-        return checkBoxColorC;
-    }
-
-    public CheckBox getCheckBoxColorG() {
-        return checkBoxColorG;
-    }
-
-    public CheckBox getCheckBoxColorU() {
-        return checkBoxColorU;
-    }
-
-    public StackPane getStackPane(){
+    public StackPane getStackPane() {
         return stackPane;
     }
-
 
     public Rotate getCameraRotateX() {
         return cameraRotateX;
@@ -157,4 +132,49 @@ public class RnaTertiaryView implements SubView{
     public Translate getCameraTranslate() {
         return cameraTranslate;
     }
+
+    private void createAdenineGroups(List<ResiduumAtomsSequenceNumberTriple> adenineTriples) {
+        adenine3DList.addAll(adenineTriples.stream().map(Adenine3D::new).collect(Collectors.toList()));
+        adenine3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
+    }
+
+    private void createCytosinGroups(List<ResiduumAtomsSequenceNumberTriple> cytosinTriples) {
+        cytosin3DList.addAll(cytosinTriples.stream().map(Cytosine3D::new).collect(Collectors.toList()));
+        cytosin3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
+
+    }
+
+    private void createGuanineGroups(List<ResiduumAtomsSequenceNumberTriple> guanineTriples) {
+        guanine3DList.addAll(guanineTriples.stream().map(Guanine3D::new).collect(Collectors.toList()));
+        guanine3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
+
+    }
+
+    private void createUracilGroups(List<ResiduumAtomsSequenceNumberTriple> uracilTriples) {
+        uracil3DList.addAll(uracilTriples.stream().map(Uracil3D::new).collect(Collectors.toList()));
+        uracil3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
+
+    }
+    
+    public void initiate3DNucleotides(List<ResiduumAtomsSequenceNumberTriple> adenineTriples,
+                                      List<ResiduumAtomsSequenceNumberTriple> cytosinTriples,
+                                      List<ResiduumAtomsSequenceNumberTriple> guanineTriples,
+                                      List<ResiduumAtomsSequenceNumberTriple> uracilTriples) {
+        createAdenineGroups(adenineTriples);
+        createCytosinGroups(cytosinTriples);
+        createGuanineGroups(guanineTriples);
+        createUracilGroups(uracilTriples);
+        nucleotide3DAllSortedList.addAll(adenine3DList);
+        nucleotide3DAllSortedList.addAll(cytosin3DList);
+        nucleotide3DAllSortedList.addAll(guanine3DList);
+        nucleotide3DAllSortedList.addAll(uracil3DList);
+        Collections.sort(nucleotide3DAllSortedList, Comparators.getSequenceIdOnNucleotidesComparator());
+    }
+    public List<Nucleotide3DTemplate> getNucleotide3DAllSortedList() {
+        return nucleotide3DAllSortedList;
+    }
+
+
+
+
 }
