@@ -67,7 +67,6 @@ public class PdbReader {
                     atoms.add(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate));
                     //add to sequence numbers
                     sequenceNumbers.add(sequenceNumber);
-                    System.out.println(sequenceNumbers.size() + "   " + getResidues().size());
                 }
             }
             reader.close();

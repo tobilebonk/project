@@ -61,9 +61,9 @@ public class SuperView {
 
         // widths
         menuBar.setPrefWidth(SCENE_WIDTH);
-        primaryPane.setPrefWidth(SCENE_WIDTH * 0.55);
+        primaryPane.setPrefWidth(SCENE_WIDTH * 0.45);
         primaryPane.setPrefHeight(SCENE_HEIGHT * 0.3);
-        secondaryPane.setPrefWidth(SCENE_WIDTH * 0.55);
+        secondaryPane.setPrefWidth(SCENE_WIDTH * 0.45);
         secondaryPane.setPrefHeight(SCENE_HEIGHT * 0.3);
         primarySecondaryBox.setPrefWidth(SCENE_WIDTH * 0.45);
         primarySecondaryBox.setPrefHeight(SCENE_HEIGHT * 0.6);

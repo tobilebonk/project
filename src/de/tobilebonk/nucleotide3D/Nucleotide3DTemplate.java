@@ -1,8 +1,16 @@
 package de.tobilebonk.nucleotide3D;
 
+import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.atom.Atom;
 import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import de.tobilebonk.utils.Rna3DUtils;
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.ObjectBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
@@ -42,6 +50,8 @@ public abstract class Nucleotide3DTemplate{
     private ResiduumType type;
     private int sequenceNumber;
     protected boolean defaultColor = true;
+    private SimpleBooleanProperty selected;
+
 
     public Nucleotide3DTemplate(ResiduumAtomsSequenceNumberTriple atomsOfResiduum){
 
@@ -53,7 +63,17 @@ public abstract class Nucleotide3DTemplate{
         initBonds();
         initMeshs();
         initGroup();
+
+        selected = new SimpleBooleanProperty(false);
+        selected.addListener(event -> {
+            if(selected.get()){
+                setColoring();
+            }else{
+                resetColoring();
+            }
+        });
     }
+
 
     // method to complete the template
     protected abstract void initMeshs();
@@ -363,6 +383,21 @@ public abstract class Nucleotide3DTemplate{
             }
         }
     }
+/*
+    private void createGroupColorBinding(ResiduumSelectionModel selectionModel) {
+        return new ObjectBinding<Color>() {
+            {
+                bind(selectionModel.getSelectedItems());
+            }
+
+            @Override
+            protected Color computeValue() {
+                if(selectionModel.getSelectedItems().contains(this))
+            }
+        };
+    }
+*/
+
 
 
 }

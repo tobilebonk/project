@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -17,20 +18,28 @@ public class SuperLog extends SimpleListProperty<Text>{
     ListProperty<Text> logEntryList = new SimpleListProperty<Text>(FXCollections.observableList(new ArrayList<Text>()));
 
     public void addLogEntry(String logEntry){
-        Text logText = new Text("LOG:     " + logEntry + "\n");
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Text logText = new Text(timestamp.toString().substring(0, timestamp.toString().lastIndexOf(":")) + ": LOG:     " + logEntry + "\n");
         logText.setFont(Font.font(java.awt.Font.MONOSPACED));
         logEntryList.add(logText);
     }
 
     public void addWarningEntry(String warning){
-        Text warningText = new Text("WARNING: " + warning + "\n");
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+
+        Text warningText = new Text(timestamp.toString().substring(0, timestamp.toString().lastIndexOf(":")) + " WARNING: " + warning + "\n");
         warningText.setFill(Color.CRIMSON);
         warningText.setFont(Font.font(java.awt.Font.MONOSPACED));
         logEntryList.add(warningText);
     }
 
     public void addInfoEntry(String info){
-        Text infoText = new Text("INFO:    " + info + "\n");
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Text infoText = new Text(timestamp.toString().substring(0, timestamp.toString().lastIndexOf(":")) + " INFO:    " + info + "\n");
         infoText.setFill(Color.GREEN);
         infoText.setFont(Font.font(java.awt.Font.MONOSPACED));
         logEntryList.add(infoText);

@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
@@ -29,16 +30,13 @@ public class RnaTertiaryView implements SubView{
     // Rotation Reminders
     private double mouseDownX, mouseDownY;
     // buttons etc.
-    private CheckBox checkBoxShowA = new CheckBox("Adenine");
-    private CheckBox checkBoxShowC = new CheckBox("Cytosine");
-    private CheckBox checkBoxShowG = new CheckBox("Guanine");
-    private CheckBox checkBoxShowU = new CheckBox("Uracil");
-    private CheckBox checkBoxPhosphorBonds = new CheckBox("Phosphor to Phosphor Bonds");
-    private CheckBox checkBoxSugarPhosphorBonds = new CheckBox("Phosphor to Sugar Bonds");
     private CheckBox checkBoxColorA = new CheckBox("Adenine");
     private CheckBox checkBoxColorC = new CheckBox("Cytosine");
     private CheckBox checkBoxColorG = new CheckBox("Guanine");
     private CheckBox checkBoxColorU = new CheckBox("Uracil");
+    private Rotate cameraRotateX = new Rotate(0, new Point3D(1, 0, 0));
+    private Rotate cameraRotateY = new Rotate(0, new Point3D(0, 1, 0));
+    private Translate cameraTranslate = new Translate(0, 0, -100);
 
     public RnaTertiaryView(double width, double height) {
 
@@ -47,13 +45,11 @@ public class RnaTertiaryView implements SubView{
         camera.setNearClip(0.1);
         camera.setFarClip(10000.0);
 
-        final Rotate cameraRotateX = new Rotate(0, new Point3D(1, 0, 0));
-        final Rotate cameraRotateY = new Rotate(0, new Point3D(0, 1, 0));
-        final Translate cameraTranslate = new Translate(0, 0, -100);
-        camera.getTransforms().addAll(cameraRotateX, cameraRotateY, cameraTranslate);
+        camera.getTransforms().addAll(cameraTranslate);
 
         //setup world
         world = new Group();
+        world.getTransforms().addAll(cameraRotateX, cameraRotateY);
 
         // setup panes and scene
         final SubScene subScene = new SubScene(world, width, height, true, SceneAntialiasing.BALANCED);
@@ -75,8 +71,6 @@ public class RnaTertiaryView implements SubView{
         Label drawLabel = new Label("Draw...");
         Label colorLabel = new Label("Color...");
 
-        showControlBox.getChildren().addAll(showLabel, checkBoxShowA, checkBoxShowC, checkBoxShowG, checkBoxShowU);
-        drawControlBox.getChildren().addAll(drawLabel, checkBoxSugarPhosphorBonds, checkBoxPhosphorBonds);
         colorControlBox.getChildren().addAll(colorLabel, checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU);
 
         topPane.setCenter(controlBox);
@@ -94,10 +88,10 @@ public class RnaTertiaryView implements SubView{
             double mouseDeltaX = me.getSceneX() - mouseDownX;
             double mouseDeltaY = me.getSceneY() - mouseDownY;
 
+
             if (me.isShiftDown()) {
                 cameraTranslate.setZ(cameraTranslate.getZ() + mouseDeltaY);
-            } else // rotate
-            {
+            } else {
                 cameraRotateY.setAngle(cameraRotateY.getAngle() + mouseDeltaX);
                 cameraRotateX.setAngle(cameraRotateX.getAngle() - mouseDeltaY);
             }
@@ -105,8 +99,7 @@ public class RnaTertiaryView implements SubView{
             mouseDownY = me.getSceneY();
         });
 
-        Arrays.asList(checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU, checkBoxSugarPhosphorBonds,
-                checkBoxPhosphorBonds, checkBoxShowA, checkBoxShowC, checkBoxShowG, checkBoxShowU)
+        Arrays.asList(checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU)
                 .forEach(cb -> HBox.setMargin(cb, new Insets(2.5, 15, 2.5, 15)));
         BorderPane.setMargin(controlBox, new Insets(5));
 
@@ -125,38 +118,12 @@ public class RnaTertiaryView implements SubView{
     public void reset(){
         world.getChildren().clear();
         Arrays.asList(
-                checkBoxShowA, checkBoxShowC, checkBoxShowG, checkBoxColorU,
-                checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU,
-                checkBoxPhosphorBonds, checkBoxSugarPhosphorBonds).forEach(
+                checkBoxColorU, checkBoxColorA, checkBoxColorC, checkBoxColorG, checkBoxColorU).forEach(
                 c -> c.setSelected(false)
         );
     }
 
     // getters
-
-    public CheckBox getCheckBoxShowA() {
-        return checkBoxShowA;
-    }
-
-    public CheckBox getCheckBoxShowC() {
-        return checkBoxShowC;
-    }
-
-    public CheckBox getCheckBoxShowG() {
-        return checkBoxShowG;
-    }
-
-    public CheckBox getCheckBoxShowU() {
-        return checkBoxShowU;
-    }
-
-    public CheckBox getCheckBoxPhosphorBonds() {
-        return checkBoxPhosphorBonds;
-    }
-
-    public CheckBox getCheckBoxSugarPhosphorBonds(){
-        return checkBoxSugarPhosphorBonds;
-    }
 
     public CheckBox getCheckBoxColorA() {
         return checkBoxColorA;
@@ -176,5 +143,18 @@ public class RnaTertiaryView implements SubView{
 
     public StackPane getStackPane(){
         return stackPane;
+    }
+
+
+    public Rotate getCameraRotateX() {
+        return cameraRotateX;
+    }
+
+    public Rotate getCameraRotateY() {
+        return cameraRotateY;
+    }
+
+    public Translate getCameraTranslate() {
+        return cameraTranslate;
     }
 }
