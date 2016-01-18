@@ -19,7 +19,7 @@ import java.util.Arrays;
 /**
  * Created by Dappsen on 10.01.2016.
  */
-public class Rna3DView {
+public class RnaTertiaryView implements SubView{
 
     //Scene and panes
     final StackPane stackPane;
@@ -40,7 +40,7 @@ public class Rna3DView {
     private CheckBox checkBoxColorG = new CheckBox("Guanine");
     private CheckBox checkBoxColorU = new CheckBox("Uracil");
 
-    public Rna3DView(double width, double height) {
+    public RnaTertiaryView(double width, double height) {
 
         // setup camera:
         final PerspectiveCamera camera = new PerspectiveCamera(true);

@@ -2,6 +2,7 @@ package de.tobilebonk;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
@@ -13,7 +14,7 @@ import java.util.*;
  */
 public class SuperLog extends SimpleListProperty<Text>{
 
-    ListProperty<Text> logEntryList = new SimpleListProperty<Text>(javafx.collections.FXCollections.observableList(new ArrayList<Text>()));
+    ListProperty<Text> logEntryList = new SimpleListProperty<Text>(FXCollections.observableList(new ArrayList<Text>()));
 
     public void addLogEntry(String logEntry){
         Text logText = new Text("LOG:     " + logEntry + "\n");

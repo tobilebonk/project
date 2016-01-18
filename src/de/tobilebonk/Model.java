@@ -1,23 +1,24 @@
 package de.tobilebonk;
 
+import de.tobilebonk.atom.Atom;
 import de.tobilebonk.nucleotide3D.*;
 import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 
 /**
  * Created by Dappsen on 10.01.2016.
  */
 public class Model {
+
+    ListProperty<ResiduumType> modeledResidues = new SimpleListProperty<ResiduumType>(FXCollections.observableList(new ArrayList<ResiduumType>()));
 
     private SimpleBooleanProperty isShowA = new SimpleBooleanProperty(this, "isShowA", false);
     private SimpleBooleanProperty isShowC = new SimpleBooleanProperty(this, "isShowC", false);
@@ -36,6 +37,10 @@ public class Model {
     private List<Nucleotide3DProperty> nucleotide3DAllSortedList = new ArrayList<>();
 
     public Model(PdbReader reader){
+
+        reader.getResidues().forEach(residue -> modeledResidues.add(residue));
+
+        //TODO: remove view elemetns
         for (ResiduumAtomsSequenceNumberTriple uracilTriple : reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.U)) {
             uracil3DList.add(new Nucleotide3DProperty(new Uracil3D(uracilTriple)));
         }
@@ -203,6 +208,26 @@ public class Model {
         this.isColorU.set(isColorU);
     }
 
+    public ObservableList<ResiduumType> getModeledResidues() {
+        return modeledResidues.get();
+    }
+
+    public ListProperty<ResiduumType> modeledResiduesProperty() {
+        return modeledResidues;
+    }
+
+    public void setModeledResidues(ObservableList<ResiduumType> modeledResidues) {
+        this.modeledResidues.set(modeledResidues);
+    }
+
+    public void setModeledResidues(List<ResiduumType> modeledResidues){
+        this.modeledResidues.set(new SimpleListProperty<ResiduumType>(FXCollections.observableList(modeledResidues)));
+    }
+
+    public void addToModeledResidues(ResiduumType residue){
+        this.modeledResidues.add(residue);
+    }
+
     private class SequenceIdComparator implements Comparator<Nucleotide3DProperty> {
         @Override
         public int compare(Nucleotide3DProperty n1, Nucleotide3DProperty n2) {
@@ -211,4 +236,5 @@ public class Model {
             return s1 < s2 ? -1 : s1 == s2 ? 0 : 1;
         }
     }
+
 }

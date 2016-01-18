@@ -1,14 +1,16 @@
 package de.tobilebonk;
 
 import de.tobilebonk.reader.PdbReader;
-import de.tobilebonk.subcontroller.Rna3DPresenter;
-import de.tobilebonk.subview.Rna3DView;
+import de.tobilebonk.subpresenter.RnaPrimaryPresenter;
+import de.tobilebonk.subpresenter.RnaTertiaryPresenter;
+import de.tobilebonk.subpresenter.Subpresenter;
+import de.tobilebonk.subview.RnaPrimaryView;
+import de.tobilebonk.subview.RnaTertiaryView;
 import javafx.collections.ListChangeListener;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -39,9 +41,14 @@ public class SuperController {
                 model = new Model(new PdbReader(selectedFile.getPath()));
                 log.addLogEntry("Loaded File: " + selectedFile.getPath());
 
-                Rna3DView rna3DView = new Rna3DView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight());
-                Rna3DPresenter rna3DPresenter = new Rna3DPresenter(model, rna3DView);
-                superView.fillTertiaryPane(rna3DView.getStackPane());
+
+                // add primary view
+                RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight()));
+                superView.fillPrimaryPane(rnaPrimaryPresenter.getSubView().getStackPane());
+
+                // add tertiary view
+                Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidth(), superView.getTertiaryPaneHeight()));
+                superView.fillTertiaryPane(rnaTertiaryPresenter.getSubView().getStackPane());
 
 
             }

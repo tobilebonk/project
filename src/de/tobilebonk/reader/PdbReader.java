@@ -20,6 +20,7 @@ import java.util.Set;
 public class PdbReader {
 
     private List<Atom> atoms;
+    private List<ResiduumType> residues;
     private Set<Integer> sequenceNumbers;
 
     public PdbReader(String path){
@@ -34,8 +35,9 @@ public class PdbReader {
      */
     private void createAtomsFromPdbFile(String path){
 
-        LinkedList<Atom> atoms = new LinkedList<Atom>();
-        HashSet<Integer> sequenceNumbers = new HashSet<Integer>();
+        atoms = new LinkedList<Atom>();
+        residues = new LinkedList<ResiduumType>();
+        sequenceNumbers = new HashSet<Integer>();
 
         try (BufferedReader reader =  Files.newBufferedReader(Paths.get(path))) {
 
@@ -56,19 +58,22 @@ public class PdbReader {
                     float yCoordinate = Float.parseFloat(line.substring(38,46).replace(" ", ""));
                     float zCoordinate = Float.parseFloat(line.substring(46,54).replace(" ", ""));
                     AtomType atomType = AtomType.parseAtom(line.substring(76, 78).replace(" ", ""));
+
+                    //add to residue list
+                    if(atoms.isEmpty() || sequenceNumber != atoms.get(atoms.size() - 1).getSequenceNumber()){
+                        residues.add(residuumType);
+                    }
                     //add to atoms
                     atoms.add(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate));
                     //add to sequence numbers
                     sequenceNumbers.add(sequenceNumber);
+                    System.out.println(sequenceNumbers.size() + "   " + getResidues().size());
                 }
             }
             reader.close();
         }catch (IOException e){
             System.err.println("Caught IOException: " + e.getMessage());
         }
-
-        this.atoms = atoms;
-        this.sequenceNumbers = sequenceNumbers;
     }
 
     public List<ResiduumAtomsSequenceNumberTriple> getResiduumTypeAtomsSequenceNumberTriple(ResiduumType type){
@@ -89,5 +94,13 @@ public class PdbReader {
 
     public Set<Integer> getSequenceNumbers(){
         return this.sequenceNumbers;
+    }
+
+    public List<Atom> getAtoms(){
+        return atoms;
+    }
+
+    public List<ResiduumType> getResidues(){
+        return  residues;
     }
 }

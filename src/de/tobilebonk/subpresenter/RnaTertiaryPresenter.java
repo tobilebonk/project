@@ -1,19 +1,19 @@
-package de.tobilebonk.subcontroller;
+package de.tobilebonk.subpresenter;
 
 import de.tobilebonk.Model;
-import de.tobilebonk.subview.Rna3DView;
-import javafx.beans.property.SimpleBooleanProperty;
+import de.tobilebonk.subview.RnaTertiaryView;
+import de.tobilebonk.subview.SubView;
 
 
 /**
  * Created by Dappsen on 10.01.2016.
  */
-public class Rna3DPresenter {
+public class RnaTertiaryPresenter implements Subpresenter{
 
-    private Rna3DView view;;
+    private SubView view;;
     private Model model;
 
-    public Rna3DPresenter(Model model, Rna3DView view) {
+    public RnaTertiaryPresenter(Model model, RnaTertiaryView view) {
 
         this.view = view;
         this.model = model;
@@ -154,7 +154,7 @@ public class Rna3DPresenter {
         });
     }
 
-    public Rna3DView getView(){
+    public SubView getSubView(){
         return this.view;
     }
 
