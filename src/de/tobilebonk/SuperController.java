@@ -69,7 +69,6 @@ public class SuperController {
                     selectionTriples[i] = model.getAllTriples().get(i);
                 }
                 selectionModel.setItems(selectionTriples);
-
                 // add primary view
                 RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight()), selectionModel, log);
                 superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getStackPane());

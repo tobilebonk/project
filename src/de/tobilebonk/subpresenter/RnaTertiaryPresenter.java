@@ -3,6 +3,7 @@ package de.tobilebonk.subpresenter;
 import de.tobilebonk.Model;
 import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.SuperLog;
+import de.tobilebonk.nucleotide3D.ResiduumType;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.subview.SubView;
 import javafx.collections.ListChangeListener;
@@ -30,13 +31,15 @@ public class RnaTertiaryPresenter implements Subpresenter {
             //show all nucleotides:
             view.initiate3DNucleotides(model.getAdenineTriples(), model.getCytosinTriples(), model.getGuanineTriples(), model.getUracilTriples());
 
-        //show connections between nucleotides
-        if (model.getAllTriples().size() > 1) {
-            for (int i = 0; i < model.getAllTriples().size() - 1; ++i) {
-                view.getNucleotide3DAllSortedList().get(i).connectPhosphorToPhosphorOf(view.getNucleotide3DAllSortedList().get(i + 1));
-                view.getNucleotide3DAllSortedList().get(i).connectSugarToPhosphorOf(view.getNucleotide3DAllSortedList().get(i + 1));
+            //show connections between nucleotides
+            if (model.getAllTriples().size() > 1) {
+                for (int i = 0; i < model.getAllTriples().size() - model.getDummyTriples().size() - 1; ++i) {
+                    if(view.getNucleotide3DAllSortedList().get(i).getSequenceNumber() + 1 == view.getNucleotide3DAllSortedList().get(i+1).getSequenceNumber()){
+                        view.getNucleotide3DAllSortedList().get(i).connectPhosphorToPhosphorOf(view.getNucleotide3DAllSortedList().get(i + 1));
+                        view.getNucleotide3DAllSortedList().get(i).connectSugarToPhosphorOf(view.getNucleotide3DAllSortedList().get(i + 1));
+                    }
+                }
             }
-        }
         }
 
         // setup selections
@@ -44,7 +47,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
         selectionModel.getSelectedItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change c) {
-                for (int i = 0; i < selectionModel.getItems().length; i++) {
+                for (int i = 0; i < model.getAllNonDummyTriples().size(); i++) {
                     if (selectionModel.getSelectedIndices().contains(i)) {
                         view.getNucleotide3DAllSortedList().get(i).setColoring();
                     } else {
@@ -53,37 +56,39 @@ public class RnaTertiaryPresenter implements Subpresenter {
                 }
             }
         });
-        for (int i = 0; i < view.getNucleotide3DAllSortedList().size(); i++) {
+
+        for (int i = 0; i < model.getAllNonDummyTriples().size(); i++) {
 
             final int index = i;
+            if(view.getNucleotide3DAllSortedList().get(i).getType() != ResiduumType._) {
+                view.getNucleotide3DAllSortedList().get(index).getNucleotideGroup().setOnMouseClicked((e) -> {
 
-            view.getNucleotide3DAllSortedList().get(index).getNucleotideGroup().setOnMouseClicked((e) -> {
-
-                if (selectionModel.isSelected(index)) {
-                    if(!e.isAltDown()){
-                        selectionModel.clearSelection();
-                        log.addInfoEntry("Cleared Selection");
-                    }else {
-                        selectionModel.clearSelection(index);
-                        log.addInfoEntry("Deselected Nucleotide " +
+                    if (selectionModel.isSelected(index)) {
+                        if (!e.isAltDown()) {
+                            selectionModel.clearSelection();
+                            log.addInfoEntry("Cleared Selection");
+                        } else {
+                            selectionModel.clearSelection(index);
+                            log.addInfoEntry("Deselected Nucleotide " +
+                                    view.getNucleotide3DAllSortedList().get(index).getSequenceNumber() +
+                                    " (" +
+                                    view.getNucleotide3DAllSortedList().get(index).getType() +
+                                    ")");
+                        }
+                    } else {
+                        if (!e.isAltDown()) {
+                            selectionModel.clearSelection();
+                            log.addInfoEntry("Cleared Selection");
+                        }
+                        selectionModel.select(index);
+                        log.addInfoEntry("Selected Nucleotide " +
                                 view.getNucleotide3DAllSortedList().get(index).getSequenceNumber() +
                                 " (" +
                                 view.getNucleotide3DAllSortedList().get(index).getType() +
                                 ")");
                     }
-                } else {
-                    if(!e.isAltDown()){
-                        selectionModel.clearSelection();
-                        log.addInfoEntry("Cleared Selection");
-                    }
-                    selectionModel.select(index);
-                    log.addInfoEntry("Selected Nucleotide " +
-                            view.getNucleotide3DAllSortedList().get(index).getSequenceNumber() +
-                            " (" +
-                            view.getNucleotide3DAllSortedList().get(index).getType() +
-                            ")");
-                }
-            });
+                });
+            }
         }
     }
 

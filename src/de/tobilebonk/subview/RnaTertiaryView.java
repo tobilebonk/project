@@ -133,6 +133,8 @@ public class RnaTertiaryView implements SubView {
         return cameraTranslate;
     }
 
+
+    //TODO don't repeat myself
     private void createAdenineGroups(List<ResiduumAtomsSequenceNumberTriple> adenineTriples) {
         adenine3DList.addAll(adenineTriples.stream().map(Adenine3D::new).collect(Collectors.toList()));
         adenine3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));

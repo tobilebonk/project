@@ -30,19 +30,22 @@ public class RnaPrimaryPresenter implements Subpresenter{
         selectionModel.getSelectedItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change c) {
-                for (int i = 0; i < selectionModel.getItems().length; i++) {
+                for (int i = 0; i < model.getAllNonDummyTriples().size(); i++) {
+                    int position = model.getAllNonDummyTriples().get(i).getSequenceNumber() - 1;
                     if (selectionModel.getSelectedIndices().contains(i)) {
-                        view.setColoringOfResidueAt(i);
+                        view.setColoringOfResidueAt(position);
                     } else {
-                       view.resetColoringOfResidueAt(i);
+                       view.resetColoringOfResidueAt(position);
                     }
                 }
             }
         });
 
-        for(int i = 0; i < selectionModel.getItems().length; i++){
+        for(int i = 0; i < model.getAllNonDummyTriples().size(); i++){
             final int index = i;
-            view.getResidueTexts().get(index).setOnMouseClicked(e -> {
+            int position = model.getAllNonDummyTriples().get(i).getSequenceNumber() - 1;
+
+            view.getResidueTexts().get(position).setOnMouseClicked(e -> {
                 if (selectionModel.isSelected(index)) {
                     if(!e.isAltDown()){
                         selectionModel.clearSelection();
@@ -50,9 +53,9 @@ public class RnaPrimaryPresenter implements Subpresenter{
                     } else {
                         selectionModel.clearSelection(index);
                         log.addInfoEntry("Deselected Nucleotide " +
-                                model.getAllTriples().get(index).getSequenceNumber() +
+                                model.getAllNonDummyTriples().get(index).getSequenceNumber() +
                                 " (" +
-                                model.getAllTriples().get(index).getType() +
+                                model.getAllNonDummyTriples().get(index).getType() +
                                 ")");
                     }
                 } else {
@@ -62,9 +65,9 @@ public class RnaPrimaryPresenter implements Subpresenter{
                     }
                     selectionModel.select(index);
                     log.addInfoEntry("Selected Nucleotide " +
-                            model.getAllTriples().get(index).getSequenceNumber() +
+                            model.getAllNonDummyTriples().get(index).getSequenceNumber() +
                             " (" +
-                            model.getAllTriples().get(index).getType() +
+                            model.getAllNonDummyTriples().get(index).getType() +
                             ")");
                 }
         });}

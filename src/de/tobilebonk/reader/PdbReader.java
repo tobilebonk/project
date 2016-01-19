@@ -9,10 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Dappsen on 07.11.2015.
@@ -59,13 +56,25 @@ public class PdbReader {
                     float zCoordinate = Float.parseFloat(line.substring(46,54).replace(" ", ""));
                     AtomType atomType = AtomType.parseAtom(line.substring(76, 78).replace(" ", ""));
 
-                    //add to residue list
-                    if(atoms.isEmpty() || sequenceNumber != atoms.get(atoms.size() - 1).getSequenceNumber()){
+                    // handle missing sequence numbers
+                    if(!atoms.isEmpty()){
+                        int previousSequenceNumber = atoms.get(atoms.size() - 1).getSequenceNumber();
+                        if(sequenceNumber != previousSequenceNumber){
+                            int dummySequenceNumber = previousSequenceNumber;
+                            while(++dummySequenceNumber < sequenceNumber){
+                                residues.add(ResiduumType._);
+                                atoms.add(new Atom(-1, "DUMMY", AtomType._, ResiduumType._, dummySequenceNumber, 0,0,0));
+                                sequenceNumbers.add(dummySequenceNumber);
+                            }
+                            //add to current (existing) residue to residue list
+                            residues.add(residuumType);
+                        }
+                    }else{
                         residues.add(residuumType);
                     }
-                    //add to atoms
+                    //add current atom to atoms
                     atoms.add(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate));
-                    //add to sequence numbers
+                    //add current sequenceNumber to sequence numbers
                     sequenceNumbers.add(sequenceNumber);
                 }
             }

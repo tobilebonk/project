@@ -20,11 +20,12 @@ public class Model {
     ListProperty<ResiduumType> modeledResidues = new SimpleListProperty<ResiduumType>(FXCollections.observableList(new ArrayList<ResiduumType>()));
 
     ListProperty<ResiduumAtomsSequenceNumberTriple> allTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
+    ListProperty<ResiduumAtomsSequenceNumberTriple> allNonDummyTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
+    ListProperty<ResiduumAtomsSequenceNumberTriple> dummyTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
     ListProperty<ResiduumAtomsSequenceNumberTriple> adenineTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
     ListProperty<ResiduumAtomsSequenceNumberTriple> cytosinTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
     ListProperty<ResiduumAtomsSequenceNumberTriple> guanineTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
     ListProperty<ResiduumAtomsSequenceNumberTriple> uracilTriples = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<ResiduumAtomsSequenceNumberTriple>()));
-
 
     public Model(PdbReader reader){
 
@@ -34,11 +35,18 @@ public class Model {
         cytosinTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.C));
         guanineTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.G));
         uracilTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType.U));
+        dummyTriples.addAll(reader.getResiduumTypeAtomsSequenceNumberTriple(ResiduumType._));
         allTriples.addAll(adenineTriples);
         allTriples.addAll(cytosinTriples);
         allTriples.addAll(guanineTriples);
         allTriples.addAll(uracilTriples);
-        Collections.sort(allTriples, Comparators.getSequenceIdOnTriplesComparator());
+        allTriples.addAll(dummyTriples);
+        allNonDummyTriples.addAll(adenineTriples);
+        allNonDummyTriples.addAll(cytosinTriples);
+        allNonDummyTriples.addAll(guanineTriples);
+        allNonDummyTriples.addAll(uracilTriples);
+        Collections.sort(allNonDummyTriples, Comparators.getSequenceIdOnTriplesComparator());
+
     }
 
     public ObservableList<ResiduumType> getModeledResidues() {
@@ -126,4 +134,27 @@ public class Model {
     }
 
 
+    public ObservableList<ResiduumAtomsSequenceNumberTriple> getDummyTriples() {
+        return dummyTriples.get();
+    }
+
+    public ListProperty<ResiduumAtomsSequenceNumberTriple> dummyTriplesProperty() {
+        return dummyTriples;
+    }
+
+    public void setDummyTriples(ObservableList<ResiduumAtomsSequenceNumberTriple> dummyTriples) {
+        this.dummyTriples.set(dummyTriples);
+    }
+
+    public ObservableList<ResiduumAtomsSequenceNumberTriple> getAllNonDummyTriples() {
+        return allNonDummyTriples.get();
+    }
+
+    public ListProperty<ResiduumAtomsSequenceNumberTriple> allNonDummyTriplesProperty() {
+        return allNonDummyTriples;
+    }
+
+    public void setAllNonDummyTriples(ObservableList<ResiduumAtomsSequenceNumberTriple> allNonDummyTriples) {
+        this.allNonDummyTriples.set(allNonDummyTriples);
+    }
 }

@@ -4,7 +4,7 @@ package de.tobilebonk.atom;
  * Created by Dappsen on 13.12.2015.
  */
 public enum AtomType {
-    P, O, C, N, H;
+    P, O, C, N, H, _;
 
     public static AtomType parseAtom(String type) {
         switch (type) {

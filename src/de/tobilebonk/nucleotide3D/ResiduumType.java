@@ -4,7 +4,7 @@ package de.tobilebonk.nucleotide3D;
  * Created by Dappsen on 13.12.2015.
  */
 public enum ResiduumType {
-    A, C, G, U;
+    A, C, G, U, _;
 
     public static ResiduumType parseResiduum(String type) {
         switch (type) {
