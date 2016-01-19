@@ -20,7 +20,7 @@ public class SuperLog extends SimpleListProperty<Text>{
     public void addLogEntry(String logEntry){
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Text logText = new Text(timestamp.toString().substring(0, timestamp.toString().lastIndexOf(":")) + ": LOG:     " + logEntry + "\n");
+        Text logText = new Text(timestamp.toString().substring(0, timestamp.toString().lastIndexOf(":")) + ": LOG:    " + logEntry + "\n");
         logText.setFont(Font.font(java.awt.Font.MONOSPACED));
         logEntryList.add(logText);
     }

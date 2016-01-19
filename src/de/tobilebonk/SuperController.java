@@ -38,9 +38,9 @@ public class SuperController {
                         // add log entry to log
                         superView.getLoggingTextFlow().getChildren().addAll(c.getAddedSubList());
                         // set log scrollbar to the very bottom
-                        superView.getScrollPane().setVvalue(1.0);
                     }
                 }
+                superView.getScrollPane().setVvalue(1.0d);
             }
         });
 
@@ -85,8 +85,10 @@ public class SuperController {
 
 
         // greetings to the user
-        log.addInfoEntry("Welcome! Please choose your PDB File! Therefore, go to the menu bar, choose \"File\" and then \"Load PDB...\"");
-
+        log.addInfoEntry("Welcome! Please choose your PDB File!");
+        log.addInfoEntry("Go to the menu bar, choose \"File\" and then \"Load PDB...\"!");
+        log.addInfoEntry("Once the file is loaded, select nucleotides by clicking on them!");
+        log.addInfoEntry("Hold ALT to select more than one nucleotide!");
     }
 
     public SuperView getSuperView(){
