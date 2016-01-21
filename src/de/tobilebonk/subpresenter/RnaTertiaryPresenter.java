@@ -83,7 +83,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
                 view.getNucleotide3DAllSortedList().get(position).getNucleotideGroup().setOnMouseClicked((e) -> {
 
                     if (selectionModel.isSelected(index)) {
-                        if (!e.isAltDown()) {
+                        if (!e.isControlDown()) {
                             selectionModel.clearSelection();
                             log.addInfoEntry("Cleared Selection");
                         } else {
@@ -95,7 +95,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
                                     ")");
                         }
                     } else {
-                        if (!e.isAltDown()) {
+                        if (!e.isControlDown()) {
                             selectionModel.clearSelection();
                             log.addInfoEntry("Cleared Selection");
                         }

@@ -89,7 +89,7 @@ public class SuperController {
         log.addInfoEntry("Welcome! Please choose your PDB File!");
         log.addInfoEntry("Go to the menu bar, choose \"File\" and then \"Load PDB...\"!");
         log.addInfoEntry("Once the file is loaded, select nucleotides by clicking on them!");
-        log.addInfoEntry("Hold ALT to select more than one nucleotide!");
+        log.addInfoEntry("Hold CTRL to select more than one nucleotide!");
     }
 
     public SuperView getSuperView(){
