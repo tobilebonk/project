@@ -41,6 +41,7 @@ public class Model {
         allTriples.addAll(guanineTriples);
         allTriples.addAll(uracilTriples);
         allTriples.addAll(dummyTriples);
+        Collections.sort(allTriples, Comparators.getSequenceIdOnTriplesComparator());
         allNonDummyTriples.addAll(adenineTriples);
         allNonDummyTriples.addAll(cytosinTriples);
         allNonDummyTriples.addAll(guanineTriples);

@@ -7,5 +7,6 @@ import javafx.scene.layout.StackPane;
  */
 public interface SubView {
 
-    public StackPane getStackPane();
+    public StackPane getSubView();
+
 }

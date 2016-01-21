@@ -31,7 +31,7 @@ public class RnaPrimaryView implements SubView {
     }
 
     @Override
-    public StackPane getStackPane() {
+    public StackPane getSubView() {
         return stackPane;
     }
 

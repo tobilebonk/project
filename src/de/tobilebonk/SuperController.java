@@ -2,13 +2,13 @@ package de.tobilebonk;
 
 import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.subpresenter.RnaPrimaryPresenter;
+import de.tobilebonk.subpresenter.RnaSecondaryPresenter;
 import de.tobilebonk.subpresenter.RnaTertiaryPresenter;
 import de.tobilebonk.subpresenter.Subpresenter;
 import de.tobilebonk.subview.RnaPrimaryView;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import javafx.collections.ListChangeListener;
-import javafx.scene.Group;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
@@ -49,14 +49,13 @@ public class SuperController {
 
         // setup model
         superView.getOpenFileMenuItem().setOnAction(event -> {
+
             // open file chooser
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Pdb File");
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pdb Files", "*.pdb"));
             File selectedFile = fileChooser.showOpenDialog(superView.getScene().getWindow());
             if (selectedFile != null) {
-
-                //TODO: reset views
 
                 // setup model
                 model = new Model(new PdbReader(selectedFile.getPath()));
@@ -71,11 +70,13 @@ public class SuperController {
                 selectionModel.setItems(selectionTriples);
                 // add primary view
                 RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight()), selectionModel, log);
-                superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getStackPane());
+                superView.clearPrimaryPane();
+                superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getSubView());
 
                 // add tertiary view
                 Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidth(), superView.getTertiaryPaneHeight()), selectionModel, log);
-                superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getStackPane());
+                superView.clearTertiaryPane();
+                superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getSubView());
 
 
             }

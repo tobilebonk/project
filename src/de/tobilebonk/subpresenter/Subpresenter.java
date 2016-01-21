@@ -8,4 +8,5 @@ import de.tobilebonk.subview.SubView;
 public interface Subpresenter {
 
     public SubView getSubView();
+    public void setSubView(SubView view);
 }

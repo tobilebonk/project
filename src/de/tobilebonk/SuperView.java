@@ -92,6 +92,15 @@ public class SuperView {
     public void putIntoTertiaryPane(Node node){
         tertiaryPane.getChildren().add(node);
     }
+    public void clearPrimaryPane(){
+        primaryPane.getChildren().clear();
+    }
+    public void clearSecondaryPane(){
+        secondaryPane.getChildren().clear();
+    }
+    public void clearTertiaryPane(){
+        tertiaryPane.getChildren().clear();
+    }
 
     public double getPrimaryPaneWidth(){
         return primaryPane.getWidth();

@@ -5,6 +5,7 @@ import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.SuperLog;
 import de.tobilebonk.subview.RnaPrimaryView;
 import de.tobilebonk.subview.SubView;
+import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 
@@ -30,48 +31,53 @@ public class RnaPrimaryPresenter implements Subpresenter{
         selectionModel.getSelectedItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change c) {
-                for (int i = 0; i < model.getAllNonDummyTriples().size(); i++) {
-                    int position = model.getAllNonDummyTriples().indexOf(model.getAllNonDummyTriples().get(i));
-                    if (selectionModel.getSelectedIndices().contains(i)) {
-                        view.setColoringOfResidueAt(position);
-                    } else {
-                        view.resetColoringOfResidueAt(position);
+                for (int i = 0; i < selectionModel.getItems().length; i++) {
+                    int position = model.getAllNonDummyTriples().indexOf(model.getAllTriples().get(i));
+                    if (position != -1) {
+                        if (selectionModel.getSelectedIndices().contains(i)) {
+                            view.setColoringOfResidueAt(i);
+                        } else {
+                            view.resetColoringOfResidueAt(i);
+                        }
                     }
                 }
             }
         });
 
-        for(int i = 0; i < model.getAllNonDummyTriples().size(); i++){
+        for(int i = 0; i < selectionModel.getItems().length; i++) {
 
             final int index = i;
-            int position = model.getAllNonDummyTriples().indexOf(model.getAllNonDummyTriples().get(i));
+            int position = model.getAllNonDummyTriples().indexOf(model.getAllTriples().get(i));
 
-            view.getResidueTexts().get(position).setOnMouseClicked(e -> {
-                if (selectionModel.isSelected(index)) {
-                    if(!e.isAltDown()){
-                        selectionModel.clearSelection();
-                        log.addInfoEntry("Cleared Selection");
+            if (position != -1) {
+                view.getResidueTexts().get(index).setOnMouseClicked(e -> {
+                    if (selectionModel.isSelected(index)) {
+                        if (!e.isAltDown()) {
+                            selectionModel.clearSelection();
+                            log.addInfoEntry("Cleared Selection");
+                        } else {
+                            selectionModel.clearSelection(index);
+                            log.addInfoEntry("Deselected Nucleotide " +
+                                    model.getAllTriples().get(index).getSequenceNumber() +
+                                    " (" +
+                                    model.getAllTriples().get(index).getType() +
+                                    ")");
+                        }
                     } else {
-                        selectionModel.clearSelection(index);
-                        log.addInfoEntry("Deselected Nucleotide " +
-                                model.getAllNonDummyTriples().get(index).getSequenceNumber() +
+                        if (!e.isAltDown()) {
+                            selectionModel.clearSelection();
+                            log.addInfoEntry("Cleared Selection");
+                        }
+                        selectionModel.select(index);
+                        log.addInfoEntry("Selected Nucleotide " +
+                                model.getAllTriples().get(index).getSequenceNumber() +
                                 " (" +
-                                model.getAllNonDummyTriples().get(index).getType() +
+                                model.getAllTriples().get(index).getType() +
                                 ")");
                     }
-                } else {
-                    if (!e.isAltDown()) {
-                        selectionModel.clearSelection();
-                        log.addInfoEntry("Cleared Selection");
-                    }
-                    selectionModel.select(index);
-                    log.addInfoEntry("Selected Nucleotide " +
-                            model.getAllNonDummyTriples().get(index).getSequenceNumber() +
-                            " (" +
-                            model.getAllNonDummyTriples().get(index).getType() +
-                            ")");
-                }
-            });}
+                });
+            }
+        }
 
 
 
@@ -81,5 +87,10 @@ public class RnaPrimaryPresenter implements Subpresenter{
     @Override
     public SubView getSubView() {
         return view;
+    }
+
+    @Override
+    public void setSubView(SubView view) {
+        this.view = view;
     }
 }
