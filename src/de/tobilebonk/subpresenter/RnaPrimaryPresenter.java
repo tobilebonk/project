@@ -31,19 +31,20 @@ public class RnaPrimaryPresenter implements Subpresenter{
             @Override
             public void onChanged(Change c) {
                 for (int i = 0; i < model.getAllNonDummyTriples().size(); i++) {
-                    int position = model.getAllNonDummyTriples().get(i).getSequenceNumber() - 1;
+                    int position = model.getAllNonDummyTriples().indexOf(model.getAllNonDummyTriples().get(i));
                     if (selectionModel.getSelectedIndices().contains(i)) {
                         view.setColoringOfResidueAt(position);
                     } else {
-                       view.resetColoringOfResidueAt(position);
+                        view.resetColoringOfResidueAt(position);
                     }
                 }
             }
         });
 
         for(int i = 0; i < model.getAllNonDummyTriples().size(); i++){
+
             final int index = i;
-            int position = model.getAllNonDummyTriples().get(i).getSequenceNumber() - 1;
+            int position = model.getAllNonDummyTriples().indexOf(model.getAllNonDummyTriples().get(i));
 
             view.getResidueTexts().get(position).setOnMouseClicked(e -> {
                 if (selectionModel.isSelected(index)) {
@@ -70,7 +71,7 @@ public class RnaPrimaryPresenter implements Subpresenter{
                             model.getAllNonDummyTriples().get(index).getType() +
                             ")");
                 }
-        });}
+            });}
 
 
 
