@@ -9,6 +9,8 @@ import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.nucleotide3D.Residue;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -37,15 +39,19 @@ public class SuperController {
                     List<? extends Text> logs = c.getAddedSubList();
                     // add log entry to log
                     superView.getLoggingTextFlow().getChildren().addAll(c.getAddedSubList());
-                    // set log scrollbar to the very bottom
-                    superView.getScrollPane().setVvalue(1.0d);
                 }
             }
+
         });
 
         // setup view
         superView = new SuperView();
-
+        superView.getLoggingTextFlow().heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                superView.getScrollPane().setVvalue(superView.getScrollPane().getVmax());
+            }
+        });
 
         // setup model
         superView.getOpenFileMenuItem().setOnAction(event -> {
@@ -63,8 +69,8 @@ public class SuperController {
 
                 // setup selection model
                 selectionModel = new ResiduumSelectionModel<>();
-                Residue[] selectionResidues =  new Residue[model.getAllResidues().size()];
-                for(int i = 0; i < selectionResidues.length; i++){
+                Residue[] selectionResidues = new Residue[model.getAllResidues().size()];
+                for (int i = 0; i < selectionResidues.length; i++) {
                     selectionResidues[i] = model.getAllResidues().get(i);
                 }
                 selectionModel.setItems(selectionResidues);
@@ -77,6 +83,10 @@ public class SuperController {
                 Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidth(), superView.getTertiaryPaneHeight()), selectionModel, log);
                 superView.clearTertiaryPane();
                 superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getSubView());
+
+                selectionModel.getSelectedIndices().addListener((ListChangeListener<Integer>) c -> {
+                    superView.getScrollPane().setVvalue(1.0d);
+                });
 
 
             }

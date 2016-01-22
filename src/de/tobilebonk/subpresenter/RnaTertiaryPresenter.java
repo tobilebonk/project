@@ -75,10 +75,10 @@ public class RnaTertiaryPresenter implements Subpresenter {
                     if (selectionModel.isSelected(index)) {
                         if (!e.isControlDown()) {
                             selectionModel.clearSelection();
-                            log.addInfoEntry("Cleared Selection");
+                            log.addLogEntry("Cleared Selection");
                         } else {
                             selectionModel.clearSelection(index);
-                            log.addInfoEntry("Deselected Nucleotide " +
+                            log.addLogEntry("Deselected Nucleotide " +
                                     model.getAllResidues().get(index).getSequenceNumber() +
                                     " (" +
                                     model.getAllResidues().get(index).getType() +
@@ -87,10 +87,10 @@ public class RnaTertiaryPresenter implements Subpresenter {
                     } else {
                         if (!e.isControlDown()) {
                             selectionModel.clearSelection();
-                            log.addInfoEntry("Cleared Selection");
+                            log.addLogEntry("Cleared Selection");
                         }
                         selectionModel.select(index);
-                        log.addInfoEntry("Selected Nucleotide " +
+                        log.addLogEntry("Selected Nucleotide " +
                                 model.getAllResidues().get(index).getSequenceNumber() +
                                 " (" +
                                 model.getAllResidues().get(index).getType() +
@@ -141,13 +141,13 @@ public class RnaTertiaryPresenter implements Subpresenter {
 
         if (!e.isControlDown()) {
             selectionModel.clearSelection();
-            log.addInfoEntry("Cleared Selection");
+            log.addLogEntry("Cleared Selection");
         }
         for(ResiduumType type : types) {
             model.getResiduesOfType(type).forEach(residue -> {
                 int index = model.getAllResidues().indexOf(residue);
                 selectionModel.select(index);
-                log.addInfoEntry("Selected Nucleotide " +
+                log.addLogEntry("Selected Nucleotide " +
                         model.getAllResidues().get(index).getSequenceNumber() +
                         " (" +
                         model.getAllResidues().get(index).getType() +

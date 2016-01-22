@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by Dappsen on 16.01.2016.
  */
-public class SuperLog extends SimpleListProperty<Text>{
+public class SuperLog {
 
     ListProperty<Text> logEntryList = new SimpleListProperty<Text>(FXCollections.observableList(new ArrayList<Text>()));
 
@@ -28,8 +28,6 @@ public class SuperLog extends SimpleListProperty<Text>{
     public void addWarningEntry(String warning){
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-
         Text warningText = new Text(timestamp.toString().substring(0, timestamp.toString().lastIndexOf(":")) + " WARNING: " + warning + "\n");
         warningText.setFill(Color.CRIMSON);
         warningText.setFont(Font.font(java.awt.Font.MONOSPACED));
