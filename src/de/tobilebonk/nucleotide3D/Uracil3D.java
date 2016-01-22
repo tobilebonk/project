@@ -19,7 +19,7 @@ public class Uracil3D extends Nucleotide3D {
 
     @Override
     public void setColoring() {
-        changeSugarColoringTo(Color.DEEPPINK.darker());
+        changeSugarColoringTo(Color.MEDIUMPURPLE);
         changeBaseColoringTo(Color.MEDIUMPURPLE);
         changePhosphorColoringTo(Color.PURPLE);
         defaultColor = false;

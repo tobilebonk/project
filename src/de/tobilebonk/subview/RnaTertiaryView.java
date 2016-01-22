@@ -5,6 +5,7 @@ import de.tobilebonk.nucleotide3D.Residue;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 public class RnaTertiaryView implements SubView {
 
 
+
     private List<Nucleotide3D> adenine3DList = new ArrayList<>();
     private List<Nucleotide3D> cytosin3DList = new ArrayList<>();
     private List<Nucleotide3D> guanine3DList = new ArrayList<>();
@@ -30,9 +32,15 @@ public class RnaTertiaryView implements SubView {
     private List<Nucleotide3D> nucleotide3DAllSortedList = new ArrayList<>();
 
     //Scene and panes
-    final StackPane stackPane;
-    final Group world;
-    final BorderPane topPane = new BorderPane();
+    final private StackPane stackPane;
+    final private Group world;
+    final private BorderPane topPane = new BorderPane();
+    final private Button showAButton;
+    final private Button showCButton;
+    final private Button showGButton;
+    final private Button showUButton;
+    final private Button showPurinesButton;
+    final private Button showPyrimidinesButton;
 
     // Rotation Reminders
     private double mouseDownX, mouseDownY;
@@ -66,16 +74,24 @@ public class RnaTertiaryView implements SubView {
         StackPane.setAlignment(subScene, Pos.BOTTOM_CENTER);
 
         //gui elements
-        HBox showControlBox = new HBox();
-        HBox drawControlBox = new HBox();
-        HBox colorControlBox = new HBox();
-        VBox controlBox = new VBox();
-        controlBox.getChildren().addAll(showControlBox, drawControlBox, colorControlBox);
-        Label showLabel = new Label("Show...");
-        Label drawLabel = new Label("Draw...");
-        Label colorLabel = new Label("Color...");
+        VBox showControlBox = new VBox();
+        HBox acguBox = new HBox();
+        HBox purinesPyrimidinesBox = new HBox();
+        showControlBox.getChildren().addAll(acguBox, purinesPyrimidinesBox);
 
-        topPane.setCenter(controlBox);
+        Label selectACGULabel = new Label("Select all...");
+        Label selectPurinesPyrimidinesLabel = new Label("Select all...");
+        showAButton = new Button("Adenine");
+        showCButton = new Button("Cytonsin");
+        showGButton = new Button("Guanine");
+        showUButton = new Button("Uracil");
+        showPurinesButton = new Button("Purines");
+        showPyrimidinesButton = new Button("Pyrimidines");
+
+        acguBox.getChildren().addAll(selectACGULabel, showAButton, showCButton, showGButton, showUButton);
+        purinesPyrimidinesBox.getChildren().addAll(selectPurinesPyrimidinesLabel, showPurinesButton, showPyrimidinesButton);
+
+        topPane.setCenter(showControlBox);
         topPane.setPickOnBounds(false);
 
         // Handlers
@@ -132,14 +148,40 @@ public class RnaTertiaryView implements SubView {
     }
 
 
+    public Button getShowAButton() {
+        return showAButton;
+    }
+
+    public Button getShowCButton() {
+        return showCButton;
+    }
+
+    public Button getShowGButton() {
+        return showGButton;
+    }
+
+    public Button getShowUButton() {
+        return showUButton;
+    }
+
+    public Button getShowPurinesButton() {
+        return showPurinesButton;
+    }
+
+    public Button getShowPyrimidinesButton() {
+        return showPyrimidinesButton;
+    }
+
     public void setup3DNucleotidesFromNonDummyResidueList(List<Residue> allNonDummyResidues) {
         nucleotide3DAllSortedList.addAll(allNonDummyResidues.stream().map(r -> {
+
             ResiduumType type = r.getType();
             // an dummy nucleotide should not be drawn (and has no 3D representation):
             assert (type != ResiduumType._);
 
             switch (type) {
                 case A: {
+
                     Nucleotide3D n = new Adenine3D(r);
                     adenine3DList.add(n);
                     return n;
@@ -170,8 +212,6 @@ public class RnaTertiaryView implements SubView {
     public List<Nucleotide3D> getNucleotide3DAllSortedList() {
         return nucleotide3DAllSortedList;
     }
-
-
 
 
 }

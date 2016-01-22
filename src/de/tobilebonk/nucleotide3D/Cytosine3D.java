@@ -20,9 +20,9 @@ public class Cytosine3D extends Nucleotide3D {
 
     @Override
     public void setColoring() {
-        changeSugarColoringTo(Color.RED);
-        changeBaseColoringTo(Color.DARKRED);
-        changePhosphorColoringTo(Color.CRIMSON);
+        changeSugarColoringTo(Color.CRIMSON);
+        changeBaseColoringTo(Color.CRIMSON);
+        changePhosphorColoringTo(Color.DARKRED);
         defaultColor = false;
     }
 }

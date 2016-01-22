@@ -21,7 +21,7 @@ public class Adenine3D extends Nucleotide3D {
 
     @Override
     public void setColoring() {
-        changeSugarColoringTo(Color.GREEN);
+        changeSugarColoringTo(Color.FORESTGREEN);
         changeBaseColoringTo(Color.FORESTGREEN);
         changePhosphorColoringTo(Color.DARKOLIVEGREEN);
         defaultColor = false;

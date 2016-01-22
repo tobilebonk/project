@@ -19,9 +19,9 @@ public class Guanine3D extends Nucleotide3D {
 
     @Override
     public void setColoring() {
-        changeSugarColoringTo(Color.BLUE);
+        changeSugarColoringTo(Color.BLUEVIOLET);
         changeBaseColoringTo(Color.BLUEVIOLET);
-        changePhosphorColoringTo(Color.MEDIUMAQUAMARINE);
+        changePhosphorColoringTo(Color.BLUE);
         defaultColor = false;
     }
 

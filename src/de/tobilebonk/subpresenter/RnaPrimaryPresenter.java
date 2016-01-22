@@ -27,6 +27,8 @@ public class RnaPrimaryPresenter implements Subpresenter{
 
         model.getAllResidues().forEach(r -> view.addResidueToView(r.getType()));
 
+        // setup selections
+        // coloring reacting to selection model
         selectionModel.getSelectedItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change c) {
@@ -43,6 +45,8 @@ public class RnaPrimaryPresenter implements Subpresenter{
             }
         });
 
+        // selection logic
+        // mouse click
         for(int i = 0; i < selectionModel.getItems().length; i++) {
 
             final int index = i;

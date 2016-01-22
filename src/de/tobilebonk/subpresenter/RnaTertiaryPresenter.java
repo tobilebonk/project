@@ -3,10 +3,12 @@ package de.tobilebonk.subpresenter;
 import de.tobilebonk.Model;
 import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.SuperLog;
+import de.tobilebonk.nucleotide3D.ResiduumType;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.subview.SubView;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 
 
 /**
@@ -43,7 +45,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
         }
 
         // setup selections
-
+        // coloring reacting to selection model
         selectionModel.getSelectedItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change c) {
@@ -60,6 +62,8 @@ public class RnaTertiaryPresenter implements Subpresenter {
             }
         });
 
+        // selection logic
+        // mouse click
         for (int i = 0; i < model.getAllResidues().size(); i++) {
 
             final int index = i;
@@ -96,6 +100,32 @@ public class RnaTertiaryPresenter implements Subpresenter {
             }
         }
 
+
+
+        // Checkboxes
+
+        view.getShowAButton().setOnMouseClicked(e -> {
+            connectSelectionModelToButtonForType(e,ResiduumType.A);
+        });
+        view.getShowCButton().setOnMouseClicked(e -> {
+            connectSelectionModelToButtonForType(e,ResiduumType.C);
+        });
+        view.getShowGButton().setOnMouseClicked(e -> {
+            connectSelectionModelToButtonForType(e,ResiduumType.G);
+        });
+        view.getShowUButton().setOnMouseClicked(e -> {
+            connectSelectionModelToButtonForType(e,ResiduumType.U);
+        });
+        view.getShowPurinesButton().setOnMouseClicked(e -> {
+            connectSelectionModelToButtonForType(e, ResiduumType.A, ResiduumType.G);
+        });
+        view.getShowPyrimidinesButton().setOnMouseClicked(e -> {
+            connectSelectionModelToButtonForType(e, ResiduumType.C, ResiduumType.U);
+        });
+
+
+
+
     }
 
     @Override
@@ -106,5 +136,27 @@ public class RnaTertiaryPresenter implements Subpresenter {
     public void setSubView(SubView view) {
         this.view = view;
     }
+
+    private void connectSelectionModelToButtonForType(MouseEvent e, ResiduumType... types){
+
+        if (!e.isControlDown()) {
+            selectionModel.clearSelection();
+            log.addInfoEntry("Cleared Selection");
+        }
+        for(ResiduumType type : types) {
+            model.getResiduesOfType(type).forEach(residue -> {
+                int index = model.getAllResidues().indexOf(residue);
+                selectionModel.select(index);
+                log.addInfoEntry("Selected Nucleotide " +
+                        model.getAllResidues().get(index).getSequenceNumber() +
+                        " (" +
+                        model.getAllResidues().get(index).getType() +
+                        ")");
+            });
+        }
+
+    }
+
+
 
 }

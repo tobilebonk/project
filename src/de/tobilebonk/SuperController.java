@@ -7,6 +7,8 @@ import de.tobilebonk.subpresenter.Subpresenter;
 import de.tobilebonk.subview.RnaPrimaryView;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.nucleotide3D.Residue;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ListChangeListener;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -25,26 +27,25 @@ public class SuperController {
 
     public SuperController(){
 
+        //TODO fix scrolling
         //setup logger
         SuperLog log = new SuperLog();
-        log.getLogEntryList().addListener(new ListChangeListener<Text>() {
-            @Override
-            public void onChanged(Change<? extends Text> c) {
-                while (c.next()) {
-                    //if log entry was added
-                    if (c.wasAdded()) {
-                        List<? extends Text> logs = c.getAddedSubList();
-                        // add log entry to log
-                        superView.getLoggingTextFlow().getChildren().addAll(c.getAddedSubList());
-                        // set log scrollbar to the very bottom
-                    }
+        log.getLogEntryList().addListener((ListChangeListener<Text>) c -> {
+            while (c.next()) {
+                //if log entry was added
+                if (c.wasAdded()) {
+                    List<? extends Text> logs = c.getAddedSubList();
+                    // add log entry to log
+                    superView.getLoggingTextFlow().getChildren().addAll(c.getAddedSubList());
+                    // set log scrollbar to the very bottom
+                    superView.getScrollPane().setVvalue(1.0d);
                 }
-                superView.getScrollPane().setVvalue(1.0d);
             }
         });
 
         // setup view
         superView = new SuperView();
+
 
         // setup model
         superView.getOpenFileMenuItem().setOnAction(event -> {

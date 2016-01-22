@@ -134,4 +134,25 @@ public class Model {
     public void setAllNonDummyResidues(ObservableList<Residue> allNonDummyResidues) {
         this.allNonDummyResidues.set(allNonDummyResidues);
     }
+
+    public ObservableList<Residue> getResiduesOfType(ResiduumType type) {
+
+        assert (type != ResiduumType._);
+        switch (type) {
+            case A: {
+                return adenineResidues;
+            }
+            case C: {
+                return cytosinResidues;
+            }
+            case G: {
+                return guanineResidues;
+            }
+            case U: {
+                return uracilResidues;
+            }
+        }
+        // will not be reached, but is necessary for language reasons
+        return null;
+    }
 }

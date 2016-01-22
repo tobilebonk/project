@@ -56,6 +56,7 @@ public class SuperView {
         scrollPane = new ScrollPane(controlPane);
 
 
+
         //rootPane.getChildren().add(primarySecondaryBox);
         rootPane.getChildren().addAll(menuBar, primarySecondaryBox, tertiaryPane, scrollPane);
 
