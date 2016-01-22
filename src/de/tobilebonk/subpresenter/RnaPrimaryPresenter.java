@@ -5,7 +5,6 @@ import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.SuperLog;
 import de.tobilebonk.subview.RnaPrimaryView;
 import de.tobilebonk.subview.SubView;
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 
@@ -26,13 +25,13 @@ public class RnaPrimaryPresenter implements Subpresenter{
         this.selectionModel = selectionModel;
         this.log = log;
 
-        view.addAllResiduesToView(model.getModeledResidues());
+        model.getAllResidues().forEach(r -> view.addResidueToView(r.getType()));
 
         selectionModel.getSelectedItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change c) {
                 for (int i = 0; i < selectionModel.getItems().length; i++) {
-                    int position = model.getAllNonDummyTriples().indexOf(model.getAllTriples().get(i));
+                    int position = model.getAllNonDummyResidues().indexOf(model.getAllResidues().get(i));
                     if (position != -1) {
                         if (selectionModel.getSelectedIndices().contains(i)) {
                             view.setColoringOfResidueAt(i);
@@ -47,7 +46,7 @@ public class RnaPrimaryPresenter implements Subpresenter{
         for(int i = 0; i < selectionModel.getItems().length; i++) {
 
             final int index = i;
-            int position = model.getAllNonDummyTriples().indexOf(model.getAllTriples().get(i));
+            int position = model.getAllNonDummyResidues().indexOf(model.getAllResidues().get(i));
 
             if (position != -1) {
                 view.getResidueTexts().get(index).setOnMouseClicked(e -> {
@@ -58,9 +57,9 @@ public class RnaPrimaryPresenter implements Subpresenter{
                         } else {
                             selectionModel.clearSelection(index);
                             log.addInfoEntry("Deselected Nucleotide " +
-                                    model.getAllTriples().get(index).getSequenceNumber() +
+                                    model.getAllResidues().get(index).getSequenceNumber() +
                                     " (" +
-                                    model.getAllTriples().get(index).getType() +
+                                    model.getAllResidues().get(index).getType() +
                                     ")");
                         }
                     } else {
@@ -70,9 +69,9 @@ public class RnaPrimaryPresenter implements Subpresenter{
                         }
                         selectionModel.select(index);
                         log.addInfoEntry("Selected Nucleotide " +
-                                model.getAllTriples().get(index).getSequenceNumber() +
+                                model.getAllResidues().get(index).getSequenceNumber() +
                                 " (" +
-                                model.getAllTriples().get(index).getType() +
+                                model.getAllResidues().get(index).getType() +
                                 ")");
                     }
                 });

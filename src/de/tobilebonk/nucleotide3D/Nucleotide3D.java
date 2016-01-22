@@ -1,16 +1,8 @@
 package de.tobilebonk.nucleotide3D;
 
-import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.atom.Atom;
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import de.tobilebonk.utils.Rna3DUtils;
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.ObjectBinding;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
@@ -23,7 +15,7 @@ import java.util.List;
 /**
  * Created by Dappsen on 02.01.2016.
  */
-public abstract class Nucleotide3DTemplate{
+public abstract class Nucleotide3D {
 
     //Atoms
 
@@ -53,12 +45,12 @@ public abstract class Nucleotide3DTemplate{
     private SimpleBooleanProperty selected;
 
 
-    public Nucleotide3DTemplate(ResiduumAtomsSequenceNumberTriple atomsOfResiduum){
+    public Nucleotide3D(Residue atomsOfResidue){
 
-        this.type = atomsOfResiduum.getType();
-        this.sequenceNumber = atomsOfResiduum.getSequenceNumber();
+        this.type = atomsOfResidue.getType();
+        this.sequenceNumber = atomsOfResidue.getSequenceNumber();
 
-        initAtoms(atomsOfResiduum);
+        initAtoms(atomsOfResidue);
         initPhosphor();
         initBonds();
         initMeshs();
@@ -194,8 +186,8 @@ public abstract class Nucleotide3DTemplate{
     }
 
     //instantiate the atoms that are part of the current molecule
-    private void initAtoms(ResiduumAtomsSequenceNumberTriple atomsOfResiduum) {
-        for (Atom atom : atomsOfResiduum.getAtoms()) {
+    private void initAtoms(Residue atomsOfResidue) {
+        for (Atom atom : atomsOfResidue.getAtoms()) {
             switch (atom.getAtomName().toUpperCase()) {
                 case "P":
                     p = atom;
@@ -267,14 +259,14 @@ public abstract class Nucleotide3DTemplate{
         return nucleotideGroup;
     }
 
-    public void connectSugarToPhosphorOf(Nucleotide3DTemplate nextNucleotide3D){
+    public void connectSugarToPhosphorOf(Nucleotide3D nextNucleotide3D){
         if(nextNucleotide3D.getPhosphor() != null && this.c3_ != null && this.o3_ != null){
             sugarToPhosphorBondCylinders = Rna3DUtils.calculateBonds(new Atom[]{c3_, o3_, o3_, nextNucleotide3D.getPhosphor()});
             addNucleotideElementsCheckedToChildren(sugarToPhosphorBondCylinders);
         }
     };
 
-    public void connectPhosphorToPhosphorOf(Nucleotide3DTemplate nextNucleotide3D){
+    public void connectPhosphorToPhosphorOf(Nucleotide3D nextNucleotide3D){
         if(nextNucleotide3D.getPhosphor() != null && this.p != null){
             phosphorToPhosphorBondCylinders = Rna3DUtils.calculateBonds(new Atom[]{nextNucleotide3D.getPhosphor(), p});
             addNucleotideElementsCheckedToChildren(phosphorToPhosphorBondCylinders);

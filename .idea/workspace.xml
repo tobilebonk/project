@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31ebfa9e-48d9-4fde-b4a8-1fd75e994562" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Dappsen\IdeaProjects\project\src\de\tobilebonk\nucleotide3D\Nucleotide3DProperty.java" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Dappsen\IdeaProjects\project\src\de\tobilebonk\nucleotide3D\Nucleotide3DTemplate.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Nucleotide3D.java" />
+      <change type="MOVED" beforePath="C:\Users\Dappsen\IdeaProjects\project\src\de\tobilebonk\utils\ResiduumAtomsSequenceNumberTriple.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Residue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Adenine3D.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Adenine3D.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/utils/Comparators.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/utils/Comparators.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Cytosine3D.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Cytosine3D.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Guanine3D.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Guanine3D.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/Model.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/Model.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/reader/PdbReader.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/reader/PdbReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaPrimaryPresenter.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaPrimaryPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/SuperController.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/SuperController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/SuperView.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/SuperView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Uracil3D.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Uracil3D.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="finalProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,62 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RnaPrimaryPresenter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaPrimaryPresenter.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="46" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3327#3328#0" expanded="true" />
-                <element signature="e#3354#3355#0" expanded="true" />
-                <element signature="e#3412#3413#0" expanded="true" />
-                <element signature="e#3444#3445#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SuperController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44864866">
-              <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RnaTertiaryPresenter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="28" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
-              <folding>
-                <element signature="e#4959#4960#0" expanded="true" />
-                <element signature="e#4991#4992#0" expanded="true" />
-                <element signature="e#5048#5049#0" expanded="true" />
-                <element signature="e#5080#5081#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RnaSecondaryPresenter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaSecondaryPresenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResiduumSelectionModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -91,33 +54,62 @@
         <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/Model.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
-              <folding>
-                <element signature="e#6008#6009#0" expanded="true" />
-                <element signature="e#6049#6050#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RnaPrimaryView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaPrimaryView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RnaTertiaryView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java">
+      <file leaf-file-name="ResiduumSelectionModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="162" column="72" selection-start-line="162" selection-start-column="72" selection-end-line="162" selection-end-column="72" />
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding>
-                <element signature="e#6533#6534#0" expanded="true" />
-                <element signature="e#6581#6582#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Residue.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Residue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperLog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperLog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="118" selection-start-line="22" selection-start-column="118" selection-end-line="22" selection-end-column="118" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperView.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5054054">
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+              <folding>
+                <element signature="e#3618#3619#0" expanded="true" />
+                <element signature="e#3668#3669#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,24 +152,27 @@
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/Rna3DView.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/Rna3DPresenter.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaPrimaryView.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Nucleotide3DTemplate.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/utils/SelectionUtils.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/utils/SequenceIdComparator.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/utils/Comparators.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/ResiduumType.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/atom/AtomType.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/reader/PdbReader.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/SuperLog.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/SubView.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/Subpresenter.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaSecondaryPresenter.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/SuperView.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/Model.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/ResiduumAtomsSequenceNumberTriple.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Residuum.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/reader/PdbReader.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaPrimaryPresenter.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/utils/Comparators.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/SuperController.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/Model.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Residue.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/SuperView.java" />
       </list>
     </option>
   </component>
@@ -220,9 +215,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -393,6 +385,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,6 +415,9 @@
       <recent name="C:\Users\Dappsen\IdeaProjects\project" />
       <recent name="C:\Users\Dappsen\IdeaProjects\project\src" />
       <recent name="C:\Users\Dappsen\IdeaProjects\project\src\de\tobilebonk" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="de.tobilebonk.nucleotide3D" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -641,6 +639,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2549168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3382353" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -651,7 +650,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -701,21 +699,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <element signature="e#4959#4960#0" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
-            <element signature="e#5048#5049#0" expanded="true" />
-            <element signature="e#5080#5081#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/utils/ResiduumAtomsSequenceNumberTriple.java">
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Residue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -747,10 +740,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="120" column="29" selection-start-line="120" selection-start-column="29" selection-end-line="120" selection-end-column="29" />
-          <folding>
-            <element signature="e#6545#6546#0" expanded="true" />
-            <element signature="e#6586#6587#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -774,7 +764,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="182" column="33" selection-start-line="182" selection-start-column="33" selection-end-line="182" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -782,10 +774,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="160" column="72" selection-start-line="160" selection-start-column="72" selection-end-line="160" selection-end-column="72" />
-          <folding>
-            <element signature="e#6533#6534#0" expanded="true" />
-            <element signature="e#6581#6582#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -794,21 +783,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="74" selection-start-line="47" selection-start-column="74" selection-end-line="47" selection-end-column="74" />
           <folding>
-            <element signature="e#4959#4960#0" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
-            <element signature="e#5048#5049#0" expanded="true" />
-            <element signature="e#5080#5081#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/utils/ResiduumAtomsSequenceNumberTriple.java">
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Residue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -818,10 +802,6 @@
           <caret line="68" column="17" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3327#3328#0" expanded="true" />
-            <element signature="e#3354#3355#0" expanded="true" />
-            <element signature="e#3412#3413#0" expanded="true" />
-            <element signature="e#3444#3445#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -839,8 +819,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
           <folding>
-            <element signature="e#3886#3887#0" expanded="true" />
-            <element signature="e#3933#3934#0" expanded="true" />
+            <element signature="e#3976#3977#0" expanded="false" />
+            <element signature="e#4023#4024#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -858,10 +838,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4959#4960#0" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
-            <element signature="e#5048#5049#0" expanded="true" />
-            <element signature="e#5080#5081#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -870,10 +847,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="177" column="25" selection-start-line="177" selection-start-column="25" selection-end-line="177" selection-end-column="25" />
-          <folding>
-            <element signature="e#6533#6534#0" expanded="true" />
-            <element signature="e#6581#6582#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -888,25 +862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="85" selection-start-line="35" selection-start-column="85" selection-end-line="35" selection-end-column="85" />
-          <folding>
-            <element signature="e#6545#6546#0" expanded="true" />
-            <element signature="e#6586#6587#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Adenine3D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/atom/Atom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -916,23 +871,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Cytosine3D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -987,34 +925,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Nucleotide3DProperty.java">
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/SubView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Nucleotide3DTemplate.java">
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/Subpresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaPrimaryView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/utils/ResiduumAtomsSequenceNumberTriple.java">
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaSecondaryPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Adenine3D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/atom/AtomType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/atom/Atom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Cytosine3D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Nucleotide3D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/reader/PdbReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
+          <folding>
+            <element signature="e#4387#4388#0" expanded="true" />
+            <element signature="e#4423#4424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaPrimaryPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.28648648">
+          <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/ResiduumType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.04347826">
           <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
           <folding />
         </state>
@@ -1023,15 +1028,59 @@
     <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/utils/Comparators.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/reader/PdbReader.java">
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5517242">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+          <caret line="160" column="40" selection-start-line="160" selection-start-column="40" selection-end-line="160" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/nucleotide3D/Residue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1044,119 +1093,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/SubView.java">
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/Subpresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="34" selection-start-line="100" selection-start-column="34" selection-end-line="100" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.5054054">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
           <folding>
-            <element signature="e#3886#3887#0" expanded="true" />
-            <element signature="e#3933#3934#0" expanded="true" />
+            <element signature="e#3618#3619#0" expanded="true" />
+            <element signature="e#3668#3669#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/atom/AtomType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21891892">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="162" column="72" selection-start-line="162" selection-start-column="72" selection-end-line="162" selection-end-column="72" />
-          <folding>
-            <element signature="e#6533#6534#0" expanded="true" />
-            <element signature="e#6581#6582#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaPrimaryView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
-          <folding>
-            <element signature="e#6008#6009#0" expanded="true" />
-            <element signature="e#6049#6050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/ResiduumSelectionModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaSecondaryPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaPrimaryPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="46" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3327#3328#0" expanded="true" />
-            <element signature="e#3354#3355#0" expanded="true" />
-            <element signature="e#3412#3413#0" expanded="true" />
-            <element signature="e#3444#3445#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="28" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
-          <folding>
-            <element signature="e#4959#4960#0" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
-            <element signature="e#5048#5049#0" expanded="true" />
-            <element signature="e#5080#5081#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44864866">
-          <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>

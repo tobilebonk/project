@@ -1,6 +1,6 @@
 package de.tobilebonk.utils;
 
-import de.tobilebonk.nucleotide3D.Nucleotide3DTemplate;
+import de.tobilebonk.nucleotide3D.Residue;
 
 import java.util.Comparator;
 
@@ -9,25 +9,16 @@ import java.util.Comparator;
  */
 public class Comparators {
 
-    public static Comparator<ResiduumAtomsSequenceNumberTriple> getSequenceIdOnTriplesComparator(){
-        return new Comparator<ResiduumAtomsSequenceNumberTriple>() {
+    public static Comparator<Residue> residueSequenceIdComparator(){
+        return new Comparator<Residue>() {
             @Override
-            public int compare(ResiduumAtomsSequenceNumberTriple n1, ResiduumAtomsSequenceNumberTriple n2) {
-                int s1 = n1.getSequenceNumber();
-                int s2 = n2.getSequenceNumber();
+            public int compare(Residue r1, Residue r2) {
+                int s1 = r1.getSequenceNumber();
+                int s2 = r2.getSequenceNumber();
                 return s1 < s2 ? -1 : s1 == s2 ? 0 : 1;
             }
         };
     }
 
-    public static Comparator<Nucleotide3DTemplate> getSequenceIdOnNucleotidesComparator(){
-        return new Comparator<Nucleotide3DTemplate>() {
-            @Override
-            public int compare(Nucleotide3DTemplate n1, Nucleotide3DTemplate n2) {
-                int s1 = n1.getSequenceNumber();
-                int s2 = n2.getSequenceNumber();
-                return s1 < s2 ? -1 : s1 == s2 ? 0 : 1;
-            }
-        };
-    }
+
 }

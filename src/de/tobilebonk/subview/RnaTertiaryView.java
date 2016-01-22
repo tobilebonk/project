@@ -1,8 +1,7 @@
 package de.tobilebonk.subview;
 
 import de.tobilebonk.nucleotide3D.*;
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
-import de.tobilebonk.utils.Comparators;
+import de.tobilebonk.nucleotide3D.Residue;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -15,7 +14,6 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +23,11 @@ import java.util.stream.Collectors;
 public class RnaTertiaryView implements SubView {
 
 
-    private List<Nucleotide3DTemplate> adenine3DList = new ArrayList<>();
-    private List<Nucleotide3DTemplate> cytosin3DList = new ArrayList<>();
-    private List<Nucleotide3DTemplate> guanine3DList = new ArrayList<>();
-    private List<Nucleotide3DTemplate> uracil3DList = new ArrayList<>();
-    private List<Nucleotide3DTemplate> nucleotide3DAllSortedList = new ArrayList<>();
+    private List<Nucleotide3D> adenine3DList = new ArrayList<>();
+    private List<Nucleotide3D> cytosin3DList = new ArrayList<>();
+    private List<Nucleotide3D> guanine3DList = new ArrayList<>();
+    private List<Nucleotide3D> uracil3DList = new ArrayList<>();
+    private List<Nucleotide3D> nucleotide3DAllSortedList = new ArrayList<>();
 
     //Scene and panes
     final StackPane stackPane;
@@ -107,11 +105,11 @@ public class RnaTertiaryView implements SubView {
 
     // handlers to be set by controller
 
-    public void add3DNucleotide(Nucleotide3DTemplate nucleotide3D) {
+    public void add3DNucleotide(Nucleotide3D nucleotide3D) {
         world.getChildren().addAll(nucleotide3D.getNucleotideGroup());
     }
 
-    public void remove3DNucleotide(Nucleotide3DTemplate nucleotide3D) {
+    public void remove3DNucleotide(Nucleotide3D nucleotide3D) {
         world.getChildren().removeAll(nucleotide3D.getNucleotideGroup());
     }
 
@@ -134,45 +132,42 @@ public class RnaTertiaryView implements SubView {
     }
 
 
-    //TODO don't repeat myself
-    private void createAdenineGroups(List<ResiduumAtomsSequenceNumberTriple> adenineTriples) {
-        adenine3DList.addAll(adenineTriples.stream().map(Adenine3D::new).collect(Collectors.toList()));
-        adenine3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
+    public void setup3DNucleotidesFromNonDummyResidueList(List<Residue> allNonDummyResidues) {
+        nucleotide3DAllSortedList.addAll(allNonDummyResidues.stream().map(r -> {
+            ResiduumType type = r.getType();
+            // an dummy nucleotide should not be drawn (and has no 3D representation):
+            assert (type != ResiduumType._);
+
+            switch (type) {
+                case A: {
+                    Nucleotide3D n = new Adenine3D(r);
+                    adenine3DList.add(n);
+                    return n;
+                }
+                case C: {
+                    Nucleotide3D n = new Cytosine3D(r);
+                    cytosin3DList.add(n);
+                    return n;
+                }
+                case G: {
+                    Nucleotide3D n = new Guanine3D(r);
+                    guanine3DList.add(n);
+                    return n;
+                }
+                case U: {
+                    Nucleotide3D n = new Uracil3D(r);
+                    uracil3DList.add(n);
+                    return n;
+                }
+            }
+            // will not be reached, but is necessary for language reasons
+            return null;
+        }).collect(Collectors.toList()));
+        nucleotide3DAllSortedList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
+
     }
 
-    private void createCytosinGroups(List<ResiduumAtomsSequenceNumberTriple> cytosinTriples) {
-        cytosin3DList.addAll(cytosinTriples.stream().map(Cytosine3D::new).collect(Collectors.toList()));
-        cytosin3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
-
-    }
-
-    private void createGuanineGroups(List<ResiduumAtomsSequenceNumberTriple> guanineTriples) {
-        guanine3DList.addAll(guanineTriples.stream().map(Guanine3D::new).collect(Collectors.toList()));
-        guanine3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
-
-    }
-
-    private void createUracilGroups(List<ResiduumAtomsSequenceNumberTriple> uracilTriples) {
-        uracil3DList.addAll(uracilTriples.stream().map(Uracil3D::new).collect(Collectors.toList()));
-        uracil3DList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
-
-    }
-    
-    public void initiate3DNucleotides(List<ResiduumAtomsSequenceNumberTriple> adenineTriples,
-                                      List<ResiduumAtomsSequenceNumberTriple> cytosinTriples,
-                                      List<ResiduumAtomsSequenceNumberTriple> guanineTriples,
-                                      List<ResiduumAtomsSequenceNumberTriple> uracilTriples) {
-        createAdenineGroups(adenineTriples);
-        createCytosinGroups(cytosinTriples);
-        createGuanineGroups(guanineTriples);
-        createUracilGroups(uracilTriples);
-        nucleotide3DAllSortedList.addAll(adenine3DList);
-        nucleotide3DAllSortedList.addAll(cytosin3DList);
-        nucleotide3DAllSortedList.addAll(guanine3DList);
-        nucleotide3DAllSortedList.addAll(uracil3DList);
-        Collections.sort(nucleotide3DAllSortedList, Comparators.getSequenceIdOnNucleotidesComparator());
-    }
-    public List<Nucleotide3DTemplate> getNucleotide3DAllSortedList() {
+    public List<Nucleotide3D> getNucleotide3DAllSortedList() {
         return nucleotide3DAllSortedList;
     }
 

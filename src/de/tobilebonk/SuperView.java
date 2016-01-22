@@ -72,6 +72,9 @@ public class SuperView {
         scrollPane.setPrefWidth(SCENE_WIDTH);
         scrollPane.setPrefHeight(SCENE_HEIGHT * 0.4);
 
+        //margins and paddings
+        loggingTextFlow.setPadding(new Insets(0,0,15,0));
+
         //colors TODO: remove
         primaryPane.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         secondaryPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));

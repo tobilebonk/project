@@ -3,7 +3,7 @@ package de.tobilebonk.reader;
 import de.tobilebonk.atom.Atom;
 import de.tobilebonk.atom.AtomType;
 import de.tobilebonk.nucleotide3D.ResiduumType;
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
+import de.tobilebonk.nucleotide3D.Residue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,13 +17,12 @@ import java.util.*;
 public class PdbReader {
 
     private List<Atom> atoms;
-    private List<ResiduumType> residues;
+    private List<ResiduumType> residuumTypes;
     private Set<Integer> sequenceNumbers;
 
     public PdbReader(String path){
         createAtomsFromPdbFile(path);
     }
-
 
     /**
      * Reader for pdb files
@@ -33,7 +32,7 @@ public class PdbReader {
     private void createAtomsFromPdbFile(String path){
 
         atoms = new LinkedList<Atom>();
-        residues = new LinkedList<ResiduumType>();
+        residuumTypes = new LinkedList<ResiduumType>();
         sequenceNumbers = new HashSet<Integer>();
 
         try (BufferedReader reader =  Files.newBufferedReader(Paths.get(path))) {
@@ -62,15 +61,15 @@ public class PdbReader {
                         if(sequenceNumber != previousSequenceNumber){
                             int dummySequenceNumber = previousSequenceNumber;
                             while(++dummySequenceNumber < sequenceNumber){
-                                residues.add(ResiduumType._);
+                                residuumTypes.add(ResiduumType._);
                                 atoms.add(new Atom(-1, "DUMMY", AtomType._, ResiduumType._, dummySequenceNumber, 0,0,0));
                                 sequenceNumbers.add(dummySequenceNumber);
                             }
                             //add to current (existing) residue to residue list
-                            residues.add(residuumType);
+                            residuumTypes.add(residuumType);
                         }
                     }else{
-                        residues.add(residuumType);
+                        residuumTypes.add(residuumType);
                     }
                     //add current atom to atoms
                     atoms.add(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate));
@@ -84,8 +83,8 @@ public class PdbReader {
         }
     }
 
-    public List<ResiduumAtomsSequenceNumberTriple> getResiduumTypeAtomsSequenceNumberTriple(ResiduumType type){
-        List<ResiduumAtomsSequenceNumberTriple> triples = new LinkedList<>();
+    public List<Residue> getResiduesOfType(ResiduumType type){
+        List<Residue> residues = new LinkedList<>();
         for(int sequenceNumber : sequenceNumbers){
             List<Atom> residuumAtoms = new LinkedList<>();
             for(Atom atom : atoms){
@@ -94,21 +93,13 @@ public class PdbReader {
                 }
             }
             if(! residuumAtoms.isEmpty() && residuumAtoms.get(0).getSequenceNumber() == sequenceNumber){
-                triples.add(new ResiduumAtomsSequenceNumberTriple(type, residuumAtoms, sequenceNumber));
+                residues.add(new Residue(type, residuumAtoms, sequenceNumber));
             }
         }
-        return triples;
+        return residues;
     }
 
-    public Set<Integer> getSequenceNumbers(){
-        return this.sequenceNumbers;
-    }
-
-    public List<Atom> getAtoms(){
-        return atoms;
-    }
-
-    public List<ResiduumType> getResidues(){
-        return  residues;
+    public List<ResiduumType> getResiduumTypes(){
+        return residuumTypes;
     }
 }

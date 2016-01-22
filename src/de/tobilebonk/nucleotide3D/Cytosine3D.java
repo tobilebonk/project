@@ -1,15 +1,14 @@
 package de.tobilebonk.nucleotide3D;
 
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import javafx.scene.paint.Color;
 
 /**
  * Created by Dappsen on 05.01.2016.
  */
-public class Cytosine3D extends Nucleotide3DTemplate {
+public class Cytosine3D extends Nucleotide3D {
 
-    public Cytosine3D(ResiduumAtomsSequenceNumberTriple atomsOfResiduum) {
-        super(atomsOfResiduum);
+    public Cytosine3D(Residue atomsOfResidue) {
+        super(atomsOfResidue);
     }
 
     @Override

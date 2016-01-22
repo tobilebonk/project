@@ -2,12 +2,11 @@ package de.tobilebonk;
 
 import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.subpresenter.RnaPrimaryPresenter;
-import de.tobilebonk.subpresenter.RnaSecondaryPresenter;
 import de.tobilebonk.subpresenter.RnaTertiaryPresenter;
 import de.tobilebonk.subpresenter.Subpresenter;
 import de.tobilebonk.subview.RnaPrimaryView;
 import de.tobilebonk.subview.RnaTertiaryView;
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
+import de.tobilebonk.nucleotide3D.Residue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -22,7 +21,7 @@ public class SuperController {
 
     SuperView superView;
     Model model;
-    ResiduumSelectionModel<ResiduumAtomsSequenceNumberTriple> selectionModel;
+    ResiduumSelectionModel<Residue> selectionModel;
 
     public SuperController(){
 
@@ -63,11 +62,11 @@ public class SuperController {
 
                 // setup selection model
                 selectionModel = new ResiduumSelectionModel<>();
-                ResiduumAtomsSequenceNumberTriple[] selectionTriples =  new ResiduumAtomsSequenceNumberTriple[model.getAllTriples().size()];
-                for(int i = 0; i < selectionTriples.length; i++){
-                    selectionTriples[i] = model.getAllTriples().get(i);
+                Residue[] selectionResidues =  new Residue[model.getAllResidues().size()];
+                for(int i = 0; i < selectionResidues.length; i++){
+                    selectionResidues[i] = model.getAllResidues().get(i);
                 }
-                selectionModel.setItems(selectionTriples);
+                selectionModel.setItems(selectionResidues);
                 // add primary view
                 RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight()), selectionModel, log);
                 superView.clearPrimaryPane();

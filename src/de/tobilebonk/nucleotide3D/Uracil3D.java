@@ -1,15 +1,14 @@
 package de.tobilebonk.nucleotide3D;
 
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import javafx.scene.paint.Color;
 
 /**
  * Created by Dappsen on 05.01.2016.
  */
-public class Uracil3D extends Nucleotide3DTemplate {
+public class Uracil3D extends Nucleotide3D {
 
-    public Uracil3D(ResiduumAtomsSequenceNumberTriple atomsOfResiduum) {
-        super(atomsOfResiduum);
+    public Uracil3D(Residue atomsOfResidue) {
+        super(atomsOfResidue);
     }
 
     @Override

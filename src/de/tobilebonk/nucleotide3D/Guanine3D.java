@@ -1,15 +1,14 @@
 package de.tobilebonk.nucleotide3D;
 
-import de.tobilebonk.utils.ResiduumAtomsSequenceNumberTriple;
 import javafx.scene.paint.Color;
 
 /**
  * Created by Dappsen on 02.01.2016.
  */
-public class Guanine3D extends Nucleotide3DTemplate {
+public class Guanine3D extends Nucleotide3D {
 
-    public Guanine3D(ResiduumAtomsSequenceNumberTriple atomsOfResiduum){
-        super(atomsOfResiduum);
+    public Guanine3D(Residue atomsOfResidue){
+        super(atomsOfResidue);
     }
 
     @Override
