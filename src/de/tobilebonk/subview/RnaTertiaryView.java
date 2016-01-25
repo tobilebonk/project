@@ -35,12 +35,7 @@ public class RnaTertiaryView implements SubView {
     final private StackPane stackPane;
     final private Group world;
     final private BorderPane topPane = new BorderPane();
-    final private Button showAButton;
-    final private Button showCButton;
-    final private Button showGButton;
-    final private Button showUButton;
-    final private Button showPurinesButton;
-    final private Button showPyrimidinesButton;
+
 
     // Rotation Reminders
     private double mouseDownX, mouseDownY;
@@ -70,26 +65,6 @@ public class RnaTertiaryView implements SubView {
         subScene.widthProperty().bind(stackPane.widthProperty());
         subScene.setCamera(camera);
         StackPane.setAlignment(subScene, Pos.BOTTOM_CENTER);
-
-        //gui elements
-        VBox showControlBox = new VBox();
-        HBox acguBox = new HBox();
-        HBox purinesPyrimidinesBox = new HBox();
-        showControlBox.getChildren().addAll(acguBox, purinesPyrimidinesBox);
-
-        Label selectACGULabel = new Label("Select all...");
-        Label selectPurinesPyrimidinesLabel = new Label("Select all...");
-        showAButton = new Button("Adenine");
-        showCButton = new Button("Cytonsin");
-        showGButton = new Button("Guanine");
-        showUButton = new Button("Uracil");
-        showPurinesButton = new Button("Purines");
-        showPyrimidinesButton = new Button("Pyrimidines");
-
-        acguBox.getChildren().addAll(selectACGULabel, showAButton, showCButton, showGButton, showUButton);
-        purinesPyrimidinesBox.getChildren().addAll(selectPurinesPyrimidinesLabel, showPurinesButton, showPyrimidinesButton);
-
-        topPane.setCenter(showControlBox);
         topPane.setPickOnBounds(false);
 
         // Handlers
@@ -143,31 +118,6 @@ public class RnaTertiaryView implements SubView {
 
     public Translate getCameraTranslate() {
         return cameraTranslate;
-    }
-
-
-    public Button getShowAButton() {
-        return showAButton;
-    }
-
-    public Button getShowCButton() {
-        return showCButton;
-    }
-
-    public Button getShowGButton() {
-        return showGButton;
-    }
-
-    public Button getShowUButton() {
-        return showUButton;
-    }
-
-    public Button getShowPurinesButton() {
-        return showPurinesButton;
-    }
-
-    public Button getShowPyrimidinesButton() {
-        return showPyrimidinesButton;
     }
 
     public void setup3DNucleotidesFromNonDummyResidueList(List<Residue> allNonDummyResidues) {

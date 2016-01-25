@@ -134,6 +134,7 @@ public class Graph {
             Residue currentResidue = residues.get(i);
             for(int j = i; j < residues.size(); j++){
                     Residue comparedResidue = residues.get(j);
+                //TODO: collect all possible bindings and choose ne most logical one
                     if (ComputationUtils.computeIsResidueConnectedToResidue(currentResidue, comparedResidue)) {
                         int[] edge = new int[2];
                         edge[0] = i;

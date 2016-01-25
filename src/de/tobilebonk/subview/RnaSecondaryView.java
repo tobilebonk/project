@@ -1,13 +1,10 @@
 package de.tobilebonk.subview;
 
 import de.tobilebonk.nucleotide3D.Residue;
-import de.tobilebonk.nucleotide3D.ResiduumType;
-import de.tobilebonk.subview.SubView;
 import java4bioinf.rna2d.Graph;
 import java4bioinf.rna2d.SpringEmbedder;
 import javafx.scene.Group;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

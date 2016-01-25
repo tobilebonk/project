@@ -1,5 +1,6 @@
 package de.tobilebonk;
 
+import de.tobilebonk.nucleotide3D.ResiduumType;
 import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.subpresenter.RnaPrimaryPresenter;
 import de.tobilebonk.subpresenter.RnaSecondaryPresenter;
@@ -12,6 +13,7 @@ import de.tobilebonk.nucleotide3D.Residue;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
@@ -26,12 +28,13 @@ public class SuperController {
     SuperView superView;
     Model model;
     ResiduumSelectionModel<Residue> selectionModel;
+    SuperLog log;
 
     public SuperController(){
 
         //TODO fix scrolling
         //setup logger
-        SuperLog log = new SuperLog();
+        log = new SuperLog();
         log.getLogEntryList().addListener((ListChangeListener<Text>) c -> {
             while (c.next()) {
                 //if log entry was added
@@ -93,6 +96,27 @@ public class SuperController {
                     superView.getScrollPane().setVvalue(1.0d);
                 });
 
+                // Checkboxes
+
+                superView.getShowAButton().setOnMouseClicked(e -> {
+                    connectSelectionModelToButtonForType(e, ResiduumType.A);
+                });
+                superView.getShowCButton().setOnMouseClicked(e -> {
+                    connectSelectionModelToButtonForType(e,ResiduumType.C);
+                });
+                superView.getShowGButton().setOnMouseClicked(e -> {
+                    connectSelectionModelToButtonForType(e,ResiduumType.G);
+                });
+                superView.getShowUButton().setOnMouseClicked(e -> {
+                    connectSelectionModelToButtonForType(e,ResiduumType.U);
+                });
+                superView.getShowPurinesButton().setOnMouseClicked(e -> {
+                    connectSelectionModelToButtonForType(e, ResiduumType.A, ResiduumType.G);
+                });
+                superView.getShowPyrimidinesButton().setOnMouseClicked(e -> {
+                    connectSelectionModelToButtonForType(e, ResiduumType.C, ResiduumType.U);
+                });
+
             }
 
         });
@@ -111,4 +135,28 @@ public class SuperController {
     }
 
 
+    private void connectSelectionModelToButtonForType(MouseEvent e, ResiduumType... types){
+
+        if (!e.isControlDown()) {
+            selectionModel.clearSelection();
+            log.addLogEntry("Cleared Selection");
+        }
+        for(ResiduumType type : types) {
+            model.getResiduesOfType(type).forEach(residue -> {
+                int index = model.getAllResidues().indexOf(residue);
+                selectionModel.select(index);
+                log.addLogEntry("Selected Nucleotide " +
+                        model.getAllResidues().get(index).getSequenceNumber() +
+                        " (" +
+                        model.getAllResidues().get(index).getType() +
+                        ")");
+            });
+        }
+
+    }
+
+
+
 }
+
+

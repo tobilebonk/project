@@ -25,8 +25,15 @@ public class SuperView {
     private TextFlow loggingTextFlow;
     private ScrollPane scrollPane;
 
-    private static int SCENE_WIDTH = 800;
-    private static int SCENE_HEIGHT = 500;
+    final private Button showAButton;
+    final private Button showCButton;
+    final private Button showGButton;
+    final private Button showUButton;
+    final private Button showPurinesButton;
+    final private Button showPyrimidinesButton;
+
+    private static int SCENE_WIDTH = 1000;
+    private static int SCENE_HEIGHT = 600;
 
     public SuperView(){
 
@@ -41,10 +48,10 @@ public class SuperView {
         menuBar.getMenus().addAll(fileMenu, menu2, menu3);
         fileMenu.getItems().addAll(openFileMenuItem);
 
+
         //Elements
-        FlowPane rootPane = new FlowPane();
-        // TODO handle magic numbers
-        scene = new Scene(rootPane, SCENE_WIDTH + 20, SCENE_HEIGHT + 30);
+        BorderPane rootPane = new BorderPane();
+        scene = new Scene(rootPane, SCENE_WIDTH, SCENE_HEIGHT);
         VBox primarySecondaryBox = new VBox();
         primaryPane = new StackPane();
         secondaryPane = new StackPane();
@@ -55,13 +62,34 @@ public class SuperView {
         controlPane.setBottom(loggingTextFlow);
         scrollPane = new ScrollPane(controlPane);
 
+        // buttons
+        VBox showControlBox = new VBox();
+        HBox acguBox = new HBox();
+        HBox purinesPyrimidinesBox = new HBox();
+        HBox colorSelectionBox = new HBox();
+        colorSelectionBox.getChildren().addAll(acguBox, purinesPyrimidinesBox);
+        showControlBox.getChildren().addAll(menuBar, colorSelectionBox);
 
+        Label selectACGULabel = new Label("Select all...");
+        Label selectPurinesPyrimidinesLabel = new Label("Select all...");
+        showAButton = new Button("Adenine");
+        showCButton = new Button("Cytonsin");
+        showGButton = new Button("Guanine");
+        showUButton = new Button("Uracil");
+        showPurinesButton = new Button("Purines");
+        showPyrimidinesButton = new Button("Pyrimidines");
 
-        //rootPane.getChildren().add(primarySecondaryBox);
-        rootPane.getChildren().addAll(menuBar, primarySecondaryBox, tertiaryPane, scrollPane);
+        acguBox.getChildren().addAll(selectACGULabel, showAButton, showCButton, showGButton, showUButton);
+        purinesPyrimidinesBox.getChildren().addAll(selectPurinesPyrimidinesLabel, showPurinesButton, showPyrimidinesButton);
+
+        rootPane.setLeft(primarySecondaryBox);
+        rootPane.setRight(tertiaryPane);
+        rootPane.setTop(showControlBox);
+        rootPane.setBottom(scrollPane);
 
         // widths
         menuBar.setPrefWidth(SCENE_WIDTH);
+
         primaryPane.setPrefWidth(SCENE_WIDTH * 0.45);
         primaryPane.setPrefHeight(SCENE_HEIGHT * 0.3);
         secondaryPane.setPrefWidth(SCENE_WIDTH * 0.45);
@@ -70,6 +98,7 @@ public class SuperView {
         primarySecondaryBox.setPrefHeight(SCENE_HEIGHT * 0.6);
         tertiaryPane.setPrefWidth(SCENE_WIDTH * 0.55);
         tertiaryPane.setPrefHeight(SCENE_HEIGHT * 0.6);
+
         scrollPane.setPrefWidth(SCENE_WIDTH);
         scrollPane.setPrefHeight(SCENE_HEIGHT * 0.4);
 
@@ -132,6 +161,30 @@ public class SuperView {
     }
     public ScrollPane getScrollPane(){
         return scrollPane;
+    }
+
+    public Button getShowAButton() {
+        return showAButton;
+    }
+
+    public Button getShowCButton() {
+        return showCButton;
+    }
+
+    public Button getShowGButton() {
+        return showGButton;
+    }
+
+    public Button getShowUButton() {
+        return showUButton;
+    }
+
+    public Button getShowPurinesButton() {
+        return showPurinesButton;
+    }
+
+    public Button getShowPyrimidinesButton() {
+        return showPyrimidinesButton;
     }
 
 }

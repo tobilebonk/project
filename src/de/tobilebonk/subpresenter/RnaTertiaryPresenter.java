@@ -108,30 +108,6 @@ public class RnaTertiaryPresenter implements Subpresenter {
 
 
 
-        // Checkboxes
-
-        view.getShowAButton().setOnMouseClicked(e -> {
-            connectSelectionModelToButtonForType(e,ResiduumType.A);
-        });
-        view.getShowCButton().setOnMouseClicked(e -> {
-            connectSelectionModelToButtonForType(e,ResiduumType.C);
-        });
-        view.getShowGButton().setOnMouseClicked(e -> {
-            connectSelectionModelToButtonForType(e,ResiduumType.G);
-        });
-        view.getShowUButton().setOnMouseClicked(e -> {
-            connectSelectionModelToButtonForType(e,ResiduumType.U);
-        });
-        view.getShowPurinesButton().setOnMouseClicked(e -> {
-            connectSelectionModelToButtonForType(e, ResiduumType.A, ResiduumType.G);
-        });
-        view.getShowPyrimidinesButton().setOnMouseClicked(e -> {
-            connectSelectionModelToButtonForType(e, ResiduumType.C, ResiduumType.U);
-        });
-
-
-
-
     }
 
     @Override
@@ -142,28 +118,5 @@ public class RnaTertiaryPresenter implements Subpresenter {
     public void setSubView(SubView view) {
         this.view = view;
     }
-
-    private void connectSelectionModelToButtonForType(MouseEvent e, ResiduumType... types){
-
-        if (!e.isControlDown()) {
-            selectionModel.clearSelection();
-            log.addLogEntry("Cleared Selection");
-        }
-        for(ResiduumType type : types) {
-            model.getResiduesOfType(type).forEach(residue -> {
-                int index = model.getAllResidues().indexOf(residue);
-                selectionModel.select(index);
-                log.addLogEntry("Selected Nucleotide " +
-                        model.getAllResidues().get(index).getSequenceNumber() +
-                        " (" +
-                        model.getAllResidues().get(index).getType() +
-                        ")");
-            });
-        }
-
-    }
-
-
-
 
 }
