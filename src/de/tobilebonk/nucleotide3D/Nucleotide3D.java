@@ -28,6 +28,7 @@ public abstract class Nucleotide3D {
     // atoms between sugar and phospate:
     protected Atom o5_, c5_, o3_;
 
+
     // 3D items
     private MeshView sugarMeshView;
     private MeshView baseMeshView;

@@ -31,4 +31,15 @@ public class Residue {
     public int getSequenceNumber() {
         return sequenceNumber;
     }
+    
+    public Atom getAtomWithName(String name){
+        for (Atom atom : atoms) {
+            if(atom.getAtomName().toUpperCase().equals(name.toUpperCase())){
+                return atom;
+            }
+        }
+        //TODO handle
+        return null;
+    }
+
 }

@@ -6,6 +6,7 @@ import de.tobilebonk.nucleotide3D.Residue;
 import de.tobilebonk.utils.Comparators;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,14 +18,16 @@ import java.util.*;
  */
 public class Model {
 
-    ListProperty<Residue> dummyResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
-    ListProperty<Residue> adenineResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
-    ListProperty<Residue> cytosinResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
-    ListProperty<Residue> guanineResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
-    ListProperty<Residue> uracilResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+    private ListProperty<Residue> dummyResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+    private ListProperty<Residue> adenineResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+    private ListProperty<Residue> cytosinResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+    private ListProperty<Residue> guanineResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+    private ListProperty<Residue> uracilResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
 
-    ListProperty<Residue> allResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
-    ListProperty<Residue> allNonDummyResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+    private ListProperty<Residue> allResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+    private ListProperty<Residue> allNonDummyResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
+
+    private SimpleStringProperty brackets = new SimpleStringProperty(this, "brackets", "");
 
     public Model(PdbReader reader){
 
@@ -154,5 +157,17 @@ public class Model {
         }
         // will not be reached, but is necessary for language reasons
         return null;
+    }
+
+    public String getBrackets() {
+        return brackets.get();
+    }
+
+    public SimpleStringProperty bracketsProperty() {
+        return brackets;
+    }
+
+    public void setBrackets(String brackets) {
+        this.brackets.set(brackets);
     }
 }

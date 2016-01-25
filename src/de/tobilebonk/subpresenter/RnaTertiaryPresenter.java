@@ -3,12 +3,17 @@ package de.tobilebonk.subpresenter;
 import de.tobilebonk.Model;
 import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.SuperLog;
+import de.tobilebonk.nucleotide3D.Nucleotide3D;
+import de.tobilebonk.nucleotide3D.Residue;
 import de.tobilebonk.nucleotide3D.ResiduumType;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.subview.SubView;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
+
+import java.util.*;
 
 
 /**
@@ -30,8 +35,9 @@ public class RnaTertiaryPresenter implements Subpresenter {
 
         if (model != null) {
 
-            //show all nucleotides:
+            //TODO: center!
             view.setup3DNucleotidesFromNonDummyResidueList(model.getAllNonDummyResidues());
+
 
             //show connections between nucleotides
             if (model.getAllResidues().size() > 1) {
@@ -156,6 +162,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
         }
 
     }
+
 
 
 

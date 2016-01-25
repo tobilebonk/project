@@ -7,6 +7,7 @@ import de.tobilebonk.subpresenter.Subpresenter;
 import de.tobilebonk.subview.RnaPrimaryView;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.utils.ComputationUtils;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -87,8 +88,16 @@ public class SuperController {
                 selectionModel.getSelectedIndices().addListener((ListChangeListener<Integer>) c -> {
                     superView.getScrollPane().setVvalue(1.0d);
                 });
+/*
+                System.out.println("AU");
+                ComputationUtils.isResidueConnectedToResidue(model.getAllNonDummyResidues().get(1), model.getAllNonDummyResidues().get(2));
+                ComputationUtils.isResidueConnectedToResidue(model.getAllNonDummyResidues().get(2), model.getAllNonDummyResidues().get(1));
 
-
+                /*
+                System.out.println("GC");
+                ComputationUtils.isResidueConnectedToResidue(model.getAllNonDummyResidues().get(0), model.getAllNonDummyResidues().get(3));
+*/
+                System.out.println(ComputationUtils.createBracketNotation(model.getAllNonDummyResidues()));
             }
 
         });

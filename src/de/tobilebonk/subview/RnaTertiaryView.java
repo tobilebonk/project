@@ -56,12 +56,10 @@ public class RnaTertiaryView implements SubView {
         final PerspectiveCamera camera = new PerspectiveCamera(true);
         camera.setNearClip(0.1);
         camera.setFarClip(10000.0);
-
-        camera.getTransforms().addAll(cameraTranslate);
+        camera.getTransforms().addAll(cameraRotateX, cameraRotateY, cameraTranslate);
 
         //setup world
         world = new Group();
-        world.getTransforms().addAll(cameraRotateX, cameraRotateY);
 
         // setup panes and scene
         final SubScene subScene = new SubScene(world, width, height, true, SceneAntialiasing.BALANCED);
@@ -212,6 +210,7 @@ public class RnaTertiaryView implements SubView {
     public List<Nucleotide3D> getNucleotide3DAllSortedList() {
         return nucleotide3DAllSortedList;
     }
+    public Group getWorld(){return this.world;}
 
 
 }
