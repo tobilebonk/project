@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31ebfa9e-48d9-4fde-b4a8-1fd75e994562" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java4bioinf/rna2d/Graph.java" afterPath="$PROJECT_DIR$/src/java4bioinf/rna2d/Graph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaSecondaryView.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaSecondaryView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/SuperController.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/SuperController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/tobilebonk/SuperView.java" afterPath="$PROJECT_DIR$/src/de/tobilebonk/SuperView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="finalProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,17 +28,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RnaTertiaryPresenter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RnaTertiaryPresenter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.75949365">
+              <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4546#4547#0" expanded="true" />
-                <element signature="e#4578#4579#0" expanded="true" />
-                <element signature="e#4635#4636#0" expanded="true" />
-                <element signature="e#4667#4668#0" expanded="true" />
+                <element signature="e#4641#4642#0" expanded="true" />
+                <element signature="e#4673#4674#0" expanded="true" />
+                <element signature="e#4730#4731#0" expanded="true" />
+                <element signature="e#4762#4763#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,52 +48,52 @@
         <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+              <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SuperView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SuperView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30126584">
-              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state vertical-scroll-proportion="-8.931034">
+              <caret line="137" column="37" selection-start-line="137" selection-start-column="37" selection-end-line="137" selection-end-column="37" />
               <folding>
-                <element signature="e#4303#4304#0" expanded="true" />
-                <element signature="e#4331#4332#0" expanded="true" />
-                <element signature="e#4379#4380#0" expanded="true" />
-                <element signature="e#4430#4431#0" expanded="true" />
-                <element signature="e#4479#4480#0" expanded="true" />
-                <element signature="e#4532#4533#0" expanded="true" />
-                <element signature="e#4580#4581#0" expanded="true" />
-                <element signature="e#4632#4633#0" expanded="true" />
-                <element signature="e#4668#4669#0" expanded="true" />
-                <element signature="e#4717#4718#0" expanded="true" />
-                <element signature="e#4755#4756#0" expanded="true" />
-                <element signature="e#4806#4807#0" expanded="true" />
-                <element signature="e#4843#4844#0" expanded="true" />
-                <element signature="e#4893#4894#0" expanded="true" />
-                <element signature="e#4935#4936#0" expanded="true" />
-                <element signature="e#4980#4981#0" expanded="true" />
-                <element signature="e#5022#5023#0" expanded="true" />
-                <element signature="e#5068#5069#0" expanded="true" />
-                <element signature="e#5111#5112#0" expanded="true" />
-                <element signature="e#5158#5159#0" expanded="true" />
-                <element signature="e#5202#5203#0" expanded="true" />
-                <element signature="e#5250#5251#0" expanded="true" />
-                <element signature="e#5292#5293#0" expanded="true" />
-                <element signature="e#5338#5339#0" expanded="true" />
-                <element signature="e#5381#5382#0" expanded="true" />
-                <element signature="e#5428#5429#0" expanded="true" />
-                <element signature="e#5471#5472#0" expanded="true" />
-                <element signature="e#5510#5511#0" expanded="true" />
-                <element signature="e#5552#5553#0" expanded="true" />
-                <element signature="e#5590#5591#0" expanded="true" />
-                <element signature="e#5629#5630#0" expanded="true" />
-                <element signature="e#5662#5663#0" expanded="true" />
-                <element signature="e#5700#5701#0" expanded="true" />
-                <element signature="e#5734#5735#0" expanded="true" />
+                <element signature="e#5598#5599#0" expanded="true" />
+                <element signature="e#5626#5627#0" expanded="true" />
+                <element signature="e#5674#5675#0" expanded="true" />
+                <element signature="e#5725#5726#0" expanded="true" />
+                <element signature="e#5774#5775#0" expanded="true" />
+                <element signature="e#5827#5828#0" expanded="true" />
+                <element signature="e#5875#5876#0" expanded="true" />
+                <element signature="e#5927#5928#0" expanded="true" />
+                <element signature="e#5963#5964#0" expanded="true" />
+                <element signature="e#6012#6013#0" expanded="true" />
+                <element signature="e#6050#6051#0" expanded="true" />
+                <element signature="e#6101#6102#0" expanded="true" />
+                <element signature="e#6138#6139#0" expanded="true" />
+                <element signature="e#6188#6189#0" expanded="true" />
+                <element signature="e#6230#6231#0" expanded="true" />
+                <element signature="e#6275#6276#0" expanded="true" />
+                <element signature="e#6317#6318#0" expanded="true" />
+                <element signature="e#6363#6364#0" expanded="true" />
+                <element signature="e#6406#6407#0" expanded="true" />
+                <element signature="e#6453#6454#0" expanded="true" />
+                <element signature="e#6497#6498#0" expanded="true" />
+                <element signature="e#6545#6546#0" expanded="true" />
+                <element signature="e#6587#6588#0" expanded="true" />
+                <element signature="e#6633#6634#0" expanded="true" />
+                <element signature="e#6676#6677#0" expanded="true" />
+                <element signature="e#6723#6724#0" expanded="true" />
+                <element signature="e#6766#6767#0" expanded="true" />
+                <element signature="e#6805#6806#0" expanded="true" />
+                <element signature="e#6847#6848#0" expanded="true" />
+                <element signature="e#6885#6886#0" expanded="true" />
+                <element signature="e#6924#6925#0" expanded="true" />
+                <element signature="e#6957#6958#0" expanded="true" />
+                <element signature="e#6995#6996#0" expanded="true" />
+                <element signature="e#7029#7030#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -170,10 +169,10 @@
         <option value="$PROJECT_DIR$/src/de/tobilebonk/Model.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaSecondaryView.java" />
         <option value="$PROJECT_DIR$/src/java4bioinf/rna2d/Graph.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" />
-        <option value="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/SuperController.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java" />
         <option value="$PROJECT_DIR$/src/de/tobilebonk/SuperView.java" />
+        <option value="$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java" />
       </list>
     </option>
   </component>
@@ -1103,75 +1102,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4546#4547#0" expanded="true" />
-            <element signature="e#4578#4579#0" expanded="true" />
-            <element signature="e#4635#4636#0" expanded="true" />
-            <element signature="e#4667#4668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/SuperView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30126584">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.931034">
+          <caret line="137" column="37" selection-start-line="137" selection-start-column="37" selection-end-line="137" selection-end-column="37" />
           <folding>
-            <element signature="e#4303#4304#0" expanded="true" />
-            <element signature="e#4331#4332#0" expanded="true" />
-            <element signature="e#4379#4380#0" expanded="true" />
-            <element signature="e#4430#4431#0" expanded="true" />
-            <element signature="e#4479#4480#0" expanded="true" />
-            <element signature="e#4532#4533#0" expanded="true" />
-            <element signature="e#4580#4581#0" expanded="true" />
-            <element signature="e#4632#4633#0" expanded="true" />
-            <element signature="e#4668#4669#0" expanded="true" />
-            <element signature="e#4717#4718#0" expanded="true" />
-            <element signature="e#4755#4756#0" expanded="true" />
-            <element signature="e#4806#4807#0" expanded="true" />
-            <element signature="e#4843#4844#0" expanded="true" />
-            <element signature="e#4893#4894#0" expanded="true" />
-            <element signature="e#4935#4936#0" expanded="true" />
-            <element signature="e#4980#4981#0" expanded="true" />
-            <element signature="e#5022#5023#0" expanded="true" />
-            <element signature="e#5068#5069#0" expanded="true" />
-            <element signature="e#5111#5112#0" expanded="true" />
-            <element signature="e#5158#5159#0" expanded="true" />
-            <element signature="e#5202#5203#0" expanded="true" />
-            <element signature="e#5250#5251#0" expanded="true" />
-            <element signature="e#5292#5293#0" expanded="true" />
-            <element signature="e#5338#5339#0" expanded="true" />
-            <element signature="e#5381#5382#0" expanded="true" />
-            <element signature="e#5428#5429#0" expanded="true" />
-            <element signature="e#5471#5472#0" expanded="true" />
-            <element signature="e#5510#5511#0" expanded="true" />
-            <element signature="e#5552#5553#0" expanded="true" />
-            <element signature="e#5590#5591#0" expanded="true" />
-            <element signature="e#5629#5630#0" expanded="true" />
-            <element signature="e#5662#5663#0" expanded="true" />
-            <element signature="e#5700#5701#0" expanded="true" />
-            <element signature="e#5734#5735#0" expanded="true" />
+            <element signature="e#5598#5599#0" expanded="true" />
+            <element signature="e#5626#5627#0" expanded="true" />
+            <element signature="e#5674#5675#0" expanded="true" />
+            <element signature="e#5725#5726#0" expanded="true" />
+            <element signature="e#5774#5775#0" expanded="true" />
+            <element signature="e#5827#5828#0" expanded="true" />
+            <element signature="e#5875#5876#0" expanded="true" />
+            <element signature="e#5927#5928#0" expanded="true" />
+            <element signature="e#5963#5964#0" expanded="true" />
+            <element signature="e#6012#6013#0" expanded="true" />
+            <element signature="e#6050#6051#0" expanded="true" />
+            <element signature="e#6101#6102#0" expanded="true" />
+            <element signature="e#6138#6139#0" expanded="true" />
+            <element signature="e#6188#6189#0" expanded="true" />
+            <element signature="e#6230#6231#0" expanded="true" />
+            <element signature="e#6275#6276#0" expanded="true" />
+            <element signature="e#6317#6318#0" expanded="true" />
+            <element signature="e#6363#6364#0" expanded="true" />
+            <element signature="e#6406#6407#0" expanded="true" />
+            <element signature="e#6453#6454#0" expanded="true" />
+            <element signature="e#6497#6498#0" expanded="true" />
+            <element signature="e#6545#6546#0" expanded="true" />
+            <element signature="e#6587#6588#0" expanded="true" />
+            <element signature="e#6633#6634#0" expanded="true" />
+            <element signature="e#6676#6677#0" expanded="true" />
+            <element signature="e#6723#6724#0" expanded="true" />
+            <element signature="e#6766#6767#0" expanded="true" />
+            <element signature="e#6805#6806#0" expanded="true" />
+            <element signature="e#6847#6848#0" expanded="true" />
+            <element signature="e#6885#6886#0" expanded="true" />
+            <element signature="e#6924#6925#0" expanded="true" />
+            <element signature="e#6957#6958#0" expanded="true" />
+            <element signature="e#6995#6996#0" expanded="true" />
+            <element signature="e#7029#7030#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subview/RnaTertiaryView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/tobilebonk/subpresenter/RnaTertiaryPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75949365">
+          <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4641#4642#0" expanded="true" />
+            <element signature="e#4673#4674#0" expanded="true" />
+            <element signature="e#4730#4731#0" expanded="true" />
+            <element signature="e#4762#4763#0" expanded="true" />
           </folding>
         </state>
       </provider>

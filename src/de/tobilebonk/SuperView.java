@@ -1,7 +1,10 @@
 package de.tobilebonk;
 
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,12 +18,13 @@ import javafx.scene.text.TextFlow;
  */
 public class SuperView {
 
+    private static final double PREF_SCENE_WIDTH = 900.0d;
+    private static final double PREF_SCENE_HEIGHT = 500.0d;
     private Scene scene;
     private StackPane primaryPane;
     private StackPane secondaryPane;
     private StackPane tertiaryPane;
 
-    private Menu fileMenu;
     private MenuItem openFileMenuItem;
     private TextFlow loggingTextFlow;
     private ScrollPane scrollPane;
@@ -32,13 +36,18 @@ public class SuperView {
     final private Button showPurinesButton;
     final private Button showPyrimidinesButton;
 
-    private static int SCENE_WIDTH = 1000;
-    private static int SCENE_HEIGHT = 600;
+    private SimpleDoubleProperty leftWidth = new SimpleDoubleProperty();
+    private SimpleDoubleProperty rightWidth = new SimpleDoubleProperty();
+    private SimpleDoubleProperty overallWidth = new SimpleDoubleProperty();
+
+    private SimpleDoubleProperty topHeight = new SimpleDoubleProperty();
+    private SimpleDoubleProperty bottomHeight = new SimpleDoubleProperty();
+    private SimpleDoubleProperty overallHeight = new SimpleDoubleProperty();
 
     public SuperView(){
 
         //menu bar
-        fileMenu = new Menu("File");
+        Menu fileMenu = new Menu("File");
         openFileMenuItem = new MenuItem("Load PDB...");
         final Menu menu2 = new Menu("Options");
         final Menu menu3 = new Menu("Help");
@@ -51,7 +60,7 @@ public class SuperView {
 
         //Elements
         BorderPane rootPane = new BorderPane();
-        scene = new Scene(rootPane, SCENE_WIDTH, SCENE_HEIGHT);
+        scene = new Scene(rootPane, 800, 600);
         VBox primarySecondaryBox = new VBox();
         primaryPane = new StackPane();
         secondaryPane = new StackPane();
@@ -87,20 +96,23 @@ public class SuperView {
         rootPane.setTop(showControlBox);
         rootPane.setBottom(scrollPane);
 
-        // widths
-        menuBar.setPrefWidth(SCENE_WIDTH);
+        // widths and heights
+        updateScreenSizes();
+        //bind widths and heights
+        menuBar.prefWidthProperty().bind(overallWidth);
+        primaryPane.prefWidthProperty().bind(leftWidth);
+        //primaryPane.setPrefHeight(topHeight.getValue() * 0.1);
+        secondaryPane.prefWidthProperty().bind(leftWidth);
+        BorderPane.setAlignment(secondaryPane, Pos.BOTTOM_CENTER);
+        //secondaryPane.prefHeightProperty();
+        primarySecondaryBox.prefWidthProperty().bind(leftWidth);
+        primarySecondaryBox.prefHeightProperty().bind(topHeight);
+        tertiaryPane.prefWidthProperty().bind(rightWidth);
+        tertiaryPane.prefHeightProperty().bind(topHeight);
 
-        primaryPane.setPrefWidth(SCENE_WIDTH * 0.45);
-        primaryPane.setPrefHeight(SCENE_HEIGHT * 0.3);
-        secondaryPane.setPrefWidth(SCENE_WIDTH * 0.45);
-        secondaryPane.setPrefHeight(SCENE_HEIGHT * 0.3);
-        primarySecondaryBox.setPrefWidth(SCENE_WIDTH * 0.45);
-        primarySecondaryBox.setPrefHeight(SCENE_HEIGHT * 0.6);
-        tertiaryPane.setPrefWidth(SCENE_WIDTH * 0.55);
-        tertiaryPane.setPrefHeight(SCENE_HEIGHT * 0.6);
+        scrollPane.prefWidthProperty().bind(overallWidth);
+        scrollPane.prefHeightProperty().bind(bottomHeight);
 
-        scrollPane.setPrefWidth(SCENE_WIDTH);
-        scrollPane.setPrefHeight(SCENE_HEIGHT * 0.4);
 
         //margins and paddings
         loggingTextFlow.setPadding(new Insets(0, 0, 15, 0));
@@ -110,6 +122,22 @@ public class SuperView {
         secondaryPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         tertiaryPane.setBackground(new Background(new BackgroundFill(Color.CRIMSON, CornerRadii.EMPTY, Insets.EMPTY)));
         scrollPane.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        //resizing
+        scene.widthProperty().addListener(event -> {
+            updateScreenSizes();
+        });
+    }
+
+    private void updateScreenSizes(){
+        double width = scene.getWidth() - scene.getX();
+        double height = scene.getHeight() - scene.getY();
+        leftWidth.set(0.49 * width);
+        rightWidth.set(0.99 * (width -leftWidth.getValue()));
+        overallWidth.set(0.9 * width);
+        topHeight.set(0.65 * height);
+        bottomHeight.set(0.3 * height);
+        overallHeight.set(0.95 * height);
     }
 
     public Scene getScene(){

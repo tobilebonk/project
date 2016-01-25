@@ -88,6 +88,7 @@ public class SuperController {
                 superView.putIntoSecondaryPane(rnaSecondaryPresenter.getSubView().getViewPane());
 
                 // add tertiary view
+                System.out.println(superView.getTertiaryPaneWidth() + "   " + superView.getTertiaryPaneHeight());
                 Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidth(), superView.getTertiaryPaneHeight()), selectionModel, log);
                 superView.clearTertiaryPane();
                 superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getViewPane());
