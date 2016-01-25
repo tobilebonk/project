@@ -1,5 +1,6 @@
 package de.tobilebonk.reader;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import de.tobilebonk.atom.Atom;
 import de.tobilebonk.atom.AtomType;
 import de.tobilebonk.nucleotide3D.ResiduumType;
@@ -39,12 +40,14 @@ public class PdbReader {
 
             String line;
 
+            int i = 0;
             while ((line = reader.readLine()) != null) {
+                i++;
                 //http://www.wwpdb.org/documentation/file-format-content/format33/sect8.html#ATOM
                 if (line.equals("END") || !line.substring(0, 4).equals("ATOM")) {
                     continue;
                 }
-                else if((line.length() == 78 || line.length() == 79)){
+                else{
                     //read
                     int id = Integer.parseInt(line.substring(6, 11).replaceAll(" ", ""));
                     String atomName = line.substring(12,16).replaceAll(" ", "");
@@ -73,11 +76,15 @@ public class PdbReader {
                     }
                     //add current atom to atoms
                     atoms.add(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate));
+                    if(sequenceNumber == 100)
+                    System.out.println(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate).toString());
+
                     //add current sequenceNumber to sequence numbers
                     sequenceNumbers.add(sequenceNumber);
                 }
             }
             reader.close();
+            System.out.println(i);
         }catch (IOException e){
             System.err.println("Caught IOException: " + e.getMessage());
         }
@@ -96,6 +103,7 @@ public class PdbReader {
                 residues.add(new Residue(type, residuumAtoms, sequenceNumber));
             }
         }
+
         return residues;
     }
 

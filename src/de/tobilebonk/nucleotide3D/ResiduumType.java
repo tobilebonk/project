@@ -25,7 +25,7 @@ public enum ResiduumType {
             case "URA":
                 return U;
             default:
-                throw new IllegalArgumentException("String " + type + " could not be parsed to corresponding residuum type!");
+                return _;
         }
     }
 

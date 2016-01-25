@@ -4,6 +4,7 @@ import de.tobilebonk.nucleotide3D.*;
 import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.nucleotide3D.Residue;
 import de.tobilebonk.utils.Comparators;
+import de.tobilebonk.utils.ComputationUtils;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -47,6 +48,8 @@ public class Model {
         allResidues.addAll(dummyResidues);
         Collections.sort(allResidues, Comparators.residueSequenceIdComparator());
 
+        brackets.set(ComputationUtils.createBracketNotation(allResidues));
+        System.out.println(brackets.getValue());
     }
 
     public ObservableList<Residue> getAllResidues() {

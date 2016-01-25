@@ -27,8 +27,8 @@ public class SpringEmbedder {
            else {
                 int count=0;
                 for(int v=0;v<numberOfNodes;v++) {
-                    coordinates[v][0] = (float) (width * Math.sin(2.0 * Math.PI * (double) count / (double) numberOfNodes));
-                    coordinates[v][1] = (float) (height * Math.cos(2.0 * Math.PI * (double) count / (double) numberOfNodes));
+                    coordinates[v][0] = (float) (width * Math.cos(2.0 * Math.PI * (double) count / (double) numberOfNodes));
+                    coordinates[v][1] = (float) (height * Math.sin(2.0 * Math.PI * (double) count / (double) numberOfNodes));
                     count++;
                 }
             }

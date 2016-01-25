@@ -1,7 +1,12 @@
 package java4bioinf.rna2d;
 
+import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.utils.ComputationUtils;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.List;
 
 /**
  * a simple graph
@@ -110,6 +115,37 @@ public class Graph {
                 throw new IOException("Brackets unbalanced, unexpected close at position: "+left);
         }
         setAllEdges(edges);
+    }
+
+    public void createEdgesFromResidueList(List<Residue> residues){
+
+        List<int[]> edges = new ArrayList<>();
+        numberOfNodes = residues.size();
+        for (int i = 0; i < numberOfNodes - 1; i++) {
+            int[] edge = new int[2];
+            edge[0] = i;
+            edge[1] = i + 1;
+            edges.add(edge);
+        }
+
+        for(int i = 0; i < residues.size(); i++){
+            Residue currentResidue = residues.get(i);
+            for(int j = 0; j < residues.size(); j++){
+                Residue comparedResidue = residues.get(j);
+                if(ComputationUtils.computeIsResidueConnectedToResidue(currentResidue, comparedResidue)){
+                    int[] edge = new int[2];
+                    edge[0] = i;
+                    edge[1] = j;
+                    edges.add(edge);
+                    break;
+                }
+            }
+        }
+        int[][] edgesArray = new int[edges.size()][];
+        for(int i = 0; i < edgesArray.length; i++){
+            edgesArray[i] = edges.get(i);
+        }
+        setAllEdges(edgesArray);
     }
 }
 

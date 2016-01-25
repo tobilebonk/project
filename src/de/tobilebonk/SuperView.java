@@ -109,14 +109,18 @@ public class SuperView {
     public double getPrimaryPaneWidth(){
         return primaryPane.getWidth();
     }
-
     public double getPrimaryPaneHeight(){
         return primaryPane.getHeight();
+    }
+    public double getSecondaryPaneWidth(){
+        return secondaryPane.getWidth();
+    }
+    public double getSecondaryPaneHeight(){
+        return secondaryPane.getHeight();
     }
     public double getTertiaryPaneWidth(){
         return tertiaryPane.getWidth();
     }
-
     public double getTertiaryPaneHeight(){
         return tertiaryPane.getHeight();
     }

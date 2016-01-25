@@ -2,14 +2,13 @@ package de.tobilebonk;
 
 import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.subpresenter.RnaPrimaryPresenter;
+import de.tobilebonk.subpresenter.RnaSecondaryPresenter;
 import de.tobilebonk.subpresenter.RnaTertiaryPresenter;
 import de.tobilebonk.subpresenter.Subpresenter;
 import de.tobilebonk.subview.RnaPrimaryView;
+import de.tobilebonk.subview.RnaSecondaryView;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.nucleotide3D.Residue;
-import de.tobilebonk.utils.ComputationUtils;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -78,26 +77,22 @@ public class SuperController {
                 // add primary view
                 RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight()), selectionModel, log);
                 superView.clearPrimaryPane();
-                superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getSubView());
+                superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getViewPane());
+
+                // add secondary view
+                RnaSecondaryPresenter rnaSecondaryPresenter = new RnaSecondaryPresenter(model, new RnaSecondaryView(superView.getSecondaryPaneWidth(), superView.getSecondaryPaneHeight()) , selectionModel, log);
+                superView.clearSecondaryPane();
+                superView.putIntoSecondaryPane(rnaSecondaryPresenter.getSubView().getViewPane());
 
                 // add tertiary view
                 Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidth(), superView.getTertiaryPaneHeight()), selectionModel, log);
                 superView.clearTertiaryPane();
-                superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getSubView());
+                superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getViewPane());
 
                 selectionModel.getSelectedIndices().addListener((ListChangeListener<Integer>) c -> {
                     superView.getScrollPane().setVvalue(1.0d);
                 });
-/*
-                System.out.println("AU");
-                ComputationUtils.isResidueConnectedToResidue(model.getAllNonDummyResidues().get(1), model.getAllNonDummyResidues().get(2));
-                ComputationUtils.isResidueConnectedToResidue(model.getAllNonDummyResidues().get(2), model.getAllNonDummyResidues().get(1));
 
-                /*
-                System.out.println("GC");
-                ComputationUtils.isResidueConnectedToResidue(model.getAllNonDummyResidues().get(0), model.getAllNonDummyResidues().get(3));
-*/
-                System.out.println(ComputationUtils.createBracketNotation(model.getAllNonDummyResidues()));
             }
 
         });

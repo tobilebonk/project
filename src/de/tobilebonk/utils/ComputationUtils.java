@@ -3,12 +3,9 @@ package de.tobilebonk.utils;
 import de.tobilebonk.atom.Atom;
 import de.tobilebonk.nucleotide3D.Residue;
 import de.tobilebonk.nucleotide3D.ResiduumType;
-import java4bioinf.rna2d.Graph;
 import javafx.geometry.Point3D;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Dappsen on 25.01.2016.
@@ -16,19 +13,19 @@ import java.util.Set;
 public class ComputationUtils {
 
 
-    private static double MAX_DISTANCE = 3.0d;
-    private static double MIN_ANGLE = 140d;
+    private static double MAX_DISTANCE = 4.0d;
+    private static double MIN_ANGLE = 120d;
 
     public static String createBracketNotation(List<Residue> residues){
 
         StringBuffer sb = new StringBuffer();
-        
+
         for(int i = 0; i < residues.size(); i++){
             Residue currentResidue = residues.get(i);
             boolean foundBond = false;
             for(int j = 0; j < residues.size(); j++){
                 Residue comparedResidue = residues.get(j);
-                if(isResidueConnectedToResidue(currentResidue, comparedResidue)){
+                if(computeIsResidueConnectedToResidue(currentResidue, comparedResidue)){
                     if(currentResidue.getSequenceNumber() < comparedResidue.getSequenceNumber()){
                         sb.append("(");
                     }else{
@@ -47,22 +44,19 @@ public class ComputationUtils {
         return sb.toString();
     }
 
-    public static boolean isResidueConnectedToResidue(Residue r1, Residue r2){
+    //TODO Multithread this
+    public static boolean computeIsResidueConnectedToResidue(Residue r1, Residue r2){
 
         if(r1.getType() == ResiduumType._ || r2.getType() == ResiduumType._ ||
                 (r1.getType() == ResiduumType.A && r2.getType() != ResiduumType.U)
                 ||(r1.getType() == ResiduumType.U && r2.getType() != ResiduumType.A)
                 || (r1.getType() == ResiduumType.G && r2.getType() != ResiduumType.C)
                 || (r1.getType() == ResiduumType.C && r2.getType() != ResiduumType.G)){
-            System.out.println("test");
             return false;
         }
 
-
         //Adenine Uracil Bonds
         if(r1.getType() == ResiduumType.A || r2.getType() == ResiduumType.A) {
-
-            System.out.println("here");
 
             // adenine
             Atom n6, h61, h62, n1;
@@ -86,9 +80,6 @@ public class ComputationUtils {
                     h61 = currentResidue.getAtomWithName("h61");
                     h62 = currentResidue.getAtomWithName("h62");
                     n1 = currentResidue.getAtomWithName("n1");
-                    if(n6 == null || h61 == null || h62 == null || n1 == null){
-                        return false;
-                    }
                     n6Point = new Point3D(n6.getxCoordinate(), n6.getyCoordinate(), n6.getzCoordinate());
                     h61Point = new Point3D(h61.getxCoordinate(), h61.getyCoordinate(), h61.getzCoordinate());
                     h62Point = new Point3D(h62.getxCoordinate(), h62.getyCoordinate(), h62.getzCoordinate());
@@ -98,9 +89,6 @@ public class ComputationUtils {
                     n3 = currentResidue.getAtomWithName("n3");
                     h3 = currentResidue.getAtomWithName("h3");
                     o4 = currentResidue.getAtomWithName("o4");
-                    if(n3 == null || h3 == null || o4 == null){
-                        return false;
-                    }
                     n3Point = new Point3D(n3.getxCoordinate(), n3.getyCoordinate(), n3.getzCoordinate());
                     h3Point = new Point3D(h3.getxCoordinate(), h3.getyCoordinate(), h3.getzCoordinate());
                     o4Point = new Point3D(o4.getxCoordinate(), o4.getyCoordinate(), o4.getzCoordinate());
@@ -122,10 +110,11 @@ public class ComputationUtils {
             double o4h61n6Angle = Math.toDegrees(Math.acos((h61n6SquaredDistance + o4h61SquaredDistance - n6o4SquaredDistance) / (2 * Math.sqrt(h61n6SquaredDistance) * Math.sqrt(o4h61SquaredDistance))));
             double o4h62n6Angle = Math.toDegrees(Math.acos((h62n6SquaredDistance + o4h62SquaredDistance - n6o4SquaredDistance) / (2 * Math.sqrt(h62n6SquaredDistance) * Math.sqrt(o4h62SquaredDistance))));
 
+            /*
             System.out.println(Math.sqrt(o4h61SquaredDistance) + "  " + o4h61n6Angle);
             System.out.println(Math.sqrt(o4h62SquaredDistance) + "  " + o4h62n6Angle);
             System.out.println(Math.sqrt(h3n1SquaredDistance) + "  " + n3h3n1Angle);
-
+            */
 
             return (Math.sqrt(o4h61SquaredDistance) < MAX_DISTANCE && o4h61n6Angle > MIN_ANGLE)
                     || (Math.sqrt(h3n1SquaredDistance) < MAX_DISTANCE && n3h3n1Angle > MIN_ANGLE)
@@ -134,8 +123,6 @@ public class ComputationUtils {
         }
         // Guanine Cytosine bonds
         if(r1.getType() == ResiduumType.C ||  r2.getType() == ResiduumType.C){
-
-            System.out.println("there: " + r1.getSequenceNumber() + "  " + r2.getSequenceNumber());
 
             // cytosin
             Atom n4, h41, h42, n3, o2;
@@ -167,9 +154,6 @@ public class ComputationUtils {
                     h42 = currentResidue.getAtomWithName("h42");
                     n3 = currentResidue.getAtomWithName("n3");
                     o2 = currentResidue.getAtomWithName("o2");
-                    if(n4 == null || h41 == null || h42 == null | n3 == null || o2 == null){
-                        return false;
-                    }
                     n4Point = new Point3D(n4.getxCoordinate(), n4.getyCoordinate(), n4.getzCoordinate());
                     h41Point = new Point3D(h41.getxCoordinate(), h41.getyCoordinate(), h42.getzCoordinate());
                     h42Point = new Point3D(h42.getxCoordinate(), h42.getyCoordinate(), h42.getzCoordinate());
@@ -183,9 +167,6 @@ public class ComputationUtils {
                     n2 = currentResidue.getAtomWithName("n2");
                     h21 = currentResidue.getAtomWithName("h21");
                     h22 = currentResidue.getAtomWithName("h22");
-                    if(o6 == null || n1 == null || h1 == null || n2 == null || h21 == null || h22 == null){
-                        return false;
-                    }
                     o6Point = new Point3D(o6.getxCoordinate(), o6.getyCoordinate(), o6.getzCoordinate());
                     n1Point = new Point3D(n1.getxCoordinate(), n1.getyCoordinate(), n1.getzCoordinate());
                     h1Point = new Point3D(h1.getxCoordinate(), h1.getyCoordinate(), h1.getzCoordinate());
@@ -217,12 +198,13 @@ public class ComputationUtils {
             double o2h21n2Angle = Math.toDegrees(Math.acos((o2h21SquaredDistance + h21n2SquaredDistance - n2o2SquaredDistance)/(2* Math.sqrt(o2h21SquaredDistance) * Math.sqrt(h21n2SquaredDistance))));
             double o2h22n2Angle = Math.toDegrees(Math.acos((o2h22SquaredDistance + h22n2SquaredDistance - n2o2SquaredDistance)/(2* Math.sqrt(o2h22SquaredDistance) * Math.sqrt(h22n2SquaredDistance))));
 
-
+/*
             System.out.println(Math.sqrt(h41o6SquaredDistance) + "  " + n4h41o6Angle);
             System.out.println(Math.sqrt(h42o6SquaredDistance) + "  " + n4h42o6Angle);
             System.out.println(Math.sqrt(n3h1SquaredDistance) + "  " + n3h1n1Angle);
             System.out.println(Math.sqrt(o2h21SquaredDistance) + "  " + o2h21n2Angle);
             System.out.println(Math.sqrt(o2h22SquaredDistance) + "  " + o2h22n2Angle);
+            */
 
             return (Math.sqrt(h41o6SquaredDistance) < MAX_DISTANCE &&  n4h41o6Angle > MIN_ANGLE)
                     || (Math.sqrt(h42o6SquaredDistance) < MAX_DISTANCE && n4h42o6Angle > MIN_ANGLE)
@@ -234,7 +216,6 @@ public class ComputationUtils {
         }
         //not reached
         //TODO: exception
-        System.out.println("Somewhere");
         return false;
     }
 }

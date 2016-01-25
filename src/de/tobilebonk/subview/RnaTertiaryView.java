@@ -129,7 +129,7 @@ public class RnaTertiaryView implements SubView {
 
     // getters
 
-    public StackPane getSubView() {
+    public StackPane getViewPane() {
         return stackPane;
     }
 
