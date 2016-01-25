@@ -16,33 +16,6 @@ public class ComputationUtils {
     private static double MAX_DISTANCE = 4.0d;
     private static double MIN_ANGLE = 120d;
 
-    public static String createBracketNotation(List<Residue> residues){
-
-        StringBuffer sb = new StringBuffer();
-
-        for(int i = 0; i < residues.size(); i++){
-            Residue currentResidue = residues.get(i);
-            boolean foundBond = false;
-            for(int j = 0; j < residues.size(); j++){
-                Residue comparedResidue = residues.get(j);
-                if(computeIsResidueConnectedToResidue(currentResidue, comparedResidue)){
-                    if(currentResidue.getSequenceNumber() < comparedResidue.getSequenceNumber()){
-                        sb.append("(");
-                    }else{
-                        sb.append(")");
-                    }
-                    foundBond = true;
-                    break;
-                }
-            }
-            if(!foundBond){
-                sb.append(".");
-            }else{
-                foundBond = false;
-            }
-        }
-        return sb.toString();
-    }
 
     //TODO Multithread this
     public static boolean computeIsResidueConnectedToResidue(Residue r1, Residue r2){

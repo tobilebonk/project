@@ -121,6 +121,8 @@ public class Graph {
 
         List<int[]> edges = new ArrayList<>();
         numberOfNodes = residues.size();
+        boolean found = false;
+
         for (int i = 0; i < numberOfNodes - 1; i++) {
             int[] edge = new int[2];
             edge[0] = i;
@@ -130,15 +132,18 @@ public class Graph {
 
         for(int i = 0; i < residues.size(); i++){
             Residue currentResidue = residues.get(i);
-            for(int j = 0; j < residues.size(); j++){
-                Residue comparedResidue = residues.get(j);
-                if(ComputationUtils.computeIsResidueConnectedToResidue(currentResidue, comparedResidue)){
-                    int[] edge = new int[2];
-                    edge[0] = i;
-                    edge[1] = j;
-                    edges.add(edge);
-                    break;
-                }
+            for(int j = i; j < residues.size(); j++){
+                    Residue comparedResidue = residues.get(j);
+                    if (ComputationUtils.computeIsResidueConnectedToResidue(currentResidue, comparedResidue)) {
+                        int[] edge = new int[2];
+                        edge[0] = i;
+                        edge[1] = j;
+                        edges.add(edge);
+
+                        i++;
+                        j = residues.size();
+                    }
+
             }
         }
         int[][] edgesArray = new int[edges.size()][];

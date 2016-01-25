@@ -28,8 +28,6 @@ public class Model {
     private ListProperty<Residue> allResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
     private ListProperty<Residue> allNonDummyResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
 
-    private SimpleStringProperty brackets = new SimpleStringProperty(this, "brackets", "");
-
     public Model(PdbReader reader){
 
         adenineResidues.addAll(reader.getResiduesOfType(ResiduumType.A));
@@ -47,9 +45,6 @@ public class Model {
         allResidues.addAll(allNonDummyResidues);
         allResidues.addAll(dummyResidues);
         Collections.sort(allResidues, Comparators.residueSequenceIdComparator());
-
-        brackets.set(ComputationUtils.createBracketNotation(allResidues));
-        System.out.println(brackets.getValue());
     }
 
     public ObservableList<Residue> getAllResidues() {
@@ -72,7 +67,7 @@ public class Model {
         return adenineResidues.get();
     }
 
-    public ListProperty<Residue> adenineResiduesProperty() {
+    public ListProperty<Residue> adenineRes0iduesProperty() {
         return adenineResidues;
     }
 
@@ -162,15 +157,4 @@ public class Model {
         return null;
     }
 
-    public String getBrackets() {
-        return brackets.get();
-    }
-
-    public SimpleStringProperty bracketsProperty() {
-        return brackets;
-    }
-
-    public void setBrackets(String brackets) {
-        this.brackets.set(brackets);
-    }
 }

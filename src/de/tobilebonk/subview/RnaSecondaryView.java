@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +24,21 @@ public class RnaSecondaryView implements SubView {
     private StackPane stackPane;
     private Group circleGroup;
     private double[][] coordinates2D;
+    private List<Circle> circles;
+    private List<Line> connections;
+    private List<Line> bonds;
+
     private List<Residue> residues;
     public RnaSecondaryView(double width, double height) {
         circleGroup = new Group();
         stackPane = new StackPane(circleGroup);
         stackPane.setPrefWidth(width);
         stackPane.setPrefHeight(height);
+        circles = new ArrayList<>();
+        connections = new ArrayList<>();
+        bonds = new ArrayList<>();
     }
+
 
     public void initializeView(Graph graph){
 
@@ -45,8 +54,10 @@ public class RnaSecondaryView implements SubView {
                     coordinates2D[graph.getEdge(i)[1]][1]);
             if(i < residues.size()){
                 line.setStroke(Color.BLACK);
+                connections.add(line);
             }else{
-                line.setStroke(Color.WHITE);
+                line.setStroke(Color.GREY);
+                bonds.add(line);
             }
             circleGroup.getChildren().add(line);
         }
@@ -69,13 +80,13 @@ public class RnaSecondaryView implements SubView {
                     circle.setFill(Color.MEDIUMPURPLE);
                     break;
                 case _:
-                    circle.setFill(Color.GREY);
                     break;
             }
             circle.setStroke(Color.BLACK);
             //add tooltip
-            Tooltip t = new Tooltip("Nucleotide: " + residues.get(i).getType() + "\nPosition: " + i);
+            Tooltip t = new Tooltip("Nucleotide: " + residues.get(i).getType() + "\nPosition: " + residues.get(i).getSequenceNumber());
             Tooltip.install(circle, t);
+            circles.add(circle);
             circleGroup.getChildren().add(circle);
         }
 
@@ -97,5 +108,48 @@ public class RnaSecondaryView implements SubView {
 
     public void setResidues(List<Residue> residues){
         this.residues = residues;
+    }
+
+    public List<Circle> getCircles() {
+        return circles;
+    }
+
+    public List<Line> getConnections() {
+        return connections;
+    }
+
+    public List<Line> getBonds() {
+        return bonds;
+    }
+
+    public void setColoringOfResidueAt(int index){
+        circles.get(index).setFill(Color.WHITE);
+        circles.get(index).setStroke(Color.AZURE);
+    }
+
+    public void resetColoringOfResidueAt(int index){
+        switch (residues.get(index).getType()){
+            case A:
+                circles.get(index).setFill(Color.FORESTGREEN);
+                break;
+            case C:
+                circles.get(index).setFill(Color.CRIMSON);
+                break;
+            case G:
+                circles.get(index).setFill(Color.YELLOW.darker());
+                break;
+            case U:
+                circles.get(index).setFill(Color.MEDIUMPURPLE);
+            break;
+        }
+        circles.get(index).setStroke(Color.BLACK);
+    }
+
+    public void setColoringOfBond(int indexInBonds){
+        bonds.get(indexInBonds).setStroke(Color.WHITE);
+    }
+
+    public void resetColoringOfBond(int indexInBonds){
+        bonds.get(indexInBonds).setStroke(Color.GREY);
     }
 }
