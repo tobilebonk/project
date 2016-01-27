@@ -49,7 +49,7 @@ public class RnaSecondaryView implements SubView {
                     coordinates2D[graph.getEdge(i)[0]][1],
                     coordinates2D[graph.getEdge(i)[1]][0],
                     coordinates2D[graph.getEdge(i)[1]][1]);
-            if(i < residues.size()){
+            if(i < residues.size() -1){
                 line.setStroke(Color.BLACK);
                 connections.add(line);
             }else{
