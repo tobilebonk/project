@@ -76,15 +76,11 @@ public class PdbReader {
                     }
                     //add current atom to atoms
                     atoms.add(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate));
-                    if(sequenceNumber == 100)
-                    System.out.println(new Atom(id, atomName, atomType, residuumType, sequenceNumber, xCoordinate, yCoordinate, zCoordinate).toString());
-
                     //add current sequenceNumber to sequence numbers
                     sequenceNumbers.add(sequenceNumber);
                 }
             }
             reader.close();
-            System.out.println(i);
         }catch (IOException e){
             System.err.println("Caught IOException: " + e.getMessage());
         }

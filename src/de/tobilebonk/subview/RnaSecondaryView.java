@@ -43,7 +43,6 @@ public class RnaSecondaryView implements SubView {
 
         // draw edges
         for(int i = 0; i < graph.getEdges().length; i++){
-            System.out.println(graph.getEdges().length + "   " + residues.size());
             Line line = new Line(
                     coordinates2D[graph.getEdge(i)[0]][0],
                     coordinates2D[graph.getEdge(i)[0]][1],

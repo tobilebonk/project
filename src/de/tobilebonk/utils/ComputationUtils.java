@@ -13,8 +13,8 @@ import java.util.List;
 public class ComputationUtils {
 
 
-    private static double MAX_DISTANCE = 4.0d;
-    private static double MIN_ANGLE = 120d;
+    private static double MAX_DISTANCE = 2.8d;
+    private static double MIN_ANGLE = 150d;
 
 
     //TODO Multithread this
@@ -83,11 +83,11 @@ public class ComputationUtils {
             double o4h61n6Angle = Math.toDegrees(Math.acos((h61n6SquaredDistance + o4h61SquaredDistance - n6o4SquaredDistance) / (2 * Math.sqrt(h61n6SquaredDistance) * Math.sqrt(o4h61SquaredDistance))));
             double o4h62n6Angle = Math.toDegrees(Math.acos((h62n6SquaredDistance + o4h62SquaredDistance - n6o4SquaredDistance) / (2 * Math.sqrt(h62n6SquaredDistance) * Math.sqrt(o4h62SquaredDistance))));
 
-            /*
+
             System.out.println(Math.sqrt(o4h61SquaredDistance) + "  " + o4h61n6Angle);
             System.out.println(Math.sqrt(o4h62SquaredDistance) + "  " + o4h62n6Angle);
             System.out.println(Math.sqrt(h3n1SquaredDistance) + "  " + n3h3n1Angle);
-            */
+
 
             return (Math.sqrt(o4h61SquaredDistance) < MAX_DISTANCE && o4h61n6Angle > MIN_ANGLE)
                     || (Math.sqrt(h3n1SquaredDistance) < MAX_DISTANCE && n3h3n1Angle > MIN_ANGLE)

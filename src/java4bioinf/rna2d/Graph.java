@@ -4,9 +4,7 @@ import de.tobilebonk.nucleotide3D.Residue;
 import de.tobilebonk.utils.ComputationUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * a simple graph
@@ -121,6 +119,8 @@ public class Graph {
 
         List<int[]> edges = new ArrayList<>();
         numberOfNodes = residues.size();
+        Set<Integer> foundWCPairIndices = new HashSet<>();
+
         boolean found = false;
 
         for (int i = 0; i < numberOfNodes - 1; i++) {
@@ -132,18 +132,23 @@ public class Graph {
 
         for(int i = 0; i < residues.size(); i++){
             Residue currentResidue = residues.get(i);
-            for(int j = i; j < residues.size(); j++){
-                    Residue comparedResidue = residues.get(j);
-                //TODO: collect all possible bindings and choose ne most logical one
-                    if (ComputationUtils.computeIsResidueConnectedToResidue(currentResidue, comparedResidue)) {
-                        int[] edge = new int[2];
-                        edge[0] = i;
-                        edge[1] = j;
+            for(int j = i + 1; j < residues.size(); j++){
+                Residue comparedResidue = residues.get(j);
+                if (!found && ComputationUtils.computeIsResidueConnectedToResidue(currentResidue, comparedResidue)) {
+                    int[] edge = new int[2];
+                    edge[0] = i;
+                    edge[1] = j;
+                    if(!foundWCPairIndices.contains(j)){
                         edges.add(edge);
-
-                        i++;
-                        j = residues.size();
+                        foundWCPairIndices.add(j);
+                        found = true;
+                        break;
                     }
+                }
+                if(found){
+                    found = false;
+                    continue;
+                }
 
             }
         }

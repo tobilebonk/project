@@ -46,7 +46,6 @@ public class RnaTertiaryView implements SubView {
     private Translate cameraTranslate = new Translate(0, 0, -100);
 
     public RnaTertiaryView(double width, double height) {
-        System.out.println(width + "   " + height);
 
         // setup camera:
         final PerspectiveCamera camera = new PerspectiveCamera(true);

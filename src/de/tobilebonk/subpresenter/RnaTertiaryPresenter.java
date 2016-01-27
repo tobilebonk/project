@@ -107,7 +107,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
                 });
             }
         }
-        
+
     }
 
     @Override
