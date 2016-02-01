@@ -81,17 +81,17 @@ public class SuperController {
                 }
                 selectionModel.setItems(selectionResidues);
                 // add primary view
-                RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getCurrentPrimaryPaneWidth(), superView.getCurrentPrimaryPaneHeight()), selectionModel, log);
+                RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidthProperty().getValue(), superView.getPrimaryPaneHeightProperty().getValue()), selectionModel, log);
                 superView.clearPrimaryPane();
                 superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getViewPane());
 
                 // add secondary view
-                RnaSecondaryPresenter rnaSecondaryPresenter = new RnaSecondaryPresenter(model, new RnaSecondaryView(superView.getCurrentSecondaryPaneWidth(), superView.getCurrentSecondaryPaneHeight()) , selectionModel, log);
+                RnaSecondaryPresenter rnaSecondaryPresenter = new RnaSecondaryPresenter(model, new RnaSecondaryView(superView.getSecondaryPaneWidthProperty(), superView.getSecondaryPaneHeightProperty()) , selectionModel, log);
                 superView.clearSecondaryPane();
                 superView.putIntoSecondaryPane(rnaSecondaryPresenter.getSubView().getViewPane());
 
                 // add tertiary view
-                Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getCurrentTertiaryPaneWidth(), superView.getCurrentTertiaryPaneHeight()), selectionModel, log);
+                Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidthProperty(), superView.getTertiaryPaneHeightProperty()), selectionModel, log);
                 superView.clearTertiaryPane();
                 superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getViewPane());
 

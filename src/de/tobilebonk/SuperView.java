@@ -1,6 +1,7 @@
 package de.tobilebonk;
 
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -145,7 +146,6 @@ public class SuperView {
         double width = scene.getWidth() - scene.getX();
         leftWidthProperty.set(0.5 * width);
         rightWidthProperty.set(leftWidthProperty.getValue());
-        System.out.println(leftWidthProperty.getValue() + "  " + rightWidthProperty.getValue());
     }
 
     private void updateHeights(){
@@ -178,24 +178,25 @@ public class SuperView {
         tertiaryPane.getChildren().clear();
     }
 
-    public double getCurrentPrimaryPaneWidth(){
-        return leftWidthProperty.getValue();
+    public SimpleDoubleProperty getPrimaryPaneHeightProperty(){
+        return primaryHeightProperty;
     }
-    public double getCurrentPrimaryPaneHeight(){
-        return primaryHeightProperty.getValue();
+    public SimpleDoubleProperty getPrimaryPaneWidthProperty(){
+        return leftWidthProperty;
     }
-    public double getCurrentSecondaryPaneWidth(){
-        return leftWidthProperty.getValue();
+    public SimpleDoubleProperty getSecondaryPaneHeightProperty(){
+        return secondaryHeightProperty;
     }
-    public double getCurrentSecondaryPaneHeight(){
-        return secondaryHeightProperty.getValue();
+    public SimpleDoubleProperty getSecondaryPaneWidthProperty(){
+        return leftWidthProperty;
     }
-    public double getCurrentTertiaryPaneWidth(){
-        return rightWidthProperty.getValue();
+    public SimpleDoubleProperty getTertiaryPaneHeightProperty(){
+        return tertiaryHeightProperty;
     }
-    public double getCurrentTertiaryPaneHeight(){
-        return tertiaryHeightProperty.getValue();
+    public SimpleDoubleProperty getTertiaryPaneWidthProperty(){
+        return rightWidthProperty;
     }
+
     public MenuItem getOpenFileMenuItem(){
         return openFileMenuItem;
     }
@@ -228,6 +229,14 @@ public class SuperView {
 
     public Button getShowPyrimidinesButton() {
         return showPyrimidinesButton;
+    }
+
+    public ReadOnlyDoubleProperty getSceneWidthProperty(){
+        return scene.widthProperty();
+    }
+
+    public ReadOnlyDoubleProperty getSceneHeightProperty(){
+        return scene.heightProperty();
     }
 
 }

@@ -6,6 +6,8 @@ import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -51,7 +53,7 @@ public class RnaTertiaryView implements SubView {
     private Rotate cameraRotateY = new Rotate(0, new Point3D(0, 1, 0));
     private Translate cameraTranslate = new Translate(0, 0, -100);
 
-    public RnaTertiaryView(double width, double height) {
+    public RnaTertiaryView(SimpleDoubleProperty widthProperty, SimpleDoubleProperty heightProperty) {
 
         // setup camera:
         final PerspectiveCamera camera = new PerspectiveCamera(true);
@@ -63,12 +65,14 @@ public class RnaTertiaryView implements SubView {
         world = new Group();
 
         // setup panes and scene
-        final SubScene subScene = new SubScene(world, width, height, true, SceneAntialiasing.BALANCED);
-        stackPane = new StackPane(topPane, subScene);
+        //TODO use correct properties
+        final SubScene subScene = new SubScene(world, widthProperty.getValue(), heightProperty.getValue(), true, SceneAntialiasing.BALANCED);
+        subScene.widthProperty().bind(widthProperty);
+        subScene.heightProperty().bind(heightProperty);
+        stackPane = new StackPane(subScene, topPane);
         StackPane.setAlignment(topPane, Pos.CENTER);
 
         // and subscene
-        subScene.widthProperty().bind(stackPane.widthProperty());
         subScene.setCamera(camera);
         StackPane.setAlignment(subScene, Pos.BOTTOM_CENTER);
         topPane.setPickOnBounds(false);
@@ -177,7 +181,7 @@ public class RnaTertiaryView implements SubView {
     public List<Nucleotide3D> getNucleotide3DAllSortedList() {
         return nucleotide3DAllSortedList;
     }
-    public Group getWorld(){return this.world;}
+
 
 
 }
