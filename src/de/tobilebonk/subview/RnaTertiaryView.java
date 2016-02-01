@@ -2,6 +2,10 @@ package de.tobilebonk.subview;
 
 import de.tobilebonk.nucleotide3D.*;
 import de.tobilebonk.nucleotide3D.Residue;
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -14,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -159,6 +164,14 @@ public class RnaTertiaryView implements SubView {
             world.getChildren().add(n.getNucleotideGroup());
         });
 
+        RotateTransition rotator = new RotateTransition(Duration.millis(10000), world);
+        rotator.setAxis(Rotate.Y_AXIS);
+        rotator.setFromAngle(0);
+        rotator.setToAngle(360);
+        rotator.setInterpolator(Interpolator.LINEAR);
+        rotator.setCycleCount(Timeline.INDEFINITE);
+
+        rotator.play();
     }
 
     public List<Nucleotide3D> getNucleotide3DAllSortedList() {
