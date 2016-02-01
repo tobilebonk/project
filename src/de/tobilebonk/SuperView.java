@@ -1,7 +1,6 @@
 package de.tobilebonk;
 
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,7 +18,19 @@ import javafx.scene.text.TextFlow;
 public class SuperView {
 
     private static final double PREF_SCENE_WIDTH = 900.0d;
-    private static final double PREF_SCENE_HEIGHT = 500.0d;
+    private static final double PREF_SCENE_HEIGHT = 600.0d;
+    private static final double MIN_PRIMARY_HEIGHT = 40.0d;
+    private static final double MIN_SECONDARY_HEIGHT = 350.0d;
+    private static final double MIN_TOP_HEIGHT = 20d;
+    private static final double MIN_BOTTOM_HEIGHT = PREF_SCENE_HEIGHT -MIN_PRIMARY_HEIGHT - MIN_SECONDARY_HEIGHT - MIN_TOP_HEIGHT;
+    private static final double MIN_TERTIARY_HEIGHT = PREF_SCENE_HEIGHT - MIN_BOTTOM_HEIGHT - MIN_TOP_HEIGHT;
+
+    private SimpleDoubleProperty primaryHeightProperty = new SimpleDoubleProperty(MIN_PRIMARY_HEIGHT);
+    private SimpleDoubleProperty secondaryHeightProperty = new SimpleDoubleProperty(MIN_SECONDARY_HEIGHT);
+    private SimpleDoubleProperty tertiaryHeightProperty = new SimpleDoubleProperty(MIN_TERTIARY_HEIGHT);
+    private SimpleDoubleProperty leftWidthProperty = new SimpleDoubleProperty();
+    private SimpleDoubleProperty rightWidthProperty = new SimpleDoubleProperty();
+
     private Scene scene;
     private StackPane primaryPane;
     private StackPane secondaryPane;
@@ -35,14 +46,6 @@ public class SuperView {
     final private Button showUButton;
     final private Button showPurinesButton;
     final private Button showPyrimidinesButton;
-
-    private SimpleDoubleProperty leftWidth = new SimpleDoubleProperty();
-    private SimpleDoubleProperty rightWidth = new SimpleDoubleProperty();
-    private SimpleDoubleProperty overallWidth = new SimpleDoubleProperty();
-
-    private SimpleDoubleProperty topHeight = new SimpleDoubleProperty();
-    private SimpleDoubleProperty bottomHeight = new SimpleDoubleProperty();
-    private SimpleDoubleProperty overallHeight = new SimpleDoubleProperty();
 
     public SuperView(){
 
@@ -60,16 +63,42 @@ public class SuperView {
 
         //Elements
         BorderPane rootPane = new BorderPane();
-        scene = new Scene(rootPane, 800, 600);
-        VBox primarySecondaryBox = new VBox();
+        scene = new Scene(rootPane, PREF_SCENE_WIDTH, PREF_SCENE_HEIGHT);
+
         primaryPane = new StackPane();
         secondaryPane = new StackPane();
         tertiaryPane = new StackPane();
-        primarySecondaryBox.getChildren().addAll(primaryPane, secondaryPane);
         BorderPane controlPane = new BorderPane();
+
+        VBox primarySecondaryBox = new VBox();
+        VBox tertiaryBox = new VBox();
+        primarySecondaryBox.getChildren().addAll(primaryPane, secondaryPane);
+        tertiaryBox.getChildren().add(tertiaryPane);
+
         loggingTextFlow = new TextFlow();
         controlPane.setBottom(loggingTextFlow);
         scrollPane = new ScrollPane(controlPane);
+
+        // widths and heights
+
+        // heights
+        updateHeights();
+        primaryPane.setMinHeight(MIN_PRIMARY_HEIGHT);
+        secondaryPane.setMinHeight(MIN_SECONDARY_HEIGHT);
+        tertiaryPane.setMinHeight(MIN_TERTIARY_HEIGHT);
+        scrollPane.setPrefHeight(MIN_BOTTOM_HEIGHT);
+        primaryPane.prefHeightProperty().bind(primaryHeightProperty);
+        secondaryPane.prefHeightProperty().bind(secondaryHeightProperty);
+        tertiaryPane.prefHeightProperty().bind(tertiaryHeightProperty);
+
+        //widths
+        updateWidths();
+        primaryPane.prefWidthProperty().bind(leftWidthProperty);
+        secondaryPane.prefWidthProperty().bind(leftWidthProperty);
+        BorderPane.setAlignment(secondaryPane, Pos.BOTTOM_CENTER);
+        primarySecondaryBox.prefWidthProperty().bind(leftWidthProperty);
+        tertiaryBox.prefWidthProperty().bind(rightWidthProperty);
+        controlPane.setMinWidth(MIN_BOTTOM_HEIGHT);
 
         // buttons
         VBox showControlBox = new VBox();
@@ -92,26 +121,9 @@ public class SuperView {
         purinesPyrimidinesBox.getChildren().addAll(selectPurinesPyrimidinesLabel, showPurinesButton, showPyrimidinesButton);
 
         rootPane.setLeft(primarySecondaryBox);
-        rootPane.setRight(tertiaryPane);
+        rootPane.setRight(tertiaryBox);
         rootPane.setTop(showControlBox);
         rootPane.setBottom(scrollPane);
-
-        // widths and heights
-        updateScreenSizes();
-        //bind widths and heights
-        menuBar.prefWidthProperty().bind(overallWidth);
-        primaryPane.prefWidthProperty().bind(leftWidth);
-        //primaryPane.setPrefHeight(topHeight.getValue() * 0.1);
-        secondaryPane.prefWidthProperty().bind(leftWidth);
-        BorderPane.setAlignment(secondaryPane, Pos.BOTTOM_CENTER);
-        //secondaryPane.prefHeightProperty();
-        primarySecondaryBox.prefWidthProperty().bind(leftWidth);
-        primarySecondaryBox.prefHeightProperty().bind(topHeight);
-        tertiaryPane.prefWidthProperty().bind(rightWidth);
-        tertiaryPane.prefHeightProperty().bind(topHeight);
-
-        scrollPane.prefWidthProperty().bind(overallWidth);
-        scrollPane.prefHeightProperty().bind(bottomHeight);
 
 
         //margins and paddings
@@ -124,20 +136,23 @@ public class SuperView {
         scrollPane.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //resizing
-        scene.widthProperty().addListener(event -> {
-            updateScreenSizes();
-        });
+        scene.widthProperty().addListener(event -> updateWidths());
+        scene.heightProperty().addListener(event -> updateHeights());
     }
 
-    private void updateScreenSizes(){
+
+    private void updateWidths(){
         double width = scene.getWidth() - scene.getX();
+        leftWidthProperty.set(0.5 * width);
+        rightWidthProperty.set(leftWidthProperty.getValue());
+        System.out.println(leftWidthProperty.getValue() + "  " + rightWidthProperty.getValue());
+    }
+
+    private void updateHeights(){
         double height = scene.getHeight() - scene.getY();
-        leftWidth.set(0.49 * width);
-        rightWidth.set(0.99 * (width -leftWidth.getValue()));
-        overallWidth.set(0.9 * width);
-        topHeight.set(0.65 * height);
-        bottomHeight.set(0.3 * height);
-        overallHeight.set(0.95 * height);
+        primaryHeightProperty.set(0.1 * (height - MIN_TOP_HEIGHT - MIN_BOTTOM_HEIGHT));
+        secondaryHeightProperty.set(0.9 * (height - MIN_TOP_HEIGHT - MIN_BOTTOM_HEIGHT));
+        tertiaryHeightProperty.set(height - MIN_TOP_HEIGHT - MIN_BOTTOM_HEIGHT);
     }
 
     public Scene getScene(){
@@ -163,23 +178,23 @@ public class SuperView {
         tertiaryPane.getChildren().clear();
     }
 
-    public double getPrimaryPaneWidth(){
-        return primaryPane.getWidth();
+    public double getCurrentPrimaryPaneWidth(){
+        return leftWidthProperty.getValue();
     }
-    public double getPrimaryPaneHeight(){
-        return primaryPane.getHeight();
+    public double getCurrentPrimaryPaneHeight(){
+        return primaryHeightProperty.getValue();
     }
-    public double getSecondaryPaneWidth(){
-        return secondaryPane.getWidth();
+    public double getCurrentSecondaryPaneWidth(){
+        return leftWidthProperty.getValue();
     }
-    public double getSecondaryPaneHeight(){
-        return secondaryPane.getHeight();
+    public double getCurrentSecondaryPaneHeight(){
+        return secondaryHeightProperty.getValue();
     }
-    public double getTertiaryPaneWidth(){
-        return tertiaryPane.getWidth();
+    public double getCurrentTertiaryPaneWidth(){
+        return rightWidthProperty.getValue();
     }
-    public double getTertiaryPaneHeight(){
-        return tertiaryPane.getHeight();
+    public double getCurrentTertiaryPaneHeight(){
+        return tertiaryHeightProperty.getValue();
     }
     public MenuItem getOpenFileMenuItem(){
         return openFileMenuItem;

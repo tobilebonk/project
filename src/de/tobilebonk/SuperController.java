@@ -32,7 +32,6 @@ public class SuperController {
 
     public SuperController(){
 
-        //TODO fix scrolling
         //setup logger
         log = new SuperLog();
         log.getLogEntryList().addListener((ListChangeListener<Text>) c -> {
@@ -54,6 +53,10 @@ public class SuperController {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 superView.getScrollPane().setVvalue(superView.getScrollPane().getVmax());
             }
+        });
+
+        superView.getShowAButton().setOnMouseClicked(e -> {
+            log.addLogEntry("hadfinadfj\ndafnoaisdfnaldsf");
         });
 
         // setup model
@@ -78,17 +81,17 @@ public class SuperController {
                 }
                 selectionModel.setItems(selectionResidues);
                 // add primary view
-                RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidth(), superView.getPrimaryPaneHeight()), selectionModel, log);
+                RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getCurrentPrimaryPaneWidth(), superView.getCurrentPrimaryPaneHeight()), selectionModel, log);
                 superView.clearPrimaryPane();
                 superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getViewPane());
 
                 // add secondary view
-                RnaSecondaryPresenter rnaSecondaryPresenter = new RnaSecondaryPresenter(model, new RnaSecondaryView(superView.getSecondaryPaneWidth(), superView.getSecondaryPaneHeight()) , selectionModel, log);
+                RnaSecondaryPresenter rnaSecondaryPresenter = new RnaSecondaryPresenter(model, new RnaSecondaryView(superView.getCurrentSecondaryPaneWidth(), superView.getCurrentSecondaryPaneHeight()) , selectionModel, log);
                 superView.clearSecondaryPane();
                 superView.putIntoSecondaryPane(rnaSecondaryPresenter.getSubView().getViewPane());
 
                 // add tertiary view
-                Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidth(), superView.getTertiaryPaneHeight()), selectionModel, log);
+                Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getCurrentTertiaryPaneWidth(), superView.getCurrentTertiaryPaneHeight()), selectionModel, log);
                 superView.clearTertiaryPane();
                 superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getViewPane());
 
@@ -96,8 +99,7 @@ public class SuperController {
                     superView.getScrollPane().setVvalue(1.0d);
                 });
 
-                // Checkboxes
-
+                // Buttons
                 superView.getShowAButton().setOnMouseClicked(e -> {
                     connectSelectionModelToButtonForType(e, ResiduumType.A);
                 });
