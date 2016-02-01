@@ -51,6 +51,7 @@ public class Model {
         meanX = new SimpleDoubleProperty(reader.getMeanX());
         meanY = new SimpleDoubleProperty(reader.getMeanY());
         meanZ = new SimpleDoubleProperty(reader.getMeanZ());
+        System.out.println("Model initialized");
     }
 
     public ObservableList<Residue> getAllResidues() {

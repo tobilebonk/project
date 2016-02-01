@@ -30,7 +30,7 @@ public class RnaSecondaryPresenter implements Subpresenter{
 
         Graph graph = new Graph();
         graph.createEdgesFromResidueList(model.getAllResidues());
-        double[][] coordinates2D = SpringEmbedder.computeSpringEmbedding(3000, graph.getNumberOfNodes(), graph.getEdges(), null);
+        double[][] coordinates2D = SpringEmbedder.computeSpringEmbedding(500, graph.getNumberOfNodes(), graph.getEdges(), null);
         view.setCoordinates2D(coordinates2D);
         view.setResidues(model.getAllResidues());
         view.initializeView(graph);

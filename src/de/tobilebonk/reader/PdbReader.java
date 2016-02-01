@@ -49,10 +49,7 @@ public class PdbReader {
         try (BufferedReader reader =  Files.newBufferedReader(Paths.get(path))) {
 
             String line;
-
-            int i = 0;
             while ((line = reader.readLine()) != null) {
-                i++;
                 //http://www.wwpdb.org/documentation/file-format-content/format33/sect8.html#ATOM
                 if (line.equals("END") || !line.substring(0, 4).equals("ATOM")) {
                     continue;
@@ -94,6 +91,7 @@ public class PdbReader {
                 }
             }
             reader.close();
+            System.out.println("File reader finished");
             meanX = (maxX + minX) / 2;
             meanY = (maxY + minY) / 2;
             meanZ = (maxZ + minZ) / 2;

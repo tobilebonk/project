@@ -85,6 +85,9 @@ public class SpringEmbedder {
                         array[v][0] += repulse * xdist;
                         array[v][1]+=repulse * ydist;
                     }
+                    if(iterations % 100 == 0){
+                        System.out.println("Initializing Secondary View: " + 100*count/iterations + "% finished");
+                    }
                 }
 
                 // attractions

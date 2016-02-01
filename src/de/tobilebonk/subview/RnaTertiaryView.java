@@ -2,10 +2,7 @@ package de.tobilebonk.subview;
 
 import de.tobilebonk.nucleotide3D.*;
 import de.tobilebonk.nucleotide3D.Residue;
-import javafx.animation.Animation;
-import javafx.animation.Interpolator;
-import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point3D;
@@ -13,10 +10,9 @@ import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
@@ -39,11 +35,15 @@ public class RnaTertiaryView implements SubView {
     private List<Nucleotide3D> uracil3DList = new ArrayList<>();
     private List<Nucleotide3D> nucleotide3DAllSortedList = new ArrayList<>();
 
+
     //Scene and panes
     final private StackPane stackPane;
     final private Group world;
-    final private BorderPane topPane = new BorderPane();
+    final private FlowPane topPane = new FlowPane();
 
+    //Buttons
+    final private ToggleButton startRotateButton = new ToggleButton("Start Rotation");
+    final private Button resetViewButton = new Button("Reset View");
 
     // Rotation Reminders
     private double mouseDownX, mouseDownY;
@@ -52,6 +52,9 @@ public class RnaTertiaryView implements SubView {
     private Rotate cameraRotateX = new Rotate(0, new Point3D(1, 0, 0));
     private Rotate cameraRotateY = new Rotate(0, new Point3D(0, 1, 0));
     private Translate cameraTranslate = new Translate(0, 0, -100);
+    Timeline rotationTimeline = new Timeline();
+    private Rotate cameraRotateZ = new Rotate(0, new Point3D(0,0,1));
+    RotateTransition rotator;
 
     public RnaTertiaryView(SimpleDoubleProperty widthProperty, SimpleDoubleProperty heightProperty) {
 
@@ -76,6 +79,14 @@ public class RnaTertiaryView implements SubView {
         subScene.setCamera(camera);
         StackPane.setAlignment(subScene, Pos.BOTTOM_CENTER);
         topPane.setPickOnBounds(false);
+        topPane.setPrefHeight(20);
+        topPane.prefWidthProperty().bind(widthProperty);
+
+        // buttons
+        topPane.getChildren().addAll(resetViewButton, startRotateButton);
+        StackPane.setAlignment(resetViewButton, Pos.TOP_RIGHT);
+        StackPane.setAlignment(startRotateButton, Pos.TOP_RIGHT);
+
 
         // Handlers
         //TODO better rotations
@@ -168,14 +179,23 @@ public class RnaTertiaryView implements SubView {
             world.getChildren().add(n.getNucleotideGroup());
         });
 
-        RotateTransition rotator = new RotateTransition(Duration.millis(10000), world);
-        rotator.setAxis(Rotate.Y_AXIS);
-        rotator.setFromAngle(0);
-        rotator.setToAngle(360);
-        rotator.setInterpolator(Interpolator.LINEAR);
-        rotator.setCycleCount(Timeline.INDEFINITE);
 
-        rotator.play();
+        //setup rotator
+        rotator = new RotateTransition(Duration.millis(3000), world);
+        rotator.setAxis(Rotate.Y_AXIS);
+        rotator.setInterpolator(Interpolator.LINEAR);
+
+        startRotateButton.setOnAction(event -> {
+            if(startRotateButton.isSelected()){
+                rotator.setByAngle(360);
+                rotator.setCycleCount(Animation.INDEFINITE);
+                rotator.setDuration(Duration.millis(5000));
+                rotator.play();
+            }else{
+                rotator.stop();
+            }
+        });
+
     }
 
     public List<Nucleotide3D> getNucleotide3DAllSortedList() {
@@ -183,5 +203,13 @@ public class RnaTertiaryView implements SubView {
     }
 
 
+    public void resetCamera(){
+        cameraRotateX.setAngle(0);
+        cameraRotateY.setAngle(0);
+        cameraTranslate.setZ(-100);
+    }
+    public Button getResetViewButton() {
+        return resetViewButton;
+    }
 
 }

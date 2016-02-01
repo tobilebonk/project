@@ -80,20 +80,24 @@ public class SuperController {
                     selectionResidues[i] = model.getAllResidues().get(i);
                 }
                 selectionModel.setItems(selectionResidues);
+                System.out.println("Selection model initialized");
                 // add primary view
                 RnaPrimaryPresenter rnaPrimaryPresenter = new RnaPrimaryPresenter(model, new RnaPrimaryView(superView.getPrimaryPaneWidthProperty().getValue(), superView.getPrimaryPaneHeightProperty().getValue()), selectionModel, log);
                 superView.clearPrimaryPane();
                 superView.putIntoPrimaryPane(rnaPrimaryPresenter.getSubView().getViewPane());
+                System.out.println("Primary view initialized");
 
                 // add secondary view
                 RnaSecondaryPresenter rnaSecondaryPresenter = new RnaSecondaryPresenter(model, new RnaSecondaryView(superView.getSecondaryPaneWidthProperty(), superView.getSecondaryPaneHeightProperty()) , selectionModel, log);
                 superView.clearSecondaryPane();
                 superView.putIntoSecondaryPane(rnaSecondaryPresenter.getSubView().getViewPane());
+                System.out.println("Secondary View initialized");
 
                 // add tertiary view
                 Subpresenter rnaTertiaryPresenter = new RnaTertiaryPresenter(model, new RnaTertiaryView(superView.getTertiaryPaneWidthProperty(), superView.getTertiaryPaneHeightProperty()), selectionModel, log);
                 superView.clearTertiaryPane();
                 superView.putIntoTertiaryPane(rnaTertiaryPresenter.getSubView().getViewPane());
+                System.out.println("Tertiary View initialized");
 
                 selectionModel.getSelectedIndices().addListener((ListChangeListener<Integer>) c -> {
                     superView.getScrollPane().setVvalue(1.0d);

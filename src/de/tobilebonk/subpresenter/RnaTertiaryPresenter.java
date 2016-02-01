@@ -52,6 +52,11 @@ public class RnaTertiaryPresenter implements Subpresenter {
             }
         }
 
+        // setup Buttons
+        view.getResetViewButton().setOnAction(event -> {
+            view.resetCamera();
+        });
+
         // setup selections
         // coloring reacting to selection model
         selectionModel.getSelectedItems().addListener(new ListChangeListener() {
