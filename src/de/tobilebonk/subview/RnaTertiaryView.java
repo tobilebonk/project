@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
@@ -120,7 +121,7 @@ public class RnaTertiaryView implements SubView {
         return cameraTranslate;
     }
 
-    public void setup3DNucleotidesFromNonDummyResidueList(List<Residue> allNonDummyResidues) {
+    public void setup3DNucleotidesFromNonDummyResidueList(List<Residue> allNonDummyResidues, double meanX, double meanY, double meanZ) {
         nucleotide3DAllSortedList.addAll(allNonDummyResidues.stream().map(r -> {
 
             ResiduumType type = r.getType();
@@ -153,7 +154,10 @@ public class RnaTertiaryView implements SubView {
             // will not be reached, but is necessary for language reasons
             return null;
         }).collect(Collectors.toList()));
-        nucleotide3DAllSortedList.forEach(n -> world.getChildren().add(n.getNucleotideGroup()));
+        nucleotide3DAllSortedList.forEach(n -> {
+            n.centerAll3DElements(meanX, meanY, meanZ);
+            world.getChildren().add(n.getNucleotideGroup());
+        });
 
     }
 

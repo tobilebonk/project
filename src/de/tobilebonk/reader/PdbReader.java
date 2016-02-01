@@ -1,6 +1,5 @@
 package de.tobilebonk.reader;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import de.tobilebonk.atom.Atom;
 import de.tobilebonk.atom.AtomType;
 import de.tobilebonk.nucleotide3D.ResiduumType;
@@ -20,6 +19,17 @@ public class PdbReader {
     private List<Atom> atoms;
     private List<ResiduumType> residuumTypes;
     private Set<Integer> sequenceNumbers;
+    private double minX = Integer.MAX_VALUE;
+    private double meanX = 0;
+    private double maxX = Integer.MIN_VALUE;
+    private double minY = Integer.MAX_VALUE;
+    private double meanY = 0;
+    private double maxY = Integer.MIN_VALUE;
+    private double minZ = Integer.MAX_VALUE;
+    private double meanZ = 0;
+    private double maxZ = Integer.MIN_VALUE;
+
+
 
     public PdbReader(String path){
         createAtomsFromPdbFile(path);
@@ -58,6 +68,9 @@ public class PdbReader {
                     float zCoordinate = Float.parseFloat(line.substring(46,54).replace(" ", ""));
                     AtomType atomType = AtomType.parseAtom(line.substring(76, 78).replace(" ", ""));
 
+                    //min, max, average
+                    computeMaxMins(xCoordinate, yCoordinate, zCoordinate);
+
                     // handle missing sequence numbers
                     if(!atoms.isEmpty()){
                         int previousSequenceNumber = atoms.get(atoms.size() - 1).getSequenceNumber();
@@ -81,8 +94,33 @@ public class PdbReader {
                 }
             }
             reader.close();
+            meanX = (maxX + minX) / 2;
+            meanY = (maxY + minY) / 2;
+            meanZ = (maxZ + minZ) / 2;
         }catch (IOException e){
             System.err.println("Caught IOException: " + e.getMessage());
+        }
+    }
+
+    private void computeMaxMins(float xCoordinate, float yCoordinate, float zCoordinate) {
+        if(xCoordinate < minX){
+            minX = xCoordinate;
+        }
+        if(xCoordinate > maxX){
+
+            maxX = xCoordinate;
+        }
+        if(yCoordinate < minY){
+            minY = yCoordinate;
+        }
+        if(yCoordinate > maxY){
+            maxY = yCoordinate;
+        }
+        if(zCoordinate < minZ){
+            minZ = zCoordinate;
+        }
+        if(zCoordinate > maxZ){
+            maxZ = zCoordinate;
         }
     }
 
@@ -103,7 +141,17 @@ public class PdbReader {
         return residues;
     }
 
-    public List<ResiduumType> getResiduumTypes(){
-        return residuumTypes;
+
+    public double getMeanZ() {
+        return meanZ;
     }
+
+    public double getMeanY() {
+        return meanY;
+    }
+
+    public double getMeanX() {
+        return meanX;
+    }
+
 }

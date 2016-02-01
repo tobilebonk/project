@@ -38,7 +38,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
         if (model != null) {
 
             //TODO: center!
-            view.setup3DNucleotidesFromNonDummyResidueList(model.getAllNonDummyResidues());
+            view.setup3DNucleotidesFromNonDummyResidueList(model.getAllNonDummyResidues(), model.getMeanX(), model.getMeanY(), model.getMeanZ());
 
 
             //show connections between nucleotides

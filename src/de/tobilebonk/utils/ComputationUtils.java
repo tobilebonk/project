@@ -84,9 +84,9 @@ public class ComputationUtils {
             double o4h62n6Angle = Math.toDegrees(Math.acos((h62n6SquaredDistance + o4h62SquaredDistance - n6o4SquaredDistance) / (2 * Math.sqrt(h62n6SquaredDistance) * Math.sqrt(o4h62SquaredDistance))));
 
 
-            System.out.println(Math.sqrt(o4h61SquaredDistance) + "  " + o4h61n6Angle);
-            System.out.println(Math.sqrt(o4h62SquaredDistance) + "  " + o4h62n6Angle);
-            System.out.println(Math.sqrt(h3n1SquaredDistance) + "  " + n3h3n1Angle);
+            //System.out.println(Math.sqrt(o4h61SquaredDistance) + "  " + o4h61n6Angle);
+            //System.out.println(Math.sqrt(o4h62SquaredDistance) + "  " + o4h62n6Angle);
+            //System.out.println(Math.sqrt(h3n1SquaredDistance) + "  " + n3h3n1Angle);
 
 
             return (Math.sqrt(o4h61SquaredDistance) < MAX_DISTANCE && o4h61n6Angle > MIN_ANGLE)

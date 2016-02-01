@@ -30,6 +30,7 @@ public abstract class Nucleotide3D {
 
 
     // 3D items
+    TriangleMesh sugarMesh;
     private MeshView sugarMeshView;
     private MeshView baseMeshView;
     private Sphere phosphorSphere;
@@ -116,7 +117,7 @@ public abstract class Nucleotide3D {
             }
         }
 
-        TriangleMesh sugarMesh = new TriangleMesh();
+        sugarMesh = new TriangleMesh();
         MeshView sugarMeshView = new MeshView(sugarMesh);
         // tex coords
         sugarMesh.getTexCoords().addAll(texCoords);
@@ -377,7 +378,12 @@ public abstract class Nucleotide3D {
         }
     }
 
+    public void centerAll3DElements(double meanX, double meanY, double meanZ){
 
+        nucleotideGroup.setTranslateX(-meanX);
+        nucleotideGroup.setTranslateY(-meanY);
+        nucleotideGroup.setTranslateZ(-meanZ);
+    }
 
 
 }

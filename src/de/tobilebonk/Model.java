@@ -5,9 +5,7 @@ import de.tobilebonk.reader.PdbReader;
 import de.tobilebonk.nucleotide3D.Residue;
 import de.tobilebonk.utils.Comparators;
 import de.tobilebonk.utils.ComputationUtils;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -28,6 +26,10 @@ public class Model {
     private ListProperty<Residue> allResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
     private ListProperty<Residue> allNonDummyResidues = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<Residue>()));
 
+    private SimpleDoubleProperty meanX;
+    private SimpleDoubleProperty meanY;
+    private SimpleDoubleProperty meanZ;
+
     public Model(PdbReader reader){
 
         adenineResidues.addAll(reader.getResiduesOfType(ResiduumType.A));
@@ -45,6 +47,10 @@ public class Model {
         allResidues.addAll(allNonDummyResidues);
         allResidues.addAll(dummyResidues);
         Collections.sort(allResidues, Comparators.residueSequenceIdComparator());
+
+        meanX = new SimpleDoubleProperty(reader.getMeanX());
+        meanY = new SimpleDoubleProperty(reader.getMeanY());
+        meanZ = new SimpleDoubleProperty(reader.getMeanZ());
     }
 
     public ObservableList<Residue> getAllResidues() {
@@ -135,6 +141,35 @@ public class Model {
     public void setAllNonDummyResidues(ObservableList<Residue> allNonDummyResidues) {
         this.allNonDummyResidues.set(allNonDummyResidues);
     }
+
+    public ListProperty<Residue> adenineResiduesProperty() {
+        return adenineResidues;
+    }
+
+    public double getMeanX() {
+        return meanX.get();
+    }
+
+    public SimpleDoubleProperty meanXProperty() {
+        return meanX;
+    }
+
+    public double getMeanY() {
+        return meanY.get();
+    }
+
+    public SimpleDoubleProperty meanYProperty() {
+        return meanY;
+    }
+
+    public double getMeanZ() {
+        return meanZ.get();
+    }
+
+    public SimpleDoubleProperty meanZProperty() {
+        return meanZ;
+    }
+
 
     public ObservableList<Residue> getResiduesOfType(ResiduumType type) {
 
