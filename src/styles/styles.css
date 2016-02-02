@@ -39,7 +39,7 @@
 /* Change padding of menu buttons when in menu bar */
 .menu-bar .menu-button .label{
     -fx-padding: 0.333em 0.5em 0.333em 0.5em;
-    -fx-background-color: linear-gradient(to bottom, #3333FF, #3300FF);
+    -fx-background-color: linear-gradient(to bottom, #CC0000, #CC0033);
     -fx-background-radius: 5px;
         -fx-background: -fx-accent;
         -fx-text-fill: -fx-selection-bar-text;
@@ -150,7 +150,7 @@
         -fx-padding: 5px;
         -fx-border-insets: 5px, 5px, 5px;
         -fx-background-insets: 2px;
-    -fx-background-color: linear-gradient(to bottom, #3333FF, #3300FF);
+    -fx-background-color: linear-gradient(to bottom, #CC0000, #CC0033);
     -fx-background-radius: 5px;
         -fx-background: -fx-accent;
         -fx-text-fill: -fx-selection-bar-text;
