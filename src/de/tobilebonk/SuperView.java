@@ -59,7 +59,7 @@ public class SuperView {
         fileMenu.getItems().addAll(openFileMenuItem);
 
 
-        //Elements
+        //Containers
         BorderPane rootPane = new BorderPane();
         scene = new Scene(rootPane, PREF_SCENE_WIDTH, PREF_SCENE_HEIGHT);
 
@@ -78,18 +78,16 @@ public class SuperView {
         scrollPane = new ScrollPane(controlPane);
 
         // widths and heights
-
         // heights
         updateHeights();
         primaryPane.setMinHeight(MIN_PRIMARY_HEIGHT);
         secondaryPane.setMinHeight(MIN_SECONDARY_HEIGHT);
         tertiaryPane.setMinHeight(MIN_TERTIARY_HEIGHT);
-        scrollPane.setPrefHeight(MIN_BOTTOM_HEIGHT);
+        scrollPane.setPrefHeight(MIN_BOTTOM_HEIGHT-20);
         primaryPane.prefHeightProperty().bind(primaryHeightProperty);
         secondaryPane.prefHeightProperty().bind(secondaryHeightProperty);
         tertiaryPane.prefHeightProperty().bind(tertiaryHeightProperty);
-        loggingTextFlow.setPrefHeight(MIN_BOTTOM_HEIGHT);
-
+        loggingTextFlow.setPrefHeight(MIN_BOTTOM_HEIGHT-20);
         //widths
         updateWidths();
         primaryPane.prefWidthProperty().bind(leftWidthProperty);
@@ -100,9 +98,10 @@ public class SuperView {
         controlPane.setMinWidth(MIN_BOTTOM_HEIGHT);
         scrollPane.prefWidthProperty().bind(rightWidthProperty.add(leftWidthProperty));
         loggingTextFlow.prefWidthProperty().bind(scrollPane.prefWidthProperty());
+        //margins and paddings
+        loggingTextFlow.setPadding(new Insets(0, 0, 15, 0));
 
-
-        // buttons
+        // buttons and button containers
         VBox showControlBox = new VBox();
         HBox acguBox = new HBox();
         HBox purinesPyrimidinesBox = new HBox();
@@ -122,22 +121,13 @@ public class SuperView {
         acguBox.getChildren().addAll(selectACGULabel, showAButton, showCButton, showGButton, showUButton);
         purinesPyrimidinesBox.getChildren().addAll(selectPurinesPyrimidinesLabel, showPurinesButton, showPyrimidinesButton);
 
+
+        //add all to scene
         rootPane.setLeft(primarySecondaryBox);
         rootPane.setRight(tertiaryBox);
         rootPane.setTop(showControlBox);
         rootPane.setBottom(scrollPane);
 
-
-        //margins and paddings
-        loggingTextFlow.setPadding(new Insets(0, 0, 15, 0));
-
-        //colors TODO: remove
-        /*
-        primaryPane.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-        secondaryPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-        tertiaryPane.setBackground(new Background(new BackgroundFill(Color.CRIMSON, CornerRadii.EMPTY, Insets.EMPTY)));
-        scrollPane.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-*/
         //resizing
         scene.widthProperty().addListener(event -> updateWidths());
         scene.heightProperty().addListener(event -> updateHeights());
@@ -146,7 +136,7 @@ public class SuperView {
         scene.getStylesheets().add("styles/styles.css");
         primaryPane.getStyleClass().addAll("stack-pane", "primary-pane");
         secondaryPane.getStyleClass().addAll("stack-pane", "secondary-pane");
-        tertiaryPane.getStyleClass().addAll("stack-pane", "tertiary-pane");
+        tertiaryPane.getStyleClass().addAll("stack-pane", "tertiary");
         loggingTextFlow.getStyleClass().add("flow-pane");
         colorSelectionBox.getStyleClass().add("colorSelectionBox");
 
@@ -240,14 +230,6 @@ public class SuperView {
 
     public Button getShowPyrimidinesButton() {
         return showPyrimidinesButton;
-    }
-
-    public ReadOnlyDoubleProperty getSceneWidthProperty(){
-        return scene.widthProperty();
-    }
-
-    public ReadOnlyDoubleProperty getSceneHeightProperty(){
-        return scene.heightProperty();
     }
 
 }

@@ -13,7 +13,7 @@ public class Main extends Application {
 
         SuperController sc = new SuperController();
 
-        primaryStage.setTitle("RNA Viewer Revolution Reborn Legacy");
+        primaryStage.setTitle("RNA Viewer --- Give him a good mark! - Edition");
         primaryStage.setScene(sc.getSuperView().getScene());
         primaryStage.sizeToScene();
         primaryStage.show();

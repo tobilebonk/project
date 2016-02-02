@@ -46,12 +46,4 @@ public class SuperLog {
     public ObservableList<Text> getLogEntryList() {
         return logEntryList.get();
     }
-
-    public ListProperty<Text> logEntryListProperty() {
-        return logEntryList;
-    }
-
-    public void setLogEntryList(ObservableList<Text> logEntryList) {
-        this.logEntryList.set(logEntryList);
-    }
 }
