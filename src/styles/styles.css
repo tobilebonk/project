@@ -1,0 +1,161 @@
+/*******************************************************************************
+ *                                                                             *
+ * StackPane                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.stack-pane {
+        -fx-background-color: linear-gradient(to bottom left, #202020, #282828);
+           -fx-border-style: solid;
+           -fx-border-width: 2;
+           -fx-border-color: linear-gradient(to bottom, #000000, #020202), -fx-body-color;
+
+}
+
+.primary-pane, .secondary-pane{
+    -fx-border-left-width: 1;
+}
+
+.tertiary-pane{
+-fx-border-right-width: 1;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * MenuBar                                                                     *
+ *                                                                             *
+ ******************************************************************************/
+
+
+.menu-bar {
+    -fx-background-color: linear-gradient(to bottom, #000000, #020202), -fx-body-color;
+}
+
+/* Show nothing for background of normal menu button in a menu bar */
+.menu-bar .menu-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+/* Change padding of menu buttons when in menu bar */
+.menu-bar .menu-button .label{
+    -fx-padding: 0.333em 0.5em 0.333em 0.5em;
+    -fx-background-color: linear-gradient(to bottom, #3333FF, #3300FF);
+    -fx-background-radius: 5px;
+        -fx-background: -fx-accent;
+        -fx-text-fill: -fx-selection-bar-text;
+}
+
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: -fx-accent;
+        -fx-background-color: linear-gradient(to bottom left, #202020, #282828);
+    -fx-text-fill: -fx-selection-bar-text;
+         -fx-background-radius: 5px;
+
+}
+
+.menu-bar .menu-button:hover {
+    -fx-background: -fx-accent;
+        -fx-background-color: linear-gradient(to bottom left, #202020, #282828);
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.menu-bar:show-mnemonics .mnemonic-underline {
+    -fx-stroke: -fx-text-fill;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * MenuItem                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+
+.menu-item {
+    -fx-background-color: linear-gradient(to bottom, #000000, #020202), -fx-body-color;
+    -fx-padding: 0.5em;
+    -fx-margin: 0;
+        -fx-background-radius: 5px;
+
+    }
+
+.menu-item .left-container {
+    -fx-background-color: linear-gradient(to bottom, #000000, #020202), -fx-body-color;
+    -fx-padding: 0;
+        -fx-margin: 0;
+    -fx-background-radius: 5px;
+
+}
+
+.menu-item .graphic-container {
+    -fx-background-color: linear-gradient(to bottom, #000000, #020202), -fx-body-color;
+    -fx-padding: 0em 0.333em 0em 0em;
+
+    -fx-background-radius: 5px;
+}
+
+.menu-item .label {
+    -fx-padding: 0em 0.5em 0em 0em;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-background-radius: 5px;
+}
+
+.menu-item:disabled .label {
+    -fx-opacity: -fx-disabled-opacity;
+}
+
+.context-menu {
+    -fx-background-color: linear-gradient(to bottom, #000000, #020202), -fx-body-color;
+
+     -fx-background-radius: 5px;
+
+}
+
+.menu-item:focused {
+     -fx-background: -fx-accent;
+     -fx-background-color: linear-gradient(to bottom left, #202020, #282828);
+     -fx-text-fill: -fx-selection-bar-text;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+            -fx-background-color: linear-gradient(to bottom left, #202020, #282828);
+
+}
+
+
+/*******************************************************************************
+ *                                                                             *
+ * ScrollPane                                                                  *
+ *                                                                             *
+ ******************************************************************************/
+
+
+.flow-pane{
+    -fx-background-color: linear-gradient(to bottom, #000000, #020202), -fx-body-color;
+       -fx-fit-to-height: false;
+        -fx-fit-to-width: false;
+
+}
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * Buttons                                                            *
+ *                                                                             *
+ ******************************************************************************/
+
+.button, .toggle-button {
+        -fx-padding: 5px;
+        -fx-border-insets: 5px, 5px, 5px;
+        -fx-background-insets: 2px;
+    -fx-background-color: linear-gradient(to bottom, #3333FF, #3300FF);
+    -fx-background-radius: 5px;
+        -fx-background: -fx-accent;
+        -fx-text-fill: -fx-selection-bar-text;
+}
+
+.colorSelectionBox{
+    -fx-padding: 5px, 2px, 5px, 2px;
+}

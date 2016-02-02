@@ -3,19 +3,10 @@ package de.tobilebonk.subpresenter;
 import de.tobilebonk.Model;
 import de.tobilebonk.ResiduumSelectionModel;
 import de.tobilebonk.SuperLog;
-import de.tobilebonk.nucleotide3D.Nucleotide3D;
-import de.tobilebonk.nucleotide3D.Residue;
-import de.tobilebonk.nucleotide3D.ResiduumType;
 import de.tobilebonk.subview.RnaTertiaryView;
 import de.tobilebonk.subview.SubView;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
-import javafx.geometry.Point3D;
 import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-
-import java.util.*;
 
 
 /**
@@ -54,7 +45,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
 
         // setup Buttons
         view.getResetViewButton().setOnAction(event -> {
-            view.resetCamera();
+            view.resetCameraAndRotation();
         });
 
         // setup selections

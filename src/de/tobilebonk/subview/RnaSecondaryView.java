@@ -85,7 +85,8 @@ public class RnaSecondaryView implements SubView {
                 line.setStroke(Color.BLACK);
                 connections.add(line);
             }else{
-                line.setStroke(Color.GREY);
+                line.setStroke(Color.GREY.darker().darker());
+                line.setStrokeWidth(3);
                 bonds.add(line);
             }
             circleGroup.getChildren().add(line);
@@ -98,22 +99,15 @@ public class RnaSecondaryView implements SubView {
             circle.centerXProperty().bind(coordinates2DProperties[i][0]);
             circle.centerYProperty().bind(coordinates2DProperties[i][1]);
             switch (residues.get(i).getType()) {
-                case A:
-                    circle.setFill(Color.FORESTGREEN);
-                    break;
-                case C:
-                    circle.setFill(Color.CRIMSON);
-                    break;
-                case G:
-                    circle.setFill(Color.YELLOW.darker());
-                    break;
-                case U:
-                    circle.setFill(Color.MEDIUMPURPLE);
-                    break;
                 case _:
+                    circle.setFill(Color.BLACK);
+                    circle.setStroke(Color.BLACK);
+                    break;
+                default:
+                    circle.setFill(Color.WHITE);
+                    circle.setStroke(Color.AZURE);
                     break;
             }
-            circle.setStroke(Color.BLACK);
             //add tooltip
             Tooltip t = new Tooltip("Nucleotide: " + residues.get(i).getType() + "\nPosition: " + residues.get(i).getSequenceNumber());
             Tooltip.install(circle, t);
@@ -153,12 +147,12 @@ public class RnaSecondaryView implements SubView {
         return bonds;
     }
 
-    public void setColoringOfResidueAt(int index){
+    public void resetColoringOfResidueAt(int index){
         circles.get(index).setFill(Color.WHITE);
         circles.get(index).setStroke(Color.AZURE);
     }
 
-    public void resetColoringOfResidueAt(int index){
+    public void setColoringOfResidueAt(int index){
         switch (residues.get(index).getType()){
             case A:
                 circles.get(index).setFill(Color.FORESTGREEN);
@@ -173,7 +167,6 @@ public class RnaSecondaryView implements SubView {
                 circles.get(index).setFill(Color.MEDIUMPURPLE);
             break;
         }
-        circles.get(index).setStroke(Color.BLACK);
     }
 
     public void setColoringOfBond(int indexInBonds){
@@ -181,7 +174,7 @@ public class RnaSecondaryView implements SubView {
     }
 
     public void resetColoringOfBond(int indexInBonds){
-        bonds.get(indexInBonds).setStroke(Color.GREY);
+        bonds.get(indexInBonds).setStroke(Color.GREY.darker().darker());
     }
 
     private void recalculate2DDrawing(){

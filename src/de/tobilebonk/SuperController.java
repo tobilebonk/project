@@ -55,10 +55,6 @@ public class SuperController {
             }
         });
 
-        superView.getShowAButton().setOnMouseClicked(e -> {
-            log.addLogEntry("hadfinadfj\ndafnoaisdfnaldsf");
-        });
-
         // setup model
         superView.getOpenFileMenuItem().setOnAction(event -> {
 

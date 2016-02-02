@@ -52,8 +52,6 @@ public class RnaTertiaryView implements SubView {
     private Rotate cameraRotateX = new Rotate(0, new Point3D(1, 0, 0));
     private Rotate cameraRotateY = new Rotate(0, new Point3D(0, 1, 0));
     private Translate cameraTranslate = new Translate(0, 0, -100);
-    Timeline rotationTimeline = new Timeline();
-    private Rotate cameraRotateZ = new Rotate(0, new Point3D(0,0,1));
     RotateTransition rotator;
 
     public RnaTertiaryView(SimpleDoubleProperty widthProperty, SimpleDoubleProperty heightProperty) {
@@ -191,8 +189,11 @@ public class RnaTertiaryView implements SubView {
                 rotator.setCycleCount(Animation.INDEFINITE);
                 rotator.setDuration(Duration.millis(5000));
                 rotator.play();
+                startRotateButton.setText("Stop Rotation");
             }else{
                 rotator.stop();
+                startRotateButton.setText("Start Rotation");
+
             }
         });
 
@@ -203,10 +204,14 @@ public class RnaTertiaryView implements SubView {
     }
 
 
-    public void resetCamera(){
+    public void resetCameraAndRotation(){
         cameraRotateX.setAngle(0);
         cameraRotateY.setAngle(0);
         cameraTranslate.setZ(-100);
+        startRotateButton.setSelected(false);
+        startRotateButton.setText("Start Rotation");
+        rotator.stop();
+        world.setRotate(0);
     }
     public Button getResetViewButton() {
         return resetViewButton;

@@ -6,11 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by Dappsen on 18.01.2016.
@@ -36,27 +38,40 @@ public class RnaPrimaryView implements SubView {
     }
 
     public void addResidueToView(ResiduumType residue){
-        this.textFlow.getChildren().add(new Text(residue.toString()));
-    }
-
-    public void addAllResiduesToView(Collection<ResiduumType> residues){
-        residues.forEach(residue -> addResidueToView(residue));
+        Text text = new Text(residue.toString());
+        text.setFill(Color.WHITE);
+        text.setFont(javafx.scene.text.Font.font("Monospaced", FontWeight.LIGHT, 14));
+        this.textFlow.getChildren().add(text);
     }
 
     public void setColoringOfResidueAt(int index){
-        ((Text)textFlow.getChildren().get(index)).setStyle("-fx-background-color: #564862;");
-        ((Text)textFlow.getChildren().get(index)).setFill(Color.ALICEBLUE);
+        Text text = ((Text)textFlow.getChildren().get(index));
+        text.setFont(javafx.scene.text.Font.font("Monospaced", FontWeight.EXTRA_BOLD, 14));
+        switch (text.getText().toString()){
+            case "A":
+                text.setFill(Color.FORESTGREEN);
+                break;
+            case "C":
+                text.setFill(Color.CRIMSON);
+                break;
+            case "G":
+                text.setFill(Color.YELLOW.darker());
+                break;
+            case "U":
+                text.setFill(Color.MEDIUMPURPLE);
+                break;
+        }
 
     }
 
     public void resetColoringOfResidueAt(int index){
-        ((Text)textFlow.getChildren().get(index)).setStyle("");
-        ((Text)textFlow.getChildren().get(index)).setFill(Color.BLACK);
-
+        Text text = ((Text)textFlow.getChildren().get(index));
+        text.setFont(javafx.scene.text.Font.font("Monospaced", FontWeight.LIGHT, 14));
+        text.setFill(Color.WHITE);
     }
 
 
-    public java.util.List<Node> getResidueTexts(){
+    public List<Node> getResidueTexts(){
         return textFlow.getChildren();
     }
 

@@ -53,12 +53,9 @@ public class SuperView {
         //menu bar
         Menu fileMenu = new Menu("File");
         openFileMenuItem = new MenuItem("Load PDB...");
-        final Menu menu2 = new Menu("Options");
-        final Menu menu3 = new Menu("Help");
-
 
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(fileMenu, menu2, menu3);
+        menuBar.getMenus().addAll(fileMenu);
         fileMenu.getItems().addAll(openFileMenuItem);
 
 
@@ -91,6 +88,7 @@ public class SuperView {
         primaryPane.prefHeightProperty().bind(primaryHeightProperty);
         secondaryPane.prefHeightProperty().bind(secondaryHeightProperty);
         tertiaryPane.prefHeightProperty().bind(tertiaryHeightProperty);
+        loggingTextFlow.setPrefHeight(MIN_BOTTOM_HEIGHT);
 
         //widths
         updateWidths();
@@ -100,6 +98,9 @@ public class SuperView {
         primarySecondaryBox.prefWidthProperty().bind(leftWidthProperty);
         tertiaryBox.prefWidthProperty().bind(rightWidthProperty);
         controlPane.setMinWidth(MIN_BOTTOM_HEIGHT);
+        scrollPane.prefWidthProperty().bind(rightWidthProperty.add(leftWidthProperty));
+        loggingTextFlow.prefWidthProperty().bind(scrollPane.prefWidthProperty());
+
 
         // buttons
         VBox showControlBox = new VBox();
@@ -131,14 +132,24 @@ public class SuperView {
         loggingTextFlow.setPadding(new Insets(0, 0, 15, 0));
 
         //colors TODO: remove
+        /*
         primaryPane.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         secondaryPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         tertiaryPane.setBackground(new Background(new BackgroundFill(Color.CRIMSON, CornerRadii.EMPTY, Insets.EMPTY)));
         scrollPane.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-
+*/
         //resizing
         scene.widthProperty().addListener(event -> updateWidths());
         scene.heightProperty().addListener(event -> updateHeights());
+
+        // styling
+        scene.getStylesheets().add("styles/styles.css");
+        primaryPane.getStyleClass().addAll("stack-pane", "primary-pane");
+        secondaryPane.getStyleClass().addAll("stack-pane", "secondary-pane");
+        tertiaryPane.getStyleClass().addAll("stack-pane", "tertiary-pane");
+        loggingTextFlow.getStyleClass().add("flow-pane");
+        colorSelectionBox.getStyleClass().add("colorSelectionBox");
+
     }
 
 
