@@ -1,10 +1,10 @@
-package de.tobilebonk.nucleotide3D;
+package de.tobilebonk.model.residue;
 
 /**
  * Created by Dappsen on 13.12.2015.
  */
 public enum ResiduumType {
-    A, C, G, U, _;
+    A, C, G, U, OTHER;
 
     public static ResiduumType parseResiduum(String type) {
         switch (type) {
@@ -25,7 +25,7 @@ public enum ResiduumType {
             case "URA":
                 return U;
             default:
-                return _;
+                return OTHER;
         }
     }
 

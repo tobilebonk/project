@@ -1,17 +1,13 @@
-package de.tobilebonk.subview;
+package de.tobilebonk.view;
 
-import de.tobilebonk.atom.Atom;
-import de.tobilebonk.nucleotide3D.ResiduumType;
+import de.tobilebonk.model.residue.ResiduumType;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-import java.awt.*;
-import java.util.*;
 import java.util.List;
 
 /**

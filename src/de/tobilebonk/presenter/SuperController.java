@@ -1,21 +1,14 @@
-package de.tobilebonk;
+package de.tobilebonk.presenter;
 
-import de.tobilebonk.nucleotide3D.ResiduumType;
-import de.tobilebonk.reader.PdbReader;
-import de.tobilebonk.subpresenter.RnaPrimaryPresenter;
-import de.tobilebonk.subpresenter.RnaSecondaryPresenter;
-import de.tobilebonk.subpresenter.RnaTertiaryPresenter;
-import de.tobilebonk.subpresenter.Subpresenter;
-import de.tobilebonk.subview.RnaPrimaryView;
-import de.tobilebonk.subview.RnaSecondaryView;
-import de.tobilebonk.subview.RnaTertiaryView;
-import de.tobilebonk.nucleotide3D.Residue;
-import javafx.application.Platform;
+import de.tobilebonk.model.Model;
+import de.tobilebonk.model.ResiduumSelectionModel;
+import de.tobilebonk.model.residue.ResiduumType;
+import de.tobilebonk.model.reader.PdbReader;
+import de.tobilebonk.view.*;
+import de.tobilebonk.model.residue.Residue;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
-import javafx.concurrent.Task;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -55,7 +48,8 @@ public class SuperController {
                 // setup model
                 String path = selectedFile.getPath();
                 log.addInfoEntry("Loading pdb file " + path + ". This could take some seconds...");
-                model = new Model(new PdbReader(path));
+                try{
+                    model = new Model(new PdbReader(path));
 
                 // setup selection model
                 setupSelectionModel();
@@ -63,12 +57,16 @@ public class SuperController {
 
                 // add primary view
                 log.addInfoEntry("Setting up views. This could take some seconds...");
+                setupPrimaryView();
                 // add secondary view
                 setupSecondaryView();
                 // add tertiary view
                 setupTertiaryView();
                 log.addLogEntry("Successfully setup views");
+                }catch (RuntimeException e){
+                    log.addWarningEntry("Error reading the pdb file. Does it match the pdb format? Does it exist?");
 
+                }
             }
 
         });

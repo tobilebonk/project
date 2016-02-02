@@ -1,6 +1,8 @@
-package de.tobilebonk.nucleotide3D;
+package de.tobilebonk.view.nucleotide3D;
 
-import de.tobilebonk.atom.Atom;
+import de.tobilebonk.model.atom.Atom;
+import de.tobilebonk.model.residue.Residue;
+import de.tobilebonk.model.residue.ResiduumType;
 import de.tobilebonk.utils.Rna3DUtils;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Group;
@@ -14,6 +16,11 @@ import java.util.List;
 
 /**
  * Created by Dappsen on 02.01.2016.
+ *
+ * A Template for 3D representations for Nucleotides.
+ * Extending classes (Adenine3D, Cytosin3D, Guanine3D and Uracil3D) only differ in their colors and their sugars and bases (-> meshes)
+ * Template Pattern!
+ *
  */
 public abstract class Nucleotide3D {
 
@@ -81,7 +88,7 @@ public abstract class Nucleotide3D {
             phosphorSphere.setTranslateZ(p.getzCoordinate());
             this.phosphorSphere = phosphorSphere;
         }
-    };
+    }
 
     //bond cylinders
     private void initBonds(){
@@ -184,7 +191,6 @@ public abstract class Nucleotide3D {
         addNucleotideElementsCheckedToChildren(sugarMeshView, baseMeshView, phosphorSphere);
         Tooltip t = new Tooltip(type.toString() + sequenceNumber);
         Tooltip.install(nucleotideGroup, t);
-        this.nucleotideGroup = nucleotideGroup;
     }
 
     //instantiate the atoms that are part of the current molecule
@@ -244,7 +250,6 @@ public abstract class Nucleotide3D {
                     continue;
                 case "O3'":
                     o3_ = atom;
-                    continue;
             }
         }
     }
@@ -266,7 +271,7 @@ public abstract class Nucleotide3D {
             sugarToPhosphorBondCylinders = Rna3DUtils.calculateBonds(new Atom[]{c3_, o3_, o3_, nextNucleotide3D.getPhosphor()});
             addNucleotideElementsCheckedToChildren(sugarToPhosphorBondCylinders);
         }
-    };
+    }
 
     public void connectPhosphorToPhosphorOf(Nucleotide3D nextNucleotide3D){
         if(nextNucleotide3D.getPhosphor() != null && this.p != null){
@@ -277,7 +282,7 @@ public abstract class Nucleotide3D {
             bondMaterial.setDiffuseColor(Color.BLACK);
             phosphorToPhosphorBondCylinders.forEach(b -> b.setMaterial(bondMaterial));
         }
-    };
+    }
 
     public void disconnectSugarFromPhosphor(){
         nucleotideGroup.getChildren().removeAll(sugarToPhosphorBondCylinders);
@@ -330,36 +335,8 @@ public abstract class Nucleotide3D {
         }
     }
 
-    public MeshView getSugarMeshView() {
-        return sugarMeshView;
-    }
-
-    public MeshView getBaseMeshView() {
-        return baseMeshView;
-    }
-
-    public Sphere getPhosphorSphere() {
-        return phosphorSphere;
-    }
-
-    public List<Cylinder> getInnerBondCylinders() {
-        return innerBondCylinders;
-    }
-
-    public List<Cylinder> getPhosphorToPhosphorBondCylinders() {
-        return phosphorToPhosphorBondCylinders;
-    }
-
-    public List<Cylinder> getSugarToPhosphorBondCylinders() {
-        return sugarToPhosphorBondCylinders;
-    }
-
     public int getSequenceNumber() {
         return sequenceNumber;
-    }
-
-    public ResiduumType getType() {
-        return type;
     }
 
     private void addNucleotideElementsCheckedToChildren(Shape3D... elements){

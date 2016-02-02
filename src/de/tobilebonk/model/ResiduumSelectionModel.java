@@ -1,4 +1,4 @@
-package de.tobilebonk;
+package de.tobilebonk.model;
 
 
 import javafx.collections.FXCollections;

@@ -1,11 +1,9 @@
 package de.tobilebonk.utils;
 
-import de.tobilebonk.atom.Atom;
-import de.tobilebonk.nucleotide3D.Residue;
-import de.tobilebonk.nucleotide3D.ResiduumType;
+import de.tobilebonk.model.atom.Atom;
+import de.tobilebonk.model.residue.Residue;
+import de.tobilebonk.model.residue.ResiduumType;
 import javafx.geometry.Point3D;
-
-import java.util.List;
 
 /**
  * Created by Dappsen on 25.01.2016.
@@ -16,11 +14,9 @@ public class ComputationUtils {
     private static double MAX_DISTANCE = 2.8d;
     private static double MIN_ANGLE = 150d;
 
-
-    //TODO Multithread this
     public static boolean computeIsResidueConnectedToResidue(Residue r1, Residue r2){
 
-        if(r1.getType() == ResiduumType._ || r2.getType() == ResiduumType._ ||
+        if(r1.getType() == ResiduumType.OTHER || r2.getType() == ResiduumType.OTHER ||
                 (r1.getType() == ResiduumType.A && r2.getType() != ResiduumType.U)
                 ||(r1.getType() == ResiduumType.U && r2.getType() != ResiduumType.A)
                 || (r1.getType() == ResiduumType.G && r2.getType() != ResiduumType.C)
@@ -83,19 +79,15 @@ public class ComputationUtils {
             double o4h61n6Angle = Math.toDegrees(Math.acos((h61n6SquaredDistance + o4h61SquaredDistance - n6o4SquaredDistance) / (2 * Math.sqrt(h61n6SquaredDistance) * Math.sqrt(o4h61SquaredDistance))));
             double o4h62n6Angle = Math.toDegrees(Math.acos((h62n6SquaredDistance + o4h62SquaredDistance - n6o4SquaredDistance) / (2 * Math.sqrt(h62n6SquaredDistance) * Math.sqrt(o4h62SquaredDistance))));
 
-
-            //System.out.println(Math.sqrt(o4h61SquaredDistance) + "  " + o4h61n6Angle);
-            //System.out.println(Math.sqrt(o4h62SquaredDistance) + "  " + o4h62n6Angle);
-            //System.out.println(Math.sqrt(h3n1SquaredDistance) + "  " + n3h3n1Angle);
-
-
             return (Math.sqrt(o4h61SquaredDistance) < MAX_DISTANCE && o4h61n6Angle > MIN_ANGLE)
                     || (Math.sqrt(h3n1SquaredDistance) < MAX_DISTANCE && n3h3n1Angle > MIN_ANGLE)
                     || (Math.sqrt(o4h62SquaredDistance) < MAX_DISTANCE && o4h62n6Angle > MIN_ANGLE);
 
         }
         // Guanine Cytosine bonds
-        if(r1.getType() == ResiduumType.C ||  r2.getType() == ResiduumType.C){
+        else{
+
+            assert(r1.getType() == ResiduumType.C ||  r2.getType() == ResiduumType.C);
 
             // cytosin
             Atom n4, h41, h42, n3, o2;
@@ -171,14 +163,6 @@ public class ComputationUtils {
             double o2h21n2Angle = Math.toDegrees(Math.acos((o2h21SquaredDistance + h21n2SquaredDistance - n2o2SquaredDistance)/(2* Math.sqrt(o2h21SquaredDistance) * Math.sqrt(h21n2SquaredDistance))));
             double o2h22n2Angle = Math.toDegrees(Math.acos((o2h22SquaredDistance + h22n2SquaredDistance - n2o2SquaredDistance)/(2* Math.sqrt(o2h22SquaredDistance) * Math.sqrt(h22n2SquaredDistance))));
 
-/*
-            System.out.println(Math.sqrt(h41o6SquaredDistance) + "  " + n4h41o6Angle);
-            System.out.println(Math.sqrt(h42o6SquaredDistance) + "  " + n4h42o6Angle);
-            System.out.println(Math.sqrt(n3h1SquaredDistance) + "  " + n3h1n1Angle);
-            System.out.println(Math.sqrt(o2h21SquaredDistance) + "  " + o2h21n2Angle);
-            System.out.println(Math.sqrt(o2h22SquaredDistance) + "  " + o2h22n2Angle);
-            */
-
             return (Math.sqrt(h41o6SquaredDistance) < MAX_DISTANCE &&  n4h41o6Angle > MIN_ANGLE)
                     || (Math.sqrt(h42o6SquaredDistance) < MAX_DISTANCE && n4h42o6Angle > MIN_ANGLE)
                     || (Math.sqrt(n3h1SquaredDistance) < MAX_DISTANCE && n3h1n1Angle > MIN_ANGLE)
@@ -187,8 +171,5 @@ public class ComputationUtils {
 
 
         }
-        //not reached
-        //TODO: exception
-        return false;
     }
 }

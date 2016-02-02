@@ -1,4 +1,4 @@
-package de.tobilebonk.atom;
+package de.tobilebonk.model.atom;
 
 /**
  * Created by Dappsen on 13.12.2015.

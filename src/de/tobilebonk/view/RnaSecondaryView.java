@@ -1,6 +1,6 @@
-package de.tobilebonk.subview;
+package de.tobilebonk.view;
 
-import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.model.residue.Residue;
 import java4bioinf.rna2d.Graph;
 import java4bioinf.rna2d.SpringEmbedder;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -99,7 +99,7 @@ public class RnaSecondaryView implements SubView {
             circle.centerXProperty().bind(coordinates2DProperties[i][0]);
             circle.centerYProperty().bind(coordinates2DProperties[i][1]);
             switch (residues.get(i).getType()) {
-                case _:
+                case OTHER:
                     circle.setFill(Color.BLACK);
                     circle.setStroke(Color.BLACK);
                     break;

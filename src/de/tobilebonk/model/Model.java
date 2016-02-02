@@ -1,10 +1,9 @@
-package de.tobilebonk;
+package de.tobilebonk.model;
 
-import de.tobilebonk.nucleotide3D.*;
-import de.tobilebonk.reader.PdbReader;
-import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.model.residue.Residue;
+import de.tobilebonk.model.residue.ResiduumType;
+import de.tobilebonk.model.reader.PdbReader;
 import de.tobilebonk.utils.Comparators;
-import de.tobilebonk.utils.ComputationUtils;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +35,7 @@ public class Model {
         cytosinResidues.addAll(reader.getResiduesOfType(ResiduumType.C));
         guanineResidues.addAll(reader.getResiduesOfType(ResiduumType.G));
         uracilResidues.addAll(reader.getResiduesOfType(ResiduumType.U));
-        dummyResidues.addAll(reader.getResiduesOfType(ResiduumType._));
+        dummyResidues.addAll(reader.getResiduesOfType(ResiduumType.OTHER));
 
         allNonDummyResidues.addAll(adenineResidues);
         allNonDummyResidues.addAll(cytosinResidues);
@@ -174,7 +173,7 @@ public class Model {
 
     public ObservableList<Residue> getResiduesOfType(ResiduumType type) {
 
-        assert (type != ResiduumType._);
+        assert (type != ResiduumType.OTHER);
         switch (type) {
             case A: {
                 return adenineResidues;

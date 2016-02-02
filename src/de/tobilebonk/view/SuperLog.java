@@ -1,4 +1,4 @@
-package de.tobilebonk;
+package de.tobilebonk.view;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;

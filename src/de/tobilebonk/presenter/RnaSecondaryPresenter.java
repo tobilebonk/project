@@ -1,15 +1,13 @@
-package de.tobilebonk.subpresenter;
+package de.tobilebonk.presenter;
 
-import de.tobilebonk.Model;
-import de.tobilebonk.ResiduumSelectionModel;
-import de.tobilebonk.SuperLog;
-import de.tobilebonk.subview.RnaSecondaryView;
-import de.tobilebonk.subview.SubView;
+import de.tobilebonk.model.Model;
+import de.tobilebonk.model.ResiduumSelectionModel;
+import de.tobilebonk.view.SuperLog;
+import de.tobilebonk.view.RnaSecondaryView;
+import de.tobilebonk.view.SubView;
 import java4bioinf.rna2d.Graph;
 import java4bioinf.rna2d.SpringEmbedder;
 import javafx.collections.ListChangeListener;
-
-import java.io.IOException;
 
 /**
  * Created by Dappsen on 21.01.2016.
@@ -160,8 +158,4 @@ public class RnaSecondaryPresenter implements Subpresenter{
         return this.view;
     }
 
-    @Override
-    public void setSubView(SubView view) {
-        this.view = view;
-    }
 }

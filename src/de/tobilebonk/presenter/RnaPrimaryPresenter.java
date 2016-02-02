@@ -1,10 +1,10 @@
-package de.tobilebonk.subpresenter;
+package de.tobilebonk.presenter;
 
-import de.tobilebonk.Model;
-import de.tobilebonk.ResiduumSelectionModel;
-import de.tobilebonk.SuperLog;
-import de.tobilebonk.subview.RnaPrimaryView;
-import de.tobilebonk.subview.SubView;
+import de.tobilebonk.model.Model;
+import de.tobilebonk.model.ResiduumSelectionModel;
+import de.tobilebonk.view.SuperLog;
+import de.tobilebonk.view.RnaPrimaryView;
+import de.tobilebonk.view.SubView;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 
@@ -90,10 +90,5 @@ public class RnaPrimaryPresenter implements Subpresenter{
     @Override
     public SubView getSubView() {
         return view;
-    }
-
-    @Override
-    public void setSubView(SubView view) {
-        this.view = view;
     }
 }

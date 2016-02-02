@@ -1,5 +1,6 @@
-package de.tobilebonk.nucleotide3D;
+package de.tobilebonk.view.nucleotide3D;
 
+import de.tobilebonk.model.residue.Residue;
 import javafx.scene.paint.Color;
 
 /**

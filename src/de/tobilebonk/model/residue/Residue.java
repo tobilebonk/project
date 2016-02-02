@@ -1,7 +1,6 @@
-package de.tobilebonk.nucleotide3D;
+package de.tobilebonk.model.residue;
 
-import de.tobilebonk.atom.Atom;
-import de.tobilebonk.nucleotide3D.ResiduumType;
+import de.tobilebonk.model.atom.Atom;
 
 import java.util.List;
 
@@ -10,9 +9,9 @@ import java.util.List;
  */
 public class Residue {
 
-    ResiduumType type;
-    List<Atom> atoms;
-    int sequenceNumber;
+    private ResiduumType type;
+    private List<Atom> atoms;
+    private int sequenceNumber;
 
     public Residue(ResiduumType type, List<Atom> atoms, int sequenceNumber) {
         this.type = type;
@@ -32,14 +31,13 @@ public class Residue {
         return sequenceNumber;
     }
     
-    public Atom getAtomWithName(String name){
+    public Atom getAtomWithName(String name) throws  IllegalArgumentException{
         for (Atom atom : atoms) {
             if(atom.getAtomName().toUpperCase().equals(name.toUpperCase())){
                 return atom;
             }
         }
-        //TODO handle
-        return null;
+        throw new IllegalArgumentException("Atom " + name + " was not found in residue " + sequenceNumber);
     }
 
 }

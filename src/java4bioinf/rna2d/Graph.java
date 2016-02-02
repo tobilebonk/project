@@ -1,6 +1,6 @@
 package java4bioinf.rna2d;
 
-import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.model.residue.Residue;
 import de.tobilebonk.utils.ComputationUtils;
 
 import java.io.IOException;

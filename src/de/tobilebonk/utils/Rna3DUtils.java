@@ -1,6 +1,6 @@
 package de.tobilebonk.utils;
 
-import de.tobilebonk.atom.Atom;
+import de.tobilebonk.model.atom.Atom;
 import javafx.geometry.Point3D;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.transform.Rotate;

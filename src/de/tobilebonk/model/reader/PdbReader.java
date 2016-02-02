@@ -1,9 +1,9 @@
-package de.tobilebonk.reader;
+package de.tobilebonk.model.reader;
 
-import de.tobilebonk.atom.Atom;
-import de.tobilebonk.atom.AtomType;
-import de.tobilebonk.nucleotide3D.ResiduumType;
-import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.model.atom.Atom;
+import de.tobilebonk.model.atom.AtomType;
+import de.tobilebonk.model.residue.ResiduumType;
+import de.tobilebonk.model.residue.Residue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class PdbReader {
      *
      * @param path - the directory of the pdb file
      */
-    private void createAtomsFromPdbFile(String path){
+    private void createAtomsFromPdbFile(String path) throws RuntimeException{
 
         atoms = new LinkedList<Atom>();
         residuumTypes = new LinkedList<ResiduumType>();
@@ -74,8 +74,8 @@ public class PdbReader {
                         if(sequenceNumber != previousSequenceNumber){
                             int dummySequenceNumber = previousSequenceNumber;
                             while(++dummySequenceNumber < sequenceNumber){
-                                residuumTypes.add(ResiduumType._);
-                                atoms.add(new Atom(-1, "DUMMY", AtomType._, ResiduumType._, dummySequenceNumber, 0,0,0));
+                                residuumTypes.add(ResiduumType.OTHER);
+                                atoms.add(new Atom(-1, "DUMMY", AtomType._, ResiduumType.OTHER, dummySequenceNumber, 0,0,0));
                                 sequenceNumbers.add(dummySequenceNumber);
                             }
                             //add to current (existing) residue to residue list
@@ -96,7 +96,7 @@ public class PdbReader {
             meanY = (maxY + minY) / 2;
             meanZ = (maxZ + minZ) / 2;
         }catch (IOException e){
-            System.err.println("Caught IOException: " + e.getMessage());
+            throw new RuntimeException("Error reading the pdb file. Does it match the pdb format?");
         }
     }
 

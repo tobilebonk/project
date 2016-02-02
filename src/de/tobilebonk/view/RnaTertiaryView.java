@@ -1,19 +1,16 @@
-package de.tobilebonk.subview;
+package de.tobilebonk.view;
 
-import de.tobilebonk.nucleotide3D.*;
-import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.model.residue.ResiduumType;
+import de.tobilebonk.view.nucleotide3D.*;
+import de.tobilebonk.model.residue.Residue;
 import javafx.animation.*;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
@@ -66,7 +63,6 @@ public class RnaTertiaryView implements SubView {
         world = new Group();
 
         // setup panes and scene
-        //TODO use correct properties
         final SubScene subScene = new SubScene(world, widthProperty.getValue(), heightProperty.getValue(), true, SceneAntialiasing.BALANCED);
         subScene.widthProperty().bind(widthProperty);
         subScene.heightProperty().bind(heightProperty);
@@ -87,8 +83,6 @@ public class RnaTertiaryView implements SubView {
 
 
         // Handlers
-        //TODO better rotations
-        //TODO: names
         // rotation handlers
         stackPane.setOnMousePressed((me) -> {
             mouseDownX = me.getSceneX();
@@ -127,6 +121,16 @@ public class RnaTertiaryView implements SubView {
         return stackPane;
     }
 
+    @Override
+    public void setColoringOfResidueAt(int index) {
+        nucleotide3DAllSortedList.get(index).setColoring();
+    }
+
+    @Override
+    public void resetColoringOfResidueAt(int index) {
+        nucleotide3DAllSortedList.get(index).resetColoring();
+    }
+
     public Rotate getCameraRotateX() {
         return cameraRotateX;
     }
@@ -144,7 +148,7 @@ public class RnaTertiaryView implements SubView {
 
             ResiduumType type = r.getType();
             // an dummy nucleotide should not be drawn (and has no 3D representation):
-            assert (type != ResiduumType._);
+            assert (type != ResiduumType.OTHER);
 
             switch (type) {
                 case A: {
@@ -154,7 +158,7 @@ public class RnaTertiaryView implements SubView {
                     return n;
                 }
                 case C: {
-                    Nucleotide3D n = new Cytosine3D(r);
+                    Nucleotide3D n = new Cytosin3D(r);
                     cytosin3DList.add(n);
                     return n;
                 }

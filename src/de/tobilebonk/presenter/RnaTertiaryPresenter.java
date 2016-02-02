@@ -1,10 +1,10 @@
-package de.tobilebonk.subpresenter;
+package de.tobilebonk.presenter;
 
-import de.tobilebonk.Model;
-import de.tobilebonk.ResiduumSelectionModel;
-import de.tobilebonk.SuperLog;
-import de.tobilebonk.subview.RnaTertiaryView;
-import de.tobilebonk.subview.SubView;
+import de.tobilebonk.model.Model;
+import de.tobilebonk.model.ResiduumSelectionModel;
+import de.tobilebonk.view.SuperLog;
+import de.tobilebonk.view.RnaTertiaryView;
+import de.tobilebonk.view.SubView;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 
@@ -28,9 +28,7 @@ public class RnaTertiaryPresenter implements Subpresenter {
 
         if (model != null) {
 
-            //TODO: center!
             view.setup3DNucleotidesFromNonDummyResidueList(model.getAllNonDummyResidues(), model.getMeanX(), model.getMeanY(), model.getMeanZ());
-
 
             //show connections between nucleotides
             if (model.getAllResidues().size() > 1) {
@@ -57,9 +55,9 @@ public class RnaTertiaryPresenter implements Subpresenter {
                     int position = model.getAllNonDummyResidues().indexOf(model.getAllResidues().get(i));
                     if (position != -1) {
                         if (selectionModel.getSelectedIndices().contains(i)) {
-                            view.getNucleotide3DAllSortedList().get(position).setColoring();
+                            view.setColoringOfResidueAt(position);
                         } else {
-                            view.getNucleotide3DAllSortedList().get(position).resetColoring();
+                            view.resetColoringOfResidueAt(position);
                         }
                     }
                 }
@@ -109,10 +107,6 @@ public class RnaTertiaryPresenter implements Subpresenter {
     @Override
     public SubView getSubView() {
         return this.view;
-    }
-    @Override
-    public void setSubView(SubView view) {
-        this.view = view;
     }
 
 }

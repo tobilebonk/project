@@ -1,6 +1,6 @@
 package de.tobilebonk.utils;
 
-import de.tobilebonk.nucleotide3D.Residue;
+import de.tobilebonk.model.residue.Residue;
 
 import java.util.Comparator;
 

@@ -1,6 +1,6 @@
-package de.tobilebonk.atom;
+package de.tobilebonk.model.atom;
 
-import de.tobilebonk.nucleotide3D.ResiduumType;
+import de.tobilebonk.model.residue.ResiduumType;
 
 /**
  * Created by Dappsen on 13.12.2015.
